@@ -1,0 +1,75 @@
+﻿@using Freelancer.Web.Areas.Admin.HelperClasses
+@{
+    var activeMenu = MenuItemType.None;
+
+    if (ViewBag.ActiveMenu != null)
+    {
+        activeMenu = (MenuItemType)ViewBag.ActiveMenu;
+    }
+
+    var menuItems = AdminMenuProvider.GetMenu(activeMenu);
+
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/Areas/Admin/Content/Images/avatar.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>Tauqeer</p>
+                @*<p>@AdminLoginUser.Name</p>*@
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+
+        @using (Html.BeginForm("Result", "AdvanceSearch", FormMethod.Get))
+        {
+
+            <div class="input-group">
+                <input type="text" id="ReferenceId" name="ReferenceId" class="form-control" placeholder="Search Reference Id...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        }
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+
+
+            @foreach (var item in menuItems)
+            {
+                @Html.Partial("_leftMenuItem", item)
+            }
+
+          
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="">
+
+</div>
+<script>
+    function BookingModal() {
+        $('Html').css("overflow-y", "hidden")
+        $('#myModal').html("");
+        $('#myModal').load('../Booking/BookingModal?role=Admin');
+        $('#myModal').show();
+    }
+    function CloseModal() {
+        $('Html').css("overflow-y", "auto")
+        $('#CustomerloginForm').hide();
+        $('.modal').hide();
+    }
+
+
+</script>

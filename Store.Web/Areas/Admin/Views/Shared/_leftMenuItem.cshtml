@@ -1,0 +1,43 @@
+﻿@using Freelancer.Web.Areas.Admin.HelperClasses
+@model MenuItem
+
+@{
+    var css = "";
+
+    if (Model.IsActive)
+    {
+        css += "active myActive";
+    }
+
+    bool hasChild = (Model.Childs != null && Model.Childs.Count > 0);
+
+    if (hasChild)
+    {
+        css += " treeview";
+    }
+}
+
+<li class="@css">
+    <a href="@Model.Url">
+        <i class="fa @Model.Icon"></i> <span>@Model.DisplayText</span>
+        @if (hasChild)
+        {
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        }
+    </a>
+
+    @if (hasChild)
+    {
+        <ul class="treeview-menu">
+
+            @foreach (var item in Model.Childs)
+            {
+                @Html.Partial("_leftMenuItem", item)
+            }
+
+        </ul>
+
+    }
+</li>

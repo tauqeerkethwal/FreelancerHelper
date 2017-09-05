@@ -1,0 +1,93 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+#loginformshow,#loginformshow1
+{
+    font-size: 16px;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.datepicker-dropdown
+{
+  z-index: 1060 !important;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+.modal-title
+{
+    text-align: center;
+}
+            .container {
+                width: 99% !important;
+            }
+             .container {
+                    max-width: 99% !important;
+                        margin-left: 0px;
+                }
+@media (min-width: 1200px)
+    {
+            .container {
+                    max-width: 99%;
+                        margin-left: 15px;
+                }
+            .container {
+                width: 99%;
+            }
+     }
+    #modal-dialog {
+    right: auto;
+    left: auto;
+    width: 80%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+    .modal-header .close {
+    margin-top: -9px;
+}
+@media (max-width: 520px)
+    {
+   #modal-dialog {
+    right: auto;
+    left: 7.5%;
+    width: 80%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+    .modal-header .close {
+    margin-top: -9px;
+}
+     }
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+
+
+
+
+.edc-loader {
+    background: rgba(0,0,0,0.2) url(Images/edc_loader.gif) no-repeat center / 50px 50px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    text-indent: -9999px;
+    z-index: 9999;
+}
+.my-placeholder { color: #aaa; }

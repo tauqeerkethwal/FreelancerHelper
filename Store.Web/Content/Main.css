@@ -1,0 +1,9 @@
+﻿.bg-gradiant {
+    margin-top: 0px;
+    background-image: linear-gradient(180deg, #d3cdc8, #FFFFFF);
+}
+#Closebutton {
+    background-image: url('Assets/close.png');
+    width: 30px;
+    height: 30px;
+}

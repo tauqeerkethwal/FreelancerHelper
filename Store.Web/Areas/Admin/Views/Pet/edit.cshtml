@@ -1,0 +1,87 @@
+﻿@using Freelancer.Model;
+@using Freelancer.Web.Areas.Admin.ViewModels;
+@using Freelancer.Web.Areas.Admin.HelperClasses;
+@model PetViewModel
+@{
+
+
+}
+
+<!-- Date Picker -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/datepicker/datepicker3.css">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/daterangepicker/daterangepicker.css">
+
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <h3 class="box-title">Edit Pet</h3>
+    </div>
+    <div class="box-body">
+
+        @using (Html.BeginForm("edit", "Pet", FormMethod.Post,
+                                             new { enctype = "multipart/form-data", @class = "form-inline" }))
+
+        {
+            @Html.HiddenFor(m => m.AnimalId)
+            <div id="" class="row">
+
+                <!-- Modal content-->
+                <div class="row ">
+
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+
+                                    <label for="PostalCode">Name <small>(e.g. Dog,Cat)</small></label>
+                                    
+                                    @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-2 pull-right">
+                        <div>
+                            <label>&nbsp;</label>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
