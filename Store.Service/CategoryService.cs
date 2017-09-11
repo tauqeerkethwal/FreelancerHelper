@@ -1,4 +1,4 @@
-﻿using Freelancer.Data.Infrastructure;
+using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model;
 using System.Collections.Generic;
@@ -8,7 +8,8 @@ namespace Freelancer.Service
 {
     // operations you want to expose
     public interface ICategoryService
-    {//fff
+    {
+        //
         IEnumerable<Category> GetCategories(string name = null);
         Category GetCategory(int id);
         Category GetCategory(string name);
