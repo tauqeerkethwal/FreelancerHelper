@@ -1,7 +1,7 @@
 ﻿using Freelancer.Data.Configuration;
 using Freelancer.Model;
-using Freelancer.Model.Models.EmployeeType;
 using Freelancer.Model.Models.Employee;
+using Freelancer.Model.Models.EmployeeType;
 using Freelancer.Model.Models.Pets;
 using System.Data.Entity;
 
@@ -26,10 +26,13 @@ namespace Freelancer.Data
         public virtual void Commit()
         {
             base.SaveChanges();
+
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new EmployeeConfiguration());
             modelBuilder.Configurations.Add(new PetConfiguration());
             modelBuilder.Configurations.Add(new EmployeeTypeConfiguration());
             modelBuilder.Configurations.Add(new GadgetConfiguration());
