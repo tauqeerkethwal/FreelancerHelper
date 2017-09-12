@@ -13,7 +13,7 @@ namespace Freelancer.Service
 
         IEnumerable<Employee> GetEmployeeByEmployeeId(int EmployeeId);
         void CreateEmployee(Employee EmployeeAnimal);
-        void SaveCategory();
+        void SaveEmployee();
     }
 
     public class EmployeeService : IEmployeeService
@@ -40,7 +40,7 @@ namespace Freelancer.Service
             employeeRepository.Add(employee);
         }
 
-        public void SaveCategory()
+        public void SaveEmployee()
         {
             unitOfWork.Commit();
         }
