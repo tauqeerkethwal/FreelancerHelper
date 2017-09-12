@@ -8,6 +8,7 @@ namespace Freelancer.Model.Models.Employee
         public Employee()
         {
             DateCreated = DateTime.Now;
+            Active = true;
         }
         [Key]
         public int EmployeeId { get; set; }
