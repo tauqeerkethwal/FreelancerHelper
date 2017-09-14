@@ -66,6 +66,7 @@
 -----------------------------------------------------------*/
 .field-validation-error {
     color: #f00;
+    font-size: x-small;
 }
 
 .field-validation-valid {
@@ -73,12 +74,12 @@
 }
 
 .input-validation-error {
-    border: 2px solid red !important;
+    border: 1px solid red !important;
     /*background-color: #fee !important;*/
 }
 
 .validation-summary-errors {
-    font-weight: bold;
+    font-weight: lighter;
     color: #f00;
 }
 

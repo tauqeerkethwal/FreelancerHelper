@@ -23,7 +23,7 @@
     <script src="~/Areas/Admin/Scripts/commonAjaxHandler.js"></script>*@
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Add New Bestilling</h3>
+        <h3 class="box-title">Add New Employee</h3>
     </div>
     <div class="box-body">
 
@@ -41,7 +41,7 @@
                             <div class="pull-left col-md-6 col-xs-12">
                                 Ændring af cookieindstillinger. Vi beklager de gener, dette måtte medføre. Indtast venligst dine bestilleroplysninger igen.
                                 <h3 class="text-muted">
-                                    Bestilling<small class="text-danger"> (*felterne skal udfyldes)</small>
+                                    Employee<small class="text-danger"> (*felterne skal udfyldes) @Html.ValidationSummary()</small>
                                 </h3>
                               
                              
@@ -51,8 +51,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
-                                        @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+                                       @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+                                       
                                     </div>
                                 </div>
 
@@ -67,20 +67,20 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
                                         @Html.TextBoxFor(m => m.Street, new { @type = "text", @id = "txtStreet", @placeholder = "Street *", @class = "form-control" })
+                                       
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
                                         @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @class = "form-control" })
+                                       
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
-                                        @Html.TextBoxFor(m => m.City, new { @type = "text", @id = "txtCity", @placeholder = "City *", @class = "form-control" })
+                                       @Html.TextBoxFor(m => m.City, new { @type = "text", @id = "txtCity", @placeholder = "City *", @class = "form-control" })
+                                       
                                     </div>
                                 </div>
 
@@ -109,7 +109,7 @@
                                         }
 
 
-                                        </div>@Html.ValidationMessageFor(x => x.Gender)
+                                        </div>
                                     </div>
                                     </div>
 
@@ -124,21 +124,21 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
                                         @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @class = "form-control" })
+                                       
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
                                         @Html.TextBoxFor(m => m.Email, new { @type = "text", @id = "txtEmail", @placeholder = "Email *", @class = "form-control" })
+                                      
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
                                         @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() :"hourly pay"), @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
+                                     
                                     </div>
                                 </div>
                                
@@ -173,10 +173,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @*<input class="form-control" type="text" id="txtCPR" placeholder="Cpr *" name="Cpr" value="" />*@
                                         @Html.TextAreaFor(m => m.Description, new { @type = "text", rows = "6", @id = "txtDescription", @placeholder = "Description *", @class = "form-control" })
                                     </div>
                                 </div>
+                                
                             </div>
 
                            
@@ -244,8 +244,14 @@
                     <th>SNo</th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Actions&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Name&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Address&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Hourly Pay&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2">DateCreated</div></th>
-                    <th>Status</th>
+                    <th><div class="col-lg-2">Deleted</div></th>
+                    <th><div class="col-lg-2">Active</div></th>
 
                 </tr>
             </thead>
@@ -269,10 +275,10 @@
     var mainTable;
     $(document).ready(function () {
 
-        var url = "@Url.Action("LoadAllData","Pet")";
+        var url = "@Url.Action("LoadAllData","Employee")";
 
         var columns = [
-                 { "data": "SNo", "name": "SNo", "autoWidth": true , "Orderable": true},
+                 { "data": "SNo", "name": "SNo", "autoWidth": true, "Orderable": true },
                   {
 
                       "data": null,
@@ -289,44 +295,69 @@
 
 
                                       '<li>' +
-                                           '<a  href="@Url.Action("Edit")?Id=' + full.AnimalId + '&BackUrl=@Url.Action("Index", "Booking")"><i class="fa fa-bars"></i> Ret</a>' +
+                                           '<a  href="@Url.Action("Edit")?Id=' + full.EmployeeId + '&BackUrl=@Url.Action("Index", "Booking")"><i class="fa fa-bars"></i> Ret</a>' +
                                        '</li>' +
                                       '<li>' +
-                                           '<a  href="#" onClick="onDeleteCallback(' + full.AnimalId + ',true)"><i class="fa fa-remove"></i> Delete</a>' +
+                                           '<a  href="#" onClick="onDeleteCallback(' + full.EmployeeId + ',true)"><i class="fa fa-remove"></i> Delete</a>' +
 
-                                           '<a  href="#" onClick="onDeleteCallback(' + full.AnimalId + ',false)"><i class="fa fa-undo"></i> Undelete</a>' +
+                                           '<a  href="#" onClick="onDeleteCallback(' + full.EmployeeId + ',false)"><i class="fa fa-undo"></i> Undelete</a>' +
 
 
                           '</ul></div>';
 
 
-
-
+                        
                           return html;
 
                       }
                   },
                  { "data": "Name", "name": "Name", "autoWidth": true, "orderable": true, "searchable": true },
-                  { "data": "DateCreated", "name": "DateCreated", "autoWidth": true, "orderable": false },
+                 { "data": "Address", "name": "Address", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "HourlyPay", "name": "Hourly Pay", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
+                  { "data": "DateCreated", "name": "DateCreated", "autoWidth": true, "orderable": true, "searchable": true },
+                   //{
+                   //"data": null,
+                   //"orderable": false,
+                   //"render": function (data, type, full, meta) {
+                   //    value=full.DateCreated;
+                   //    if (value === null) return "";
+
+                   //    var pattern = /Date\(([^)]+)\)/;
+                   //    var results = pattern.exec(value);
+                   //    var dt = new Date(parseFloat(results[1]));
+
+                   //    return dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();
+                   //}}
+    
+
+    
                 {
-                    "data": "del",
+                   "data": null,
+                   "orderable": false,
+                   "render": function (data, type, full, meta) {
+
+                                       var html = commonTolkDanmark.getEmployeeDeletedColorCode(full);
+
+                                       return '<div class="orderStatus">' + html + "</div>";
+
+                                   }
+
+                 },
+                 {
+                    "data": null,
                     "orderable": false,
-                    "autoWidth": false,
-                    "searchable":true,
                     "render": function (data, type, full, meta) {
 
-                        var html = "";
-                        if (data == true)
-                        { html = '<input type="checkbox" class="tolkCheck" value="' + full.Id + '" Checked="true" disabled/>'; }
-                        else {
-                            html = '<input type="checkbox" class="tolkCheck" value="' + full.Id + '" disabled/>';
-                        }
+                                       var html = commonTolkDanmark.getEmployeeActiveColorCode(full);
 
+                                       return '<div class="orderStatus">' + html + "</div>";
 
-                        return html;
+                                   }
 
-                    }
-                }
+                 }
 
         ];
 
@@ -346,16 +377,16 @@
     }
     function fnRowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
-        switch (aData.del) {
-            case true:
+        //switch (aData.del) {
+        //    case true:
 
-                $(nRow).css('background-color', '#CF6565')
-                break;
-            case false:
-                $(nRow).css('background-color', '#6FB76F')
-                break;
+        //        $(nRow).css('background-color', '#CF6565')
+        //        break;
+        //    case false:
+        //        $(nRow).css('background-color', '#6FB76F')
+        //        break;
 
-        }
+        //}
     }
     function onDeleteSuccess(data) {
 

@@ -48,6 +48,8 @@
     <Compile Include="Common\EGender.cs" />
     <Compile Include="Common\Extensions\EnitityFrameworkExtensions.cs" />
     <Compile Include="Common\SearchParameters.cs" />
+    <Compile Include="Models\Employee\EmployeeListModel.cs" />
+    <Compile Include="Models\Employee\EmployeeSearchModel.cs" />
     <Compile Include="Models\Pets\PetListModel.cs" />
     <Compile Include="Models\Pets\PetSearchModel.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />

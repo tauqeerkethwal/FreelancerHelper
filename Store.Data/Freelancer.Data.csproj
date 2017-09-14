@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Users\tands\Downloads\FreelancerHelper-master\FreelancerHelper-master\Store.Web\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
