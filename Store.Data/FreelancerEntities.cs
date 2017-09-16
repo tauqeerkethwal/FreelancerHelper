@@ -1,5 +1,6 @@
 ﻿using Freelancer.Data.Configuration;
 using Freelancer.Model;
+using Freelancer.Model.Models.Customer;
 using Freelancer.Model.Models.Employee;
 using Freelancer.Model.Models.EmployeeType;
 using Freelancer.Model.Models.Pets;
@@ -14,6 +15,7 @@ namespace Freelancer.Data
 
             Database.SetInitializer<FreelancerEntities>(null);
         }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<EmployeeAnimal> EmployeeAnimals { get; set; }
         public DbSet<Pet> Animals { get; set; }
         public DbSet<EmployeeType> EmployeeTypes { get; set; }

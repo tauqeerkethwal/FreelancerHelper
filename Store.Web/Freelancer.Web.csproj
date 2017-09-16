@@ -1314,6 +1314,8 @@
     <Content Include="Areas\Admin\Content\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Areas\Admin\Content\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
     <Content Include="Areas\Admin\Views\Employee\edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\_EmptyRow.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1330,6 +1332,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PetController.cs" />
     <Compile Include="Areas\Admin\HelperClasses\AdminMenuProvider.cs" />
@@ -1342,6 +1345,7 @@
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTRow.cs" />
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTSearch.cs" />
     <Compile Include="Areas\Admin\ViewModels\EmployeeFormViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CustomerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">

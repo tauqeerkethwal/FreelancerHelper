@@ -12,6 +12,22 @@ function alphanumeric(event) {
     return false;
 
 }
+
+function isfloatKey(evt) {
+    
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+   
+    if (charCode == 44) {
+        return true;
+    }
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+
+    
+
+    return true;
+}
+
 function ValidateEmail(event, email) {
    
     if (event.keyCode == 13 || event.keyCode == 9) {

@@ -20,7 +20,7 @@ namespace Freelancer.Model.Models.Employee
         public string Tlf { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        public decimal HourlyPay { get; set; }
+        public double? HourlyPay { get; set; }
         public bool Orange { get; set; }
         public bool DrivingLicence { get; set; }
         public bool Car { get; set; }

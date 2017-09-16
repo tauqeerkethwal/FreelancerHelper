@@ -1,0 +1,58 @@
+﻿@using Freelancer.Web.Areas.Admin.ViewModels;
+@using Freelancer.Web.Areas.Admin.HelperClasses;
+@model CustomerViewModel
+@{
+
+
+}
+<
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+@Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @onkeypress = "return isAlpha(event)", @placeholder = "Name *", @class = "form-control" })
+<table id="Table">
+    <tbody>
+        <tr id="l1">
+            <td>
+            @Html.TextBoxFor(m => m.Name,new  {@Name= "CustomerKeysList[0].Name", @id = "CustomerKeysList_0_Name", @class = "thingRow" });
+                @*@Html.EditorFor(m => m.CustomerKeysList)*@
+                <button id="RemoveObject(0)" type="button" class="btn btn-primary">remove Object</button>
+            </td>
+        </tr>
+
+        </tbody>
+</table>
+
+<button id="AddObject" type="button" class="btn btn-primary">Add Object</button>
+<button type="submit" class="btn btn-primary">Save</button>
+}
+<script>
+    function RemoveObject(index)
+    {
+        alert(index)
+        $('#'+index+''
+            ).remove();
+    }
+    $('#AddObject1').click(function ()
+    {
+        $('#CustomerKeysList_0_Name').remove();
+    })
+    $('#AddObject').click(function () {
+        var i = $(".thingRow").length;
+        $.ajax({
+            url: '/admin/customer/AddObject?index=' + i,
+            success: function (data) {
+                alert(data)
+                $('#Table > tbody ').append('<tr id='+i+'><td>'+data).append('<button id="AddObject1" type="button" class="btn btn-primary">Add Object</button>');
+            },
+            error: function (a, b, c) {
+                alert(a + " " + b + " " + c);
+            }
+        });
+    });
+</script>

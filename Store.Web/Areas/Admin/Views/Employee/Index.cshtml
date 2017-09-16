@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() :"hourly pay"), @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() :"hourly pay"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
                                      
                                     </div>
                                 </div>

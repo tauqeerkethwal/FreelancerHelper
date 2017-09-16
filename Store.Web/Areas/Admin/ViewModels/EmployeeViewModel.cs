@@ -5,15 +5,6 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
 {
     public class EmployeeViewModel
     {
-        //public EmployeeViewModel(IEmployeeTypeService employeeTypeservice)
-        //{
-        //    this.employeeTypeservice = employeeTypeservice;
-        //    //this.Type1 = employeeTypeservice.GetAllEmployeeTypes().Select(i => new SelectListItem()
-        //    //{
-        //    //    Text = i.Name,
-        //    //    Value = i.TypeId.ToString()
-        //    //}).ToList();
-        //}
 
 
         [Key]
@@ -29,7 +20,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string Tlf { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.#}")]
+
         public double HourlyPay { get; set; }
         public bool Orange { get; set; }
         public bool DrivingLicence { get; set; }
