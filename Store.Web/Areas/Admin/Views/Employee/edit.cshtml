@@ -1,0 +1,412 @@
+﻿@using Freelancer.Model.Models.Employee;
+@using Freelancer.Model.Common;
+@using Freelancer.Web.Areas.Admin.ViewModels;
+@using Freelancer.Web.Areas.Admin.HelperClasses;
+@model EmployeeViewModel
+@{
+
+
+}
+
+<div class="box box-primary">
+     <div class="box-header with-border">
+        <h3 class="box-title">Add New Employee</h3>
+    </div>
+    <div class="box-body">
+
+        <form id="Employee" method="post" enctype="multipart/form-data" action="@Url.Action("edit","Employee")">
+            <div id="" class="">
+@Html.HiddenFor(m => m.EmployeeId)
+                <!-- Modal content-->
+                <div class="row ">
+
+                    <div id="formdata" class="modal-body">
+
+
+                        <div class="formTextSize padding20px">
+
+                            <div class="pull-left col-md-6 col-xs-12">
+                                Ændring af cookieindstillinger. Vi beklager de gener, dette måtte medføre. Indtast venligst dine bestilleroplysninger igen.
+                                <h3 class="text-muted">
+                                    Employee<small class="text-danger"> (*felterne skal udfyldes) @Html.ValidationSummary()</small>
+                                </h3>
+
+
+
+
+                                <div class="form formWH form-group-sm">Borgeroplysninger</div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.DropDownListFor(m => m.TypeId, Model.Type, "Select Type", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Street, new { @type = "text", @id = "txtStreet", @placeholder = "Street *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.City, new { @type = "text", @id = "txtCity", @placeholder = "City *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="form-group col-sm-8">
+                                            @if (Model.Gender == 3)
+                                            {
+                                                <select name="Gender" class="input-validation-error form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
+                                            else if (Model.Gender == 0)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)" selected>Kvinde</option>
+                                                </select>
+                                            }
+                                            else if (Model.Gender == 1)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)" selected>Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <div class="pull-right col-md-6 col-sm-12">
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Email, new { @type = "text", @id = "txtEmail", @placeholder = "Email *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() : "hourly pay"), @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>O</span>
+                                            @Html.CheckBoxFor(m => m.Orange)
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>Driving Licence</span>
+                                            @Html.CheckBoxFor(m => m.DrivingLicence)
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>Car</span>
+                                            @Html.CheckBoxFor(m => m.Car)
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>Deleted?</span>
+                                            @Html.CheckBoxFor(m => m.del)
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>Active?</span>
+                                            @Html.CheckBoxFor(m => m.Active)
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextAreaFor(m => m.Description, new { @type = "text", rows = "6", @id = "txtDescription", @placeholder = "Description *", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-lg-3 pull-right">
+                                <div>
+                                    <label>&nbsp;</label>
+                                    <div>
+
+                                        <button class="btn btn-success" type="submit">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            Add
+                                        </button>
+
+                                        <a class="btn btn-default" href="@Url.Action("index")">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                            Clear
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <lable ID="lbluserid"></lable>
+                    </div>
+                    <div id="SuccessMessage" class="modal-body" style="display:none;height:250px">
+                        Tak for din bestilling
+                        <a href="@Url.Action("BookingModal","Booking")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+
+
+</div>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <h3 class="box-title">Available Pet List </h3>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+
+
+        <table id="myTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>SNo</th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Actions&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Name&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Address&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Hourly Pay&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2">DateCreated</div></th>
+                    <th><div class="col-lg-2">Deleted</div></th>
+                    <th><div class="col-lg-2">Active</div></th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+
+    </div>
+    <!-- /.box-body -->
+
+    <div class="box-footer">
+
+    </div>
+
+</div>
+
+
+
+
+<script>
+    var mainTable;
+    $(document).ready(function () {
+
+        var url = "@Url.Action("LoadAllData","Employee")";
+
+        var columns = [
+                 { "data": "SNo", "name": "SNo", "autoWidth": true, "Orderable": true },
+                  {
+
+                      "data": null,
+                      "orderable": false,
+                      "autoWidth": false,
+
+                      //"defaultContent": "<button><span class='fa fa-edit'></span></button>"
+                      "render": function (data, type, full, meta) {
+
+                         ;
+                          var html = '<div  class="btn-group pull-right"><button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">' +
+                                  'Actions' + ' <i class="fa fa-angle-down"></i></button>' +
+                                   '<ul class="dropdown-menu pull-right">' +
+
+
+                                      '<li>' +
+                                           '<a  href="@Url.Action("Edit")?Id=' + full.EmployeeId + '&BackUrl=@Url.Action("Index", "Booking")"><i class="fa fa-bars"></i> Ret</a>' +
+                                       '</li>' +
+                                      '<li>' +
+                                           '<a  href="#" onClick="onDeleteCallback(' + full.EmployeeId + ',true)"><i class="fa fa-remove"></i> Delete</a>' +
+
+                                           '<a  href="#" onClick="onDeleteCallback(' + full.EmployeeId + ',false)"><i class="fa fa-undo"></i> Undelete</a>' +
+                                         
+                          '</ul></div>';
+
+
+                          
+                          return html;
+
+                      }
+                  },
+                 { "data": "Name", "name": "Name", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Address", "name": "Address", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "HourlyPay", "name": "Hourly Pay", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
+                  { "data": "DateCreated", "name": "DateCreated", "autoWidth": true, "orderable": true, "searchable": true },
+               
+
+
+
+                {
+                   "data": null,
+                   "orderable": false,
+                   "render": function (data, type, full, meta) {
+
+                                       var html = commonTolkDanmark.getEmployeeDeletedColorCode(full);
+
+                                       return '<div class="orderStatus">' + html + "</div>";
+
+                                   }
+
+                 },
+                 {
+                    "data": null,
+                    "orderable": false,
+                    "render": function (data, type, full, meta) {
+
+                                       var html = commonTolkDanmark.getEmployeeActiveColorCode(full);
+
+                                       return '<div class="orderStatus">' + html + "</div>";
+
+                                   }
+
+                 }
+
+        ];
+
+        mainTable = commonManager.setUpDataTable("#myTable", url, columns, [], fillExtraData, 10);
+
+
+    });
+    function fillExtraData(d) {
+
+        $("#chkSelectAll").prop('checked', false);
+        var CheckStatus = $("#IsCheckStatus").val();
+        d.searchable = "true";
+
+        d.IsActive = true;// $("#search").val();
+
+
+    }
+    function fnRowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+        //switch (aData.del) {
+        //    case true:
+
+        //        $(nRow).css('background-color', '#CF6565')
+        //        break;
+        //    case false:
+        //        $(nRow).css('background-color', '#6FB76F')
+        //        break;
+
+        //}
+    }
+    function onDeleteSuccess(data) {
+
+        hideConfirmationDialog();
+
+        mainTable.ajax.reload();
+
+    }
+
+    function onDeleteError(data) {
+
+
+    }
+   
+    $(document).ready(function(){
+        //$("#txtHourlyPay").val($(this).val() == 0 ? '' : $(this).val());
+    })
+
+</script>
+
+
