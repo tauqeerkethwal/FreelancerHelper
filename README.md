@@ -7,17 +7,20 @@
 <li>Automapper</li>
 </ol>
 
+<a href="https://chsakell.files.wordpress.com/2015/02/mvc-architecture-01.png" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/02/mvc-architecture-01.png?w=700" alt="mvc-architecture-01" class="alignnone size-full wp-image-2638"></a>
 
+<h2>Donations</h2>
+For being part of open source projects and documenting my work here and on <a href="https://chsakell.com">chsakell's blog</a> I really do not charge anything. I try to avoid any type of ads also.
 
-
-
+If you think that any information you obtained here is worth of some money and are willing to pay for it, feel free to send any amount through paypal.
 
 <table>
 <tr><th>Paypal</th></tr>
 <tbody>
 <tr>
-<td>
- </td>
+<td><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=chsakell%40gmail%2ecom&lc=US&item_name=Donation%20for%20chsakell%27s%20blog&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" style="text-align:center;display:block">
+<img src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_cc_147x47.png" alt="Buy me a beer" />
+</a></td>
 </tr>
 </tbody>
 </table>
@@ -46,4 +49,5 @@
 </tr>
 </tbody>
 </table>
-
+<h3>License</h3>
+Code released under the <a href="https://github.com/chsakell/mvcarchitecture/blob/master/licence" target="_blank"> MIT license</a>.
