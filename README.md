@@ -1,5 +1,5 @@
 # ASP.NET MVC Solution Architecture – Best Practices
-
+[Blog post](http://chsakell.com/2015/02/15/asp-net-mvc-solution-architecture-best-practices/)
 <ol>
 <li>Entity Framework Code First development</li>
 <li>Generic Repository Pattern</li>
@@ -9,16 +9,15 @@
 
 
 
-<h2>Donations</h2>
-For being part of open source projects and documenting my work here and on <a href="https://chsakell.com">chsakell's blog</a> I really do not charge anything. I try to avoid any type of ads also.
 
-If you think that any information you obtained here is worth of some money and are willing to pay for it, feel free to send any amount through paypal.
+
 
 <table>
 <tr><th>Paypal</th></tr>
 <tbody>
 <tr>
-<td></td>
+<td>
+ </td>
 </tr>
 </tbody>
 </table>
@@ -39,13 +38,12 @@ If you think that any information you obtained here is worth of some money and a
 <tbody>
 <tr>
 <td style="padding:8px;border-bottom:1px solid #fff;color:#FFA500;border-top:1px solid #fff;background:#1F394C repeat-x;">
-
+<a href="https://www.facebook.com/chsakells.blog" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/08/facebook.png?w=120&amp;h=120&amp;crop=1" alt="facebook" width="120" height="120" class="alignnone size-opti-archive wp-image-3578"></a>
 </td>
 <td style="padding:8px;border-bottom:1px solid #fff;color:#FFA500;border-top:1px solid #fff;background:#1F394C repeat-x;">
-
+<a href="https://twitter.com/chsakellsBlog" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/08/twitter-small.png?w=120&amp;h=120&amp;crop=1" alt="twitter-small" width="120" height="120" class="alignnone size-opti-archive wp-image-3583"></a>
 </td>
 </tr>
 </tbody>
 </table>
-<h3>License</h3>
-Code released under the <a href="https://github.com/chsakell/mvcarchitecture/blob/master/licence" target="_blank"> MIT license</a>.
+
