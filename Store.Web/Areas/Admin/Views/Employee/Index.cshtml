@@ -295,18 +295,22 @@
 
 
                                       '<li>' +
-                                           '<a  href="@Url.Action("Edit")?Id=' + full.EmployeeId + '&BackUrl=@Url.Action("Index", "Booking")"><i class="fa fa-bars"></i> Ret</a>' +
+                                           '<a  href="@Url.Action("Edit")?Id=' + full.EmployeeId + '&BackUrl=@Url.Action("Index", "Employee")"><i class="fa fa-bars"></i> Ret</a>' +
                                        '</li>' +
                                       '<li>' +
                                            '<a  href="#" onClick="onDeleteCallback(' + full.EmployeeId + ',true)"><i class="fa fa-remove"></i> Delete</a>' +
 
                                            '<a  href="#" onClick="onDeleteCallback(' + full.EmployeeId + ',false)"><i class="fa fa-undo"></i> Undelete</a>' +
 
+                                           '<a  href="#" onClick="onActiveCallback(' + full.EmployeeId + ',true)"><i class="fa fa-remove"></i> Active</a>' +
+
+                                           '<a  href="#" onClick="onActiveCallback(' + full.EmployeeId + ',false)"><i class="fa fa-undo"></i> InActive</a>' +
+
 
                           '</ul></div>';
 
 
-                        
+
                           return html;
 
                       }
@@ -318,22 +322,10 @@
                  { "data": "HourlyPay", "name": "Hourly Pay", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
                   { "data": "DateCreated", "name": "DateCreated", "autoWidth": true, "orderable": true, "searchable": true },
-                   //{
-                   //"data": null,
-                   //"orderable": false,
-                   //"render": function (data, type, full, meta) {
-                   //    value=full.DateCreated;
-                   //    if (value === null) return "";
+                 
 
-                   //    var pattern = /Date\(([^)]+)\)/;
-                   //    var results = pattern.exec(value);
-                   //    var dt = new Date(parseFloat(results[1]));
 
-                   //    return dt.getDate() + "-" + (dt.getMonth() + 1) + "-" + dt.getFullYear();
-                   //}}
-    
 
-    
                 {
                    "data": null,
                    "orderable": false,
@@ -400,17 +392,27 @@
 
 
     }
-    function onDeleteCallback(itemId, delUndel) {
-
+     function onDeleteCallback(itemId, delUndel) {
+         alert(delUndel)
         openConfirmationDialog(
             (delUndel == true ? "Are you sure, you want to make select record slette?" : "Are you sure, you want to make select record Undeleted?"),
              function () {
-            commonAjaxManager.deleteRecordAsync('@Url.Action("deleteUndelete")', { Id: itemId, del: delUndel }, onDeleteSuccess, onDeleteError);
+                 commonAjaxManager.postAsync('@Url.Action("deleteUndelete")', { Id: itemId, value: delUndel }, onDeleteSuccess, onDeleteError);
         });
 
 
     }
-     
+    function onActiveCallback(itemId, ActiveInactive) {
+
+        openConfirmationDialog(
+            (ActiveInactive == true ? "Are you sure, you want to make select record Active?" : "Are you sure, you want to make select record Inactive?"),
+             function () {
+                 commonAjaxManager.postAsync('@Url.Action("ActiveInActive")', { Id: itemId, value: ActiveInactive }, onDeleteSuccess, onDeleteError);
+             });
+
+
+    }
+
     $(document).ready(function(){
         $("#txtHourlyPay").val($(this).val() == 0 ? '' : $(this).val());
     })
