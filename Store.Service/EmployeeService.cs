@@ -12,12 +12,10 @@ namespace Freelancer.Service
     public interface IEmployeeService
     {
 
-
-
-        IEnumerable<Employee> GetEmployeeByEmployeeId(int EmployeeId);
+        Employee GetEmployee(int EmployeeId);
         void CreateEmployee(Employee EmployeeAnimal);
         ListResult<EmployeeListModel> GetAll(SearchParameters searchParameters, EmployeeSearchModel model);
-
+        void Update(Employee employee);
         void SaveEmployee();
     }
 
@@ -33,11 +31,15 @@ namespace Freelancer.Service
             this.unitOfWork = unitOfWork;
             this.employeeTypeRepository = employeeTypeRepository;
         }
-
-        #region 
-        public IEnumerable<Employee> GetEmployeeByEmployeeId(int EmployeeId)
+        public void Update(Employee employee)
         {
-            var Employee = employeeRepository.GetEmployeeByEmployeeId(EmployeeId);
+
+            employeeRepository.Update(employee);
+        }
+        #region 
+        public Employee GetEmployee(int EmployeeId)
+        {
+            var Employee = employeeRepository.GetById(EmployeeId);
             return Employee;
         }
 
