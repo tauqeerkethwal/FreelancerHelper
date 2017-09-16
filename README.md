@@ -7,7 +7,7 @@
 <li>Automapper</li>
 </ol>
 
-<a href="https://chsakell.files.wordpress.com/2015/02/mvc-architecture-01.png" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/02/mvc-architecture-01.png?w=700" alt="mvc-architecture-01" class="alignnone size-full wp-image-2638"></a>
+
 
 <h2>Donations</h2>
 For being part of open source projects and documenting my work here and on <a href="https://chsakell.com">chsakell's blog</a> I really do not charge anything. I try to avoid any type of ads also.
@@ -39,10 +39,10 @@ If you think that any information you obtained here is worth of some money and a
 <tbody>
 <tr>
 <td style="padding:8px;border-bottom:1px solid #fff;color:#FFA500;border-top:1px solid #fff;background:#1F394C repeat-x;">
-<a href="https://www.facebook.com/chsakells.blog" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/08/facebook.png?w=120&amp;h=120&amp;crop=1" alt="facebook" width="120" height="120" class="alignnone size-opti-archive wp-image-3578"></a>
+
 </td>
 <td style="padding:8px;border-bottom:1px solid #fff;color:#FFA500;border-top:1px solid #fff;background:#1F394C repeat-x;">
-<a href="https://twitter.com/chsakellsBlog" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/08/twitter-small.png?w=120&amp;h=120&amp;crop=1" alt="twitter-small" width="120" height="120" class="alignnone size-opti-archive wp-image-3583"></a>
+
 </td>
 </tr>
 </tbody>
