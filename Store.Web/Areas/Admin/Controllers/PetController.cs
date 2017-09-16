@@ -51,10 +51,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 petService.SavePet();
             }
 
-            //PetViewModel viewModelAnimal;
-            //Pet pet = petService.GetPet(Id);
-            //viewModelAnimal = Mapper.Map<Pet, PetViewModel>(pet);
-            return true;
+           return true;
         }
 
         [HttpPost]
@@ -68,10 +65,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 petService.SavePet();
             }
 
-            //PetViewModel viewModelAnimal;
-            //Pet pet = petService.GetPet(Id);
-            //viewModelAnimal = Mapper.Map<Pet, PetViewModel>(pet);
-            return RedirectToAction("Add", "Pet");
+              return RedirectToAction("Add", "Pet");
         }
 
 
@@ -108,9 +102,9 @@ namespace Freelancer.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult LoadAllData(DTParameters param, PetSearchModel model)
         {
-            var a = Request.Form.GetValues("search[value]")[0];
+            var SearchValue = Request.Form.GetValues("search[value]")[0];
             var parameters = param.GetSearchParameters();
-            parameters.SearchText = a;
+            parameters.SearchText = SearchValue;
 
             var listResult = petService.GetAll(parameters, model);
 

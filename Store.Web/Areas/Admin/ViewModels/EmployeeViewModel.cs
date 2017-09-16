@@ -18,7 +18,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
 
         [Key]
         public int EmployeeId { get; set; }
-        [Required(ErrorMessage = "Enter Name")]
+
         public string Name { get; set; }
         public string Street { get; set; }
         public string PostCode { get; set; }
@@ -37,7 +37,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public DateTime? DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
         public int TypeId { get; set; }
-
+        [System.ComponentModel.DefaultValue(1)]
         public bool Active { get; set; }
         public bool del { get; set; }
 

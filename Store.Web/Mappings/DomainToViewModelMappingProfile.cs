@@ -20,7 +20,7 @@ namespace Freelancer.Web.Mappings
         protected override void Configure()
         {
             Mapper.CreateMap<Category, CategoryViewModel>();
-            Mapper.CreateMap<Employee, EmployeeViewModel>();
+           
 
             Mapper.CreateMap<Employee, EmployeeViewModel>().ForMember(dest => dest.Type,
                opts => opts.Ignore());

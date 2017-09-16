@@ -78,8 +78,8 @@
             url: url,
             type: 'Post',
             data: data,
-           // dataType: "json",
-           // contentType: "application/json",
+            //dataType: "text/html",
+            //async: true,
             cache: false,
             success: function (data) {
 
@@ -90,7 +90,6 @@
             },
 
             error: function (xhr) {
-
                 commonManager.showErrorMessage("Unknown Error Occurred.");
                 if (onError) {
                     onError();
@@ -99,6 +98,7 @@
 
 
         });
+      
 
 
     }

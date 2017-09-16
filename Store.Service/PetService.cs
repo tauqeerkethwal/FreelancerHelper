@@ -1,9 +1,8 @@
 ﻿using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model.Common;
-
-using Freelancer.Model.Models.Pets;
 using Freelancer.Model.Models.Base;
+using Freelancer.Model.Models.Pets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +16,8 @@ namespace Freelancer.Service
         IEnumerable<Pet> GetPet(string name);
         void CreatePet(Pet employeeTypes);
         ListResult<PetListModel> GetAll(SearchParameters searchParameters, PetSearchModel model);
-
-
         void Update(Pet animal);
-       
+
         void SavePet();
     }
 
@@ -80,7 +77,7 @@ namespace Freelancer.Service
 
 
                 // Apply Sort Order
-                items = CommonHelper.ApplyOrderPaging(searchParameters, items);
+                items = CommonHelper.ApplyPetPaging(searchParameters, items);
 
                 // Return Result
                 var returnObject = new ListResult<PetListModel>();
@@ -141,7 +138,7 @@ namespace Freelancer.Service
             if (!string.IsNullOrEmpty(searchParameters.SearchText))
             {
                 items = items.Where(x =>
-                                        x.Name.Contains(searchParameters.SearchText)
+                                        x.Name.ToLower().Contains(searchParameters.SearchText.ToLower())
 
                                    );
             }
