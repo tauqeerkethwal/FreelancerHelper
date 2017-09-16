@@ -12,7 +12,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public int EmployeeId { get; set; }
         [Required(ErrorMessage = "Enter Name")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Enter Street")]
+        [Required(ErrorMessage = "Enter  Street")]
         public string Street { get; set; }
         [Required(ErrorMessage = "Enter PostCode")]
         public string PostCode { get; set; }
