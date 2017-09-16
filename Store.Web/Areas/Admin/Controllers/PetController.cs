@@ -65,10 +65,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 petService.SavePet();
             }
 
-            //PetViewModel viewModelAnimal;
-            //Pet pet = petService.GetPet(Id);
-            //viewModelAnimal = Mapper.Map<Pet, PetViewModel>(pet);
-            return RedirectToAction("Add", "Pet");
+              return RedirectToAction("Add", "Pet");
         }
 
 
