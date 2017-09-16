@@ -9,10 +9,7 @@
 
 <a href="https://chsakell.files.wordpress.com/2015/02/mvc-architecture-01.png" target="_blank"><img src="https://chsakell.files.wordpress.com/2015/02/mvc-architecture-01.png?w=700" alt="mvc-architecture-01" class="alignnone size-full wp-image-2638"></a>
 
-<h2>Donations</h2>
-For being part of open source projects and documenting my work here and on <a href="https://chsakell.com">chsakell's blog</a> I really do not charge anything. I try to avoid any type of ads also.
 
-If you think that any information you obtained here is worth of some money and are willing to pay for it, feel free to send any amount through paypal.
 
 <table>
 <tr><th>Paypal</th></tr>
