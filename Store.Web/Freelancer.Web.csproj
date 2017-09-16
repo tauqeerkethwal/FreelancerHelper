@@ -185,6 +185,7 @@
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\dist\js\demo.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\dist\js\pages\dashboard.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\dist\js\pages\dashboard2.js" />
+    <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\docs.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\include\adminlte-options.html" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\include\advice.html" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\include\browsers.html" />
@@ -199,6 +200,7 @@
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\include\plugins.html" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\include\upgrade.html" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\index.html" />
+    <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\build\style.css" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\docs.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\index.html" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\documentation\style.css" />
