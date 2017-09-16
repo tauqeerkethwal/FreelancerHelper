@@ -7,7 +7,7 @@
 
     
 }
-
+<script src="~/Scripts/Validation.js"></script>
 @*<!-- Date Picker -->
     <link rel="stylesheet" href="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/datepicker/datepicker3.css">
     <!-- Daterange picker -->
@@ -51,7 +51,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                       @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+                                       @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @onkeypress = "return isAlpha(event)", @placeholder = "Name *", @class = "form-control" })
                                        
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @MaxLength = "4", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
                                        
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @onkeypress = "return isNumberKey(event)", @MaxLength = "8", @class = "form-control" })
                                        
                                     </div>
                                 </div>
