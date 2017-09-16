@@ -11,15 +11,7 @@
 
 
 
-<table>
-<tr><th>Paypal</th></tr>
-<tbody>
-<tr>
-<td><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=chsakell%40gmail%2ecom&lc=US&item_name=Donation%20for%20chsakell%27s%20blog&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" style="text-align:center;display:block">
-<img src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_cc_147x47.png" alt="Buy me a beer" />
-</a></td>
-</tr>
-</tbody>
+
 </table>
 
 <h3 style="font-weight:normal;">Follow chsakell's Blog</h3>
