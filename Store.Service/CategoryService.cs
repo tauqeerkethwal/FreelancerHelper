@@ -1,4 +1,4 @@
-﻿using Freelancer.Data.Infrastructure;
+using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model;
 using System.Collections.Generic;
