@@ -8,6 +8,7 @@ namespace Freelancer.Model.Models.Employee
         public Employee()
         {
             DateCreated = DateTime.Now;
+            Active = true;
         }
         [Key]
         public int EmployeeId { get; set; }
@@ -15,25 +16,23 @@ namespace Freelancer.Model.Models.Employee
         public string Street { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
-
-        [Required(ErrorMessage = "Please enter Pet Name")]
-        public string Gender { get; set; }
+        public int? Gender { get; set; }
         public string Tlf { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.#}")]
-        public double HourlyPay { get; set; }
+        public decimal HourlyPay { get; set; }
         public bool Orange { get; set; }
         public bool DrivingLicence { get; set; }
         public bool Car { get; set; }
-        public DateTime? DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
         public int TypeId { get; set; }
-        public bool Active { get; set; }
+        [System.ComponentModel.DefaultValue(1)]
+        public bool? Active { get; set; }
         public bool del { get; set; }
 
         public Guid? UpdatedById { get; set; }
 
-        //  public IEquatable<EmployeeAnimal> EmployeeAnimalCollection { get; set; }
+
     }
 }

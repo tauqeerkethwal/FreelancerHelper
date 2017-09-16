@@ -1,55 +1,42 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 namespace Freelancer.Web.Areas.Admin.ViewModels
 {
-    public class EmployeeViewModel
+    public class EmployeeFormViewModel
     {
-        //public EmployeeViewModel(IEmployeeTypeService employeeTypeservice)
-        //{
-        //    this.employeeTypeservice = employeeTypeservice;
-        //    //this.Type1 = employeeTypeservice.GetAllEmployeeTypes().Select(i => new SelectListItem()
-        //    //{
-        //    //    Text = i.Name,
-        //    //    Value = i.TypeId.ToString()
-        //    //}).ToList();
-        //}
-
-
+        public EmployeeFormViewModel()
+        {
+            Active = true;
+        }
         [Key]
         public int EmployeeId { get; set; }
-
+        [Required(ErrorMessage = "Enter Name")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Enter  Street")]
         public string Street { get; set; }
+        [Required(ErrorMessage = "Enter PostCode")]
         public string PostCode { get; set; }
+        [Required(ErrorMessage = "Enter City")]
         public string City { get; set; }
-
-
+        [Required(ErrorMessage = "Select Gender")]
         public Nullable<short> Gender { get; set; }
+        [Required(ErrorMessage = "Enter Telephone nr.")]
         public string Tlf { get; set; }
+        [Required(ErrorMessage = "Enter Email")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Enter Description")]
         public string Description { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.#}")]
+        [Required(ErrorMessage = "Enter HourlyPay")]
         public double HourlyPay { get; set; }
         public bool Orange { get; set; }
         public bool DrivingLicence { get; set; }
         public bool Car { get; set; }
-        public DateTime? DateCreated { get; set; }
-        public DateTime? DateUpdated { get; set; }
+        [Required(ErrorMessage = "Select Type")]
         public int TypeId { get; set; }
-        [System.ComponentModel.DefaultValue(1)]
+
         public bool Active { get; set; }
         public bool del { get; set; }
 
-        public Guid? UpdatedById { get; set; }
-
-        public SelectList Type
-        {
-            get; set;
-
-
-
-        }
 
 
     }

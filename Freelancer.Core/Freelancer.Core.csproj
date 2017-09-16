@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BD210642-AC0E-41F8-B954-70D52A27EDEB}</ProjectGuid>
+    <ProjectGuid>{11BDD887-3BAC-415D-8574-66D0A2D0F093}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Store.Service</RootNamespace>
-    <AssemblyName>Store.Service</AssemblyName>
+    <RootNamespace>Freelancer.Core</RootNamespace>
+    <AssemblyName>Freelancer.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,38 +35,17 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Store.Web\bin\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryService.cs" />
-    <Compile Include="EmployeeService.cs" />
-    <Compile Include="PetService.cs" />
-    <Compile Include="EmployeeAnimalService.cs" />
-    <Compile Include="EmployeeTypeService.cs" />
-    <Compile Include="GadgetService.cs" />
+    <Compile Include="Common\DateTimeHelper.cs" />
+    <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Freelancer.Core\Freelancer.Core.csproj">
-      <Project>{11bdd887-3bac-415d-8574-66d0a2d0f093}</Project>
-      <Name>Freelancer.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Store.Data\Freelancer.Data.csproj">
-      <Project>{8745ed96-7f5a-4cb1-84e3-a2226d9a2c72}</Project>
-      <Name>Freelancer.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Store.Model\Freelancer.Model.csproj">
-      <Project>{9388dc18-b02e-4ce2-8211-a958b7dd2df2}</Project>
-      <Name>Freelancer.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

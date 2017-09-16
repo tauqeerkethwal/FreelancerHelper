@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Freelancer.Model;
+using Freelancer.Model.Models.Employee;
+using Freelancer.Web.Areas.Admin.ViewModels;
 using Freelancer.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Freelancer.Web.Mappings
 {
@@ -17,12 +15,17 @@ namespace Freelancer.Web.Mappings
 
         protected override void Configure()
         {
+            Mapper.CreateMap<EmployeeFormViewModel, EmployeeViewModel>().ForMember(g => g.Type, opts => opts.Ignore());
+            Mapper.CreateMap<EmployeeFormViewModel, Employee>()
+
+                ;
+
             Mapper.CreateMap<GadgetFormViewModel, Gadget>()
-                .ForMember(g => g.Name, map => map.MapFrom(vm => vm.GadgetTitle))
-                .ForMember(g => g.Description, map => map.MapFrom(vm => vm.GadgetDescription))
-                .ForMember(g => g.Price, map => map.MapFrom(vm => vm.GadgetPrice))
-                .ForMember(g => g.Image, map => map.MapFrom(vm => vm.File.FileName))
-                .ForMember(g => g.CategoryID, map => map.MapFrom(vm => vm.GadgetCategory));
+                   .ForMember(g => g.Name, map => map.MapFrom(vm => vm.GadgetTitle))
+                   .ForMember(g => g.Description, map => map.MapFrom(vm => vm.GadgetDescription))
+                   .ForMember(g => g.Price, map => map.MapFrom(vm => vm.GadgetPrice))
+                   .ForMember(g => g.Image, map => map.MapFrom(vm => vm.File.FileName))
+                   .ForMember(g => g.CategoryID, map => map.MapFrom(vm => vm.GadgetCategory));
         }
     }
 }

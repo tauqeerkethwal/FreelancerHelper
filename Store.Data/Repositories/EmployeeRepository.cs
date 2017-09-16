@@ -1,7 +1,5 @@
 ﻿using Freelancer.Data.Infrastructure;
 using Freelancer.Model.Models.Employee;
-using System.Collections.Generic;
-using System.Linq;
 namespace Freelancer.Data.Repositories
 {
 
@@ -15,11 +13,6 @@ namespace Freelancer.Data.Repositories
 
 
 
-        public IEnumerable<Employee> GetEmployeeByEmployeeId(int EmployeeId)
-        {
-            var employeetype = this.DbContext.Employees.Where(x => x.EmployeeId == EmployeeId && x.del == false && x.Active == true);
-            return employeetype;
-        }
         public override void Update(Employee employee)
         {
 
@@ -31,6 +24,6 @@ namespace Freelancer.Data.Repositories
     {
 
 
-        IEnumerable<Employee> GetEmployeeByEmployeeId(int EmployeeId);
+
     }
 }

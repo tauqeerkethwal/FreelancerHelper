@@ -1,11 +1,8 @@
 ﻿using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Freelancer.Service
 {
@@ -63,6 +60,6 @@ namespace Freelancer.Service
         }
 
         #endregion
-    
+
     }
 }
