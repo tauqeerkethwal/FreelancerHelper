@@ -1318,6 +1318,7 @@
     <Content Include="Scripts\jquery.maskedinput.js" />
     <Content Include="Scripts\jquery.min-new.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Validation.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1337,6 +1338,7 @@
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTResult.cs" />
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTRow.cs" />
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTSearch.cs" />
+    <Compile Include="Areas\Admin\ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
