@@ -17,18 +17,7 @@
                     </div>
                 </td>
             </tr>
-            if (Model.Item1.Count == ind + 1)
-            {
-                <tr>
-                    <td>
-                        <div id="@Model.Item2">
-                            <input id="CustomerKeysList_@Model.Item2" class="CustomerKeysLists"
-                                   name="CustomerKeysList[@Model.Item2].Name" type="text" value="" />
-                            <button id="RemoveObject@(Model.Item2)" onclick="RemoveObject(@(Model.Item2))" type="button" class="btn btn-primary">remove Object</button>
-                        </div>
-                    </td>
-                </tr>
-            }
+           
             ind++;
         }
 

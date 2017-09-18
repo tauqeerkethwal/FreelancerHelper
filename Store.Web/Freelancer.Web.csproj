@@ -1316,6 +1316,7 @@
     <Content Include="Areas\Admin\Views\Employee\edit.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_EmptyRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\_DeleteRow.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
