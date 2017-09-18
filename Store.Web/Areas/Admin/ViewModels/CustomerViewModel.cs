@@ -1,5 +1,6 @@
 ﻿using Freelancer.Model.Models.CustomerKeys;
 using System;
+using Freelancer.Model.Models.CustomerPet;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -22,6 +23,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         }
 
         public List<CustomerKeys> CustomerKeysList { get; set; }
+        public List<CustomerPet> PetCollection { get; set; }
         public string Name { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
@@ -48,7 +50,13 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public DateTime DateUpdated { get; set; }
         public Guid UpdatedById { get; set; }
 
+        public SelectList PetList
+        {
+            get; set;
 
+
+
+        }
 
     }
 }

@@ -1,37 +1,51 @@
-﻿using Freelancer.Model.Models.CustomerKeys;
+﻿using AutoMapper;
+using Freelancer.Model.Models.CustomerPet;
+using Freelancer.Model.Models.Customer;
+using Freelancer.Model.Models.CustomerKeys;
+using Freelancer.Service;
 using Freelancer.Web.Areas.Admin.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 namespace Freelancer.Web.Areas.Admin.Controllers
 {
-    public class SelectedInterventionsViewModel
-    {
-        public int Id { get; set; }
 
-        public string Title { get; set; }
-
-        public System.DateTime ToDoBefore { get; set; }
-
-        public System.DateTime PlannedDate { get; set; }
-    }
     public class CustomerController : Controller
+
     {
+        private readonly IPetService _petService;
+        private readonly ICustomerPetService _customerPetService;
+        public CustomerController(IPetService _petService, ICustomerPetService _customerPetService)
+        {
+            this._petService = _petService;
+            this._customerPetService = _customerPetService;
+        }
+
         // GET: Admin/Customer
         public ActionResult Index()
         {
-            CustomerViewModel cv = new CustomerViewModel();
-            List<CustomerKeys> li = new List<CustomerKeys>();
-            li.Add(new CustomerKeys { Name = "0fa", CustomerId = "0", KeyId = 0 });
 
-            cv.CustomerKeysList = li;
+            CustomerViewModel customerViewModel;
+            Customer customer = new Customer();
+            customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
+            customerViewModel.PetList = _petService.GetAllPetDropdown();
+            CustomerPetViewModel customerPetViewModel;
+           IEnumerable< CustomerPet > customerPet = _customerPetService.GetPetsByCustomerId(Guid.NewGuid());
+            
+            customerViewModel.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.NewGuid()).ToList();
 
-            return View(cv);
+
+            //cv.CustomerKeysList = li;
+
+            return View(customerViewModel);
         }
         [HttpPost]
         public ActionResult AddObject(int index, List<CustomerKeys> CustomerKeysList)
         {
-            Tuple<List<CustomerKeys>, int> tuple = new Tuple<List<CustomerKeys>, int>(CustomerKeysList, index);
+            List<CustomerKeys> customerKeyList = new List<CustomerKeys>();
+            customerKeyList.Add(new CustomerKeys());
+            Tuple<List<CustomerKeys>, int> tuple = new Tuple<List<CustomerKeys>, int>(CustomerKeysList == null ? customerKeyList : CustomerKeysList, index);
             return PartialView("_EmptyRow", tuple);
         }
         [HttpPost]

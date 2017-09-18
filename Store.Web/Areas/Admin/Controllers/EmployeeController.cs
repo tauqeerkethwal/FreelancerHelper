@@ -12,10 +12,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
         // GET: Admin/Employee
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeTypeService _employeeTypeService;
+      
         public EmployeeController(IEmployeeService _employeeService, IEmployeeTypeService _employeeTypeService)
         {
             this._employeeService = _employeeService;
             this._employeeTypeService = _employeeTypeService;
+            
         }
         public ActionResult Index()
         {

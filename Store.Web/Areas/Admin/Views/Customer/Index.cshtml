@@ -20,25 +20,60 @@
         @{
                 int ind = 0;
             }
-            @foreach (var a in Model.CustomerKeysList)
+    @if(Model.CustomerKeysList!=null)
+    { 
+            foreach (var customerKeysList in Model.CustomerKeysList)
             {
+                if(customerKeysList.Name!=null)
+                { 
                 <tr>
                     <td>
                         <div id="@ind">
-                            <input id="CustomerKeysList_@(a.KeyId)" class="CustomerKeysLists"
-                                   name="CustomerKeysList[@(ind)].Name" type="text" value="@a.Name" />
+                            <input id="CustomerKeysList_@(customerKeysList.KeyId)" class="CustomerKeysLists"
+                                   name="CustomerKeysList[@(ind)].Name" type="text" value="@customerKeysList.Name" />
                             <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" class="btn btn-primary">remove Object</button>
                         </div>
                     </td></tr>
-                ind++;
+                    ind++;
+                }
             }        
-        
-       
-</table>
 
+    }
+</table>
+<div class="row">
+    <div class="form-group col-sm-8">
+        @Html.DropDownListFor(m => m.PetList, Model.Type, "Select Pet", new { @class = "form-control" })
+        <table id="TablePet">
+
+            @{
+                 ind = 0;
+            }
+            @if (Model.PetCollection != null)
+            {
+                foreach (var Pets in Model.PetCollection)
+                {
+                    if (Pets.Name != null)
+                    {
+                        <tr>
+                            <td>
+                                <div id="@ind">
+                                    <input id="PetList_@(Pets.AnimalId)" class="CustomerKeysLists"
+                                           name="PetList[@(ind)].Name" type="text" value="@Pets.Name" />
+                                    <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" class="btn btn-primary">remove Object</button>
+                                </div>
+                            </td>
+                        </tr>
+                        ind++;
+                    }
+                }
+
+            }
+        </table>
+    </div>
+</div>
 <button id="AddObject" type="button" class="btn btn-primary">Add Object</button>
 <button type="submit" class="btn btn-primary">Save</button>
-}
+            }
 
 
 <script>
