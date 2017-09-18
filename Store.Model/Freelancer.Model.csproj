@@ -57,7 +57,7 @@
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\Base\ListResult.cs" />
     <Compile Include="Models\Employee\Employee.cs" />
-    <Compile Include="Models\EmployeeAnimal.cs" />
+    <Compile Include="Models\CustomerPet\CustomerPet.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Pets\Pet.cs" />
     <Compile Include="Models\EmployeeType\EmployeeType.cs" />
