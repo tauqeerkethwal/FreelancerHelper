@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\EmployeeConfiguration.cs" />
-    <Compile Include="Configuration\EmployeeAnimalConfiguration.cs" />
+    <Compile Include="Configuration\CustomerPetConfiguration.cs" />
     <Compile Include="Configuration\CategoryConfiguration.cs" />
     <Compile Include="Configuration\CustomerConfiguration.cs" />
     <Compile Include="Configuration\PetConfiguration.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\TypeRepository.cs" />
     <Compile Include="Repositories\PetRepository.cs" />
-    <Compile Include="Repositories\EmployeeAnimalRepository.cs" />
+    <Compile Include="Repositories\CustomerPetRepository.cs" />
     <Compile Include="Repositories\EmployeeTypeRepository.cs" />
     <Compile Include="Repositories\GadgetRepository.cs" />
     <Compile Include="FreelancerEntities.cs" />
