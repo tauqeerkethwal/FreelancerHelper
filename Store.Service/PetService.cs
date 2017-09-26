@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace Freelancer.Service
 {
     public interface IPetService
+
     {
         IEnumerable<Pet> GetAllPets(string name = null);
 

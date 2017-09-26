@@ -1317,6 +1317,7 @@
     <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_EmptyRow.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_DeleteRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\_CustomerPetRow.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1338,6 +1339,7 @@
     <Compile Include="Areas\Admin\Controllers\PetController.cs" />
     <Compile Include="Areas\Admin\HelperClasses\AdminMenuProvider.cs" />
     <Compile Include="Areas\Admin\HelperClasses\CommonUtility.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CustomerPetViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTColumn.cs" />
     <Compile Include="Areas\Admin\ViewModels\DataTable\DTOrder.cs" />

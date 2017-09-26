@@ -14,8 +14,6 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string Street { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
-
-
         public Nullable<short> Gender { get; set; }
         public string Tlf { get; set; }
         public string Email { get; set; }

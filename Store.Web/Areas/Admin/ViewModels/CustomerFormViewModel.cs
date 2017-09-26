@@ -2,30 +2,43 @@
 using Freelancer.Model.Models.CustomerPet;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 namespace Freelancer.Web.Areas.Admin.ViewModels
 {
-    public class CustomerViewModel
+    public class CustomerFormViewModel
     {
-        public CustomerViewModel()
-        { }
+        public CustomerFormViewModel()
+        {
+            Active = true;
+        }
 
-
+        [Required(ErrorMessage = "Enter Customer Id")]
         public string CustomerId { get; set; }
         public List<CustomerKeys> CustomerKeysList { get; set; }
         public List<CustomerPet> PetCollection { get; set; }
+        [Required(ErrorMessage = "Enter Name")]
         public string Name { get; set; }
-        public Nullable<short> Gender { get; set; }
+        [Required(ErrorMessage = "Enter  Street")]
         public string Street { get; set; }
+        [Required(ErrorMessage = "Enter PostCode")]
         public string PostCode { get; set; }
+        [Required(ErrorMessage = "Enter City")]
         public string City { get; set; }
+        [Required(ErrorMessage = "Select Gender")]
+        public Nullable<short> Gender { get; set; }
+        [Required(ErrorMessage = "Enter Telephone nr.")]
+        public string Tlf { get; set; }
+        [Required(ErrorMessage = "Enter Email")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Enter Description")]
+        public string Description { get; set; }
+        [Required(ErrorMessage = "Enter HourlyRate")]
         public double HourlyRate { get; set; }
+
         public string CVR { get; set; }
         public string EAN { get; set; }
         public string WebSite { get; set; }
-        public string Tlf { get; set; }
-        public string Description { get; set; }
         public string KontactPName { get; set; }
         public string KontactPTlf { get; set; }
         public string KontactPEmail { get; set; }
@@ -37,8 +50,6 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string OtherDesc { get; set; }
         public bool del { get; set; }
         public bool Active { get; set; }
-        public DateTime DateCreated { get; set; }
-        public SelectList Type { get; set; }
         public int TypeId { get; set; }
         public SelectList PetList { get; set; }
         public int? PetId { get; set; }

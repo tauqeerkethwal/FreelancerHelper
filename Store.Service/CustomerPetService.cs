@@ -4,14 +4,14 @@ using Freelancer.Data.Repositories;
 using Freelancer.Model.Models.CustomerPet;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace Freelancer.Service
 {
     public interface ICustomerPetService
     {
 
-
-
+        void DeletePreviousCustomerPets(Guid CustomerId);
+        void AddNewCustomerPets(Guid CustomerId, List<CustomerPet> CustomerPetList);
         IEnumerable<CustomerPet> GetPetsByCustomerId(Guid Id);
         void CreateCustomerPet(CustomerPet customerPet);
         void SaveCategory();
@@ -26,6 +26,28 @@ namespace Freelancer.Service
         {
             this.customerPetRepository = customerPetRepository;
             this.unitOfWork = unitOfWork;
+        }
+        public void DeletePreviousCustomerPets(Guid CustomerId)
+        {
+
+            if (CustomerId != null)
+            {
+                customerPetRepository.GetMany(x => x.CustomerId == CustomerId && x.del == false).ToList().ForEach(a => a.del = true);
+            }
+        }
+        public void AddNewCustomerPets(Guid CustomerId, List<CustomerPet> CustomerPetList)
+        {
+
+            if (CustomerPetList != null)
+            {
+                foreach (var customerkey in CustomerPetList)
+                {
+                    customerkey.CustomerId = CustomerId;
+                    CreateCustomerPet(customerkey);
+
+                }
+
+            }
         }
 
         #region 

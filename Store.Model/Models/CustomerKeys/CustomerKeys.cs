@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.ComponentModel.DataAnnotations;
 namespace Freelancer.Model.Models.CustomerKeys
 {
@@ -13,7 +12,8 @@ namespace Freelancer.Model.Models.CustomerKeys
         [Key]
         public int KeyId { get; set; }
         public string Name { get; set; }
-        public string CustomerId { get; set; }
+
+        public Guid CustomerId { get; set; }
         public DateTime DateCreated { get; set; }
 
         public bool del { get; set; }

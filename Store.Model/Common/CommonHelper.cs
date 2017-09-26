@@ -1,4 +1,5 @@
-﻿using Freelancer.Model.Models.Employee;
+﻿using Freelancer.Model.Models.Customer;
+using Freelancer.Model.Models.Employee;
 using Freelancer.Model.Models.Pets;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,27 @@ namespace Freelancer.Model.Common
                 int startTimeComparision = 1439;
                 return startTimeComparision;
             }
+        }
+        public static IQueryable<Customer> ApplyCustomerPaging(SearchParameters searchParameters, IQueryable<Customer> items)
+        {
+            // Apply Sort Order
+            if (!string.IsNullOrEmpty(searchParameters.SortColumnName))
+            {
+                items = items.ApplySortingAndPagging(searchParameters.SortColumnName, searchParameters.SortOrderDescending, searchParameters.PageSize, searchParameters.PageStart);
+            }
+            else
+            {
+                List<SortInfo> sortList = new List<SortInfo>();
+
+
+
+                sortList.Add(new SortInfo { SortColumnName = "DateCreated", SortOrderDescending = false });
+
+
+                items = items.ApplySortingAndPagging(sortList, searchParameters.PageSize, searchParameters.PageStart);
+            }
+
+            return items;
         }
         public static IQueryable<Employee> ApplyEmployeePaging(SearchParameters searchParameters, IQueryable<Employee> items)
         {

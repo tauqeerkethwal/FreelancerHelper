@@ -1,8 +1,5 @@
 ﻿using Freelancer.Data.Infrastructure;
 using Freelancer.Model.Models.Customer;
-using Freelancer.Model.Models.Pets;
-using System.Collections.Generic;
-using System.Linq;
 namespace Freelancer.Data.Repositories
 {
 
@@ -15,12 +12,6 @@ namespace Freelancer.Data.Repositories
         }
 
 
-
-        public IEnumerable<Pet> GetAnimalName(string Name)
-        {
-            var employeetype = this.DbContext.Animals.Where(x => x.Name == Name && x.del == false);
-            return employeetype;
-        }
         public override void Update(Customer customer)
         {
 
@@ -33,6 +24,7 @@ namespace Freelancer.Data.Repositories
     {
 
 
-        IEnumerable<Pet> GetAnimalName(string Name);
+
+
     }
 }

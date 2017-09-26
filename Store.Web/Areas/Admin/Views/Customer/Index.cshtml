@@ -1,5 +1,9 @@
 ﻿@using Freelancer.Web.Areas.Admin.ViewModels;
 @using Freelancer.Web.Areas.Admin.HelperClasses;
+@using Freelancer.Model.Models.Employee;
+@using Freelancer.Model.Common;
+@using Freelancer.Web.Areas.Admin.ViewModels;
+@using Freelancer.Web.Areas.Admin.HelperClasses;
 @model CustomerViewModel
 @{
 
@@ -10,220 +14,935 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-@using (Html.BeginForm())
-{
-@Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @onkeypress = "return isAlpha(event)", @placeholder = "Name *", @class = "form-control" })
-<table id="Table">
- 
-        @{
-                int ind = 0;
-            }
-    @if(Model.CustomerKeysList!=null)
-    { 
-            foreach (var customerKeysList in Model.CustomerKeysList)
-            {
-                if(customerKeysList.Name!=null)
-                { 
-                <tr>
-                    <td>
-                        <div id="@ind">
-                            <input id="CustomerKeysList_@(customerKeysList.KeyId)" class="CustomerKeysLists"
-                                   name="CustomerKeysList[@(ind)].Name" type="text" value="@customerKeysList.Name" />
-                            <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" class="btn btn-primary">remove Object</button>
-                        </div>
-                    </td></tr>
-                    ind++;
-                }
-            }        
-
-    }
-</table>
-<div class="row">
-    <div class="form-group col-sm-8">
-        @Html.DropDownListFor(m => m.PetList, Model.Type, "Select Pet", new { @class = "form-control" })
-        <table id="TablePet">
-
-            @{
-                 ind = 0;
-            }
-            @if (Model.PetCollection != null)
-            {
-                foreach (var Pets in Model.PetCollection)
-                {
-                    if (Pets.Name != null)
-                    {
-                        <tr>
-                            <td>
-                                <div id="@ind">
-                                    <input id="PetList_@(Pets.AnimalId)" class="CustomerKeysLists"
-                                           name="PetList[@(ind)].Name" type="text" value="@Pets.Name" />
-                                    <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" class="btn btn-primary">remove Object</button>
-                                </div>
-                            </td>
-                        </tr>
-                        ind++;
-                    }
-                }
-
-            }
-        </table>
+<script src="~/Scripts/Validation.js"></script>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Add New Employee</h3>
     </div>
-</div>
-<button id="AddObject" type="button" class="btn btn-primary">Add Object</button>
-<button type="submit" class="btn btn-primary">Save</button>
-            }
+    <div class="box-body">
 
+        <form id="Booking" method="post" enctype="multipart/form-data" action="@Url.Action("Index","Customer")">
+           
+            <div id="" class="">
+
+                <!-- Modal content-->
+                <div class="row ">
+
+                    <div id="formdata" class="modal-body">
+
+
+                        <div class="formTextSize padding20px">
+
+                            <div class="pull-left col-md-6 col-xs-12">
+                                Ændring af cookieindstillinger. Vi beklager de gener, dette måtte medføre. Indtast venligst dine bestilleroplysninger igen.
+                                <h3 class="text-muted">
+                                    Employee<small class="text-danger"> (*felterne skal udfyldes) @Html.ValidationSummary()</small>
+                                </h3>
+
+
+
+
+                                <div class="form formWH form-group-sm">Borgeroplysninger</div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.CustomerId, new { @type = "text", @id = "txtCustomerId", @onkeypress = "return alphanumeric(event)", @placeholder = "Customer Id *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @onkeypress = "return alphanumeric(event)", @placeholder = "Name *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.DropDownListFor(m => m.TypeId, Model.Type, "Select Type", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Street, new { @type = "text", @id = "txtStreet", @placeholder = "Street *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @MaxLength = "4", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.City, new { @type = "text", @id = "txtCity", @placeholder = "City *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="form-group col-sm-8">
+                                            @if (Model.Gender == 3)
+                                            {
+                                                <select name="Gender" class="input-validation-error form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
+                                            else
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.CVR, new { @type = "text", @id = "txtCVR", @placeholder = "CVR/EAN *", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.EAN, new { @type = "text", @id = "txtEAN", @placeholder = "EAN *", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.WebSite, new { @type = "text", @id = "txtWebSite", @placeholder = "WebSite *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @onkeypress = "return isNumberKey(event)", @MaxLength = "8", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.Email, new { @type = "text", @id = "txtEmail", @placeholder = "Email *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextBoxFor(m => m.HourlyRate, new { @value = (Model.HourlyRate > 0 ? Model.HourlyRate.ToString() : "hourly Rate"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyRate", @placeholder = "HourlyRate *", @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        @Html.TextAreaFor(m => m.Description, new { @type = "text", rows = "6", @id = "txtDescription", @placeholder = "Description *", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="pull-right col-md-6 col-sm-12">
+
+                                <!-- /.box Konntact -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"> Kontact Person</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                   
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                @Html.TextBoxFor(m => m.KontactPName, new { @value = Model.KontactPName, @onkeypress = "return isNumberKey(event)", @type = "text", @id = "txtKontactPName", @placeholder = "Name *", @class = "form-control" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                @Html.TextBoxFor(m => m.KontactPTlf, new { @value = Model.KontactPTlf, @onkeypress = "return isNumberKey(event)", @MaxLength = "8", @type = "text", @id = "txtKontactPTlf", @placeholder = "Tlf *", @class = "form-control" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                @Html.TextBoxFor(m => m.KontactPEmail, new { @value = Model.KontactPEmail, @type = "text", @id = "txtKontactPEmail", @placeholder = "Email *", @class = "form-control" })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                @Html.TextAreaFor(m => m.KontactPDesc, new { @type = "text", rows = "6", @id = "txtKontactPDesc", @placeholder = "Description *", @class = "form-control" })
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                                <!-- /.box Konntact -->
+
+                              
+                                <!-- /.box Keys -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Keys</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                    <div class="box-header">
+                                                        <h3 class="box-title"><button id="AddObject" type="button" class="btn btn-block btn-success btn-sm">Add Keys</button></h3>
+                                                    </div>
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body no-padding">
+                                                        <table id="Table" class="table table-condensed">
+
+                                                            @{
+                                                                int index = 0;
+                                                            }
+                                                            @if (Model.CustomerKeysList != null)
+                                                            {
+                                                                foreach (var customerKeysList in Model.CustomerKeysList)
+                                                                {
+                                                                    if (customerKeysList.Name != null)
+                                                                    {
+                                                                        <tr>
+
+
+                                                                            <td>
+                                                                                <div id="@index">
+                                                                                    <input id="CustomerKeysList_@(index)" class="CustomerKeysLists" style="display: block;    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"
+                                                                                           name="CustomerKeysList[@(index)].Name" type="text" value="@customerKeysList.Name" />
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+
+                                                                                <button id="RemoveObject@(index)" onclick="RemoveObject(@(index))" type="button" style="margin-top: 5px" class="btn btn-block btn-danger btn-xs">Remove Keys</button>
+
+                                                                            </td>
+
+
+
+
+                                                                        </tr>
+                                                                        index++;
+                                                                    }
+                                                                }
+
+                                                            }
+
+
+
+                                                            </table>
+                                                        </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+                                   
+                                 </div>
+                                        <!-- /.box keys -->
+
+
+
+
+                                <!-- /.box pets -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Pets</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                    <div class="box-header">
+                                                        <h3 class="box-title">
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        @Html.DropDownListFor(m => m.PetId, Model.PetList, "Select Pet", new { @class = "form-control" })
+
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <button id="AddPet" type="button" class="btn btn-primary">Add Pet</button>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </h3>
+                                                    </div>
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body no-padding">
+                                                        <table id="TablePet">
+
+                                                            @{
+                                                                index = 0;
+                                                            }
+                                                            @if (Model.PetCollection != null)
+            {
+                foreach (var PetCollection in Model.PetCollection)
+                {
+                    if (PetCollection.Name != null)
+                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div id="@index">
+                                                                                    <input id="PetCollection_@(index)" class="PetCollections"
+                                                                                           name="PetCollection[@(index)].Name" type="text" value="@PetCollection.Name" />
+                                                                                    <button id="RemoveObject@(index)" onclick="RemoveObject(@(index))" type="button" class="btn btn-primary">remove Object</button>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        index++;
+                                                                    }
+                                                                }
+
+                                                            }
+                                                        </table>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+                                
+                                </div>
+                                <!-- /.box pets -->
+                              
+                          
+                                <!-- /.box Alarm -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"> Alarm</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                    @*<div class="box-header">
+                                <h3 class="box-title">
+                                Kontact Person
+                                </h3>
+                            </div>*@
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                <label class="checkbox-inline right-align-checkbox">
+                                                                    <span>Alarm</span>
+                                                                    @Html.CheckBoxFor(m => m.IsAlarm)
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                @Html.TextAreaFor(m => m.AlarmDesc, new { @type = "text", rows = "6", @id = "txtAlarmDesc", @placeholder = "Description *", @class = "form-control" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                                <!-- /.box Alarm -->
+                            
+                                <!-- /.box Others -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"> Others</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                   
+                                                    <div class="box-body">
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                <label class="checkbox-inline right-align-checkbox">
+                                                                    <span>Others</span>
+                                                                    @Html.CheckBoxFor(m => m.IsOther)
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-8">
+                                                                @Html.TextAreaFor(m => m.OtherDesc, new { @type = "text", rows = "6", @id = "txtOtherDesc", @placeholder = "Description *", @class = "form-control" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                                <!-- /.box Others -->
+                            
+                            
+                            </div>
+
+
+
+                                    <div class="col-lg-3 pull-right">
+                                        <div>
+                                            <label>&nbsp;</label>
+                                            <div>
+                                                <button class="btn btn-success" type="submit">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    Add
+                                                </button>
+
+                                                <a class="btn btn-default" href="@Url.Action("index")">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                    Clear
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <lable ID="lbluserid"></lable>
+                            </div>
+                    <div id="SuccessMessage" class="modal-body" style="display:none;height:250px">
+                        Tak for din bestilling
+                        <a href="@Url.Action("BookingModal","Booking")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
+                    </div>
+                </div>
+
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Save</button>
+          
+
+
+        </div>
+</div>
+    
+    
+<div class="box box-primary">
+    <div class="box-header with-border">
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <h3 class="box-title">Available Pet List </h3>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+
+
+        <table id="myTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>SNo</th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Actions&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Name&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Address&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;EAN&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;CVR&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Keys&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Hourly Rate&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
+                    
+                    <th><div class="col-lg-2">Deleted</div></th>
+                    <th><div class="col-lg-2">Active</div></th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+
+    </div>
+    <!-- /.box-body -->
+
+    <div class="box-footer">
+
+    </div>
+
+</div>
 
 <script>
+    var mainTable;
+    $(document).ready(function () {
 
-    function ReorderList()
-    {
-       var CustomerKeysList = JSON.stringify({ 'CustomerKeysList': createJSON() });
-        alert(CustomerKeysList);
-        $('#Table').empty();
-        var i = $('input[class="CustomerKeysLists"]').length;
+        var url = "@Url.Action("LoadAllData","Customer")";
+
+        var columns = [
+                 { "data": "SNo", "name": "SNo", "autoWidth": true, "Orderable": true },
+                  {
+
+                      "data": null,
+                      "orderable": false,
+                      "autoWidth": false,
+
+                      //"defaultContent": "<button><span class='fa fa-edit'></span></button>"
+                      "render": function (data, type, full, meta) {
+                          //alert(full.CustomerKeysList[0].Name);
+                          var html = '<div  class="btn-group pull-right"><button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">' +
+                                  'Actions' + ' <i class="fa fa-angle-down"></i></button>' +
+                                   '<ul class="dropdown-menu pull-right">' +
+
+
+                                      '<li>' +
+                                           '<a  href="@Url.Action("Edit")?Id=' + full.Id + '&BackUrl=@Url.Action("Index", "Customer")"><i class="fa fa-bars"></i> Ret</a>' +
+                                       '</li>' +
+                                      '<li>' +
+                                            '<a  href="#" onClick="onDeleteCallback(\'' + full.CustomerKeysList.Id + '\',true)"><i class="fa fa-remove"></i> Delete</a>' +
+
+                                           '<a  href="#" onClick="onDeleteCallback(\'' + full.Id + '\',false)"><i class="fa fa-undo"></i> Undelete</a>' +
+
+                                           '<a  href="#" onClick="onActiveCallback(\'' + full.Id + '\',true)"><i class="fa fa-remove"></i> Active</a>' +
+
+                                           '<a  href="#" onClick="onActiveCallback(\'' + full.Id + '\',false)"><i class="fa fa-undo"></i> InActive</a>' +
+
+
+                          '</ul></div>';
 
 
 
-       
+                          return html;
+
+                      }
+                  },
+                 { "data": "Name", "name": "Name", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Address", "name": "Address", "autoWidth": true, "orderable": true, "searchable": true },
+                     { "data": "EAN", "name": "EAN", "autoWidth": true, "orderable": true, "searchable": true },
+                       { "data": "CVR", "name": "CVR", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
+                  {
+
+                      "data": null,
+                      "orderable": false,
+                      "autoWidth": false,
+                      "render": function (data, type, full, meta) {
+                          var html = "";
+                          if (full.CustomerKeysList == null)
+                          {
+                              return "No keys"
+                          }
+                          else
+                              if (full.CustomerKeysList.length == 0) {
+                                  return "No keys"
+                              }
+                         
+                          html = '<div  class="btn-group pull-right"><button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">' +
+                             'Keys' + ' <i class="fa fa-angle-down"></i></button>' +
+                              '<ul class="dropdown-menu pull-right">';
+                          for (let index = 0; index < full.CustomerKeysList.length; ++index)
+                                       {
+                        
+
+
+                              html = html + '<li>' +
+                                   '<a  href="@Url.Action("Edit")?Id=' + full.Id + '&BackUrl=@Url.Action("Index", "Customer")"><i class="fa fa-key"></i> ' + full.CustomerKeysList[index].Name + '</a>' +
+                               '</li>';
+                                 
+
+                     
+
+                          }
+                          html =html+'</ul></div>';
+                     return html;
+
+                 }
+    },
+    
+                 { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "HourlyRate", "name": "Hourly Rate", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
+              
 
 
 
-        var url = '/admin/customer/RemoveObject?index=' + i;
-        $.ajax({
-            url: url,
-            contentType: 'application/json; charset=utf-8',
 
-            type: 'POST',
-            data: CustomerKeysList,
-            success: function (data) {
-                //  var PreviousKeyList = GetCustomerKeysListhtml();
-                $('#Table').empty();
-                //  $('#Table').append('<tr ><td>' + PreviousKeyList).append('<button id="AddObject1" type="button" class="btn btn-primary">Add Object</button>');
+                {
+                   "data": null,
+                   "orderable": false,
+                   "render": function (data, type, full, meta) {
 
-                $('#Table').append('<tr ><td>' + data);
-            },
-            error: function (a, b, c) {
-                alert(a + " " + b + " " + c);
-            }
+                                       var html = commonTolkDanmark.getEmployeeDeletedColorCode(full);
+
+                                       return '<div class="orderStatus">' + html + "</div>";
+
+                                   }
+
+                 },
+                 {
+                    "data": null,
+                    "orderable": false,
+                    "render": function (data, type, full, meta) {
+
+                                       var html = commonTolkDanmark.getEmployeeActiveColorCode(full);
+
+                                       return '<div class="orderStatus">' + html + "</div>";
+
+                                   }
+
+                 }
+
+        ];
+
+        mainTable = commonManager.setUpDataTable("#myTable", url, columns, [], fillExtraData, 10);
+
+
+    });
+    function fillExtraData(d) {
+
+        $("#chkSelectAll").prop('checked', false);
+        var CheckStatus = $("#IsCheckStatus").val();
+        d.searchable = "true";
+
+        d.IsActive = true;// $("#search").val();
+
+
+    }
+    function fnRowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+        //switch (aData.del) {
+        //    case true:
+
+        //        $(nRow).css('background-color', '#CF6565')
+        //        break;
+        //    case false:
+        //        $(nRow).css('background-color', '#6FB76F')
+        //        break;
+
+        //}
+    }
+    function onDeleteSuccess(data) {
+
+        hideConfirmationDialog();
+
+        mainTable.ajax.reload();
+
+    }
+
+    function onDeleteError(data) {
+
+
+    }
+     function onDeleteCallback(itemId, delUndel) {
+         alert(delUndel)
+        openConfirmationDialog(
+            (delUndel == true ? "Are you sure, you want to make select record slette?" : "Are you sure, you want to make select record Undeleted?"),
+             function () {
+                commonAjaxManager.postAsync('@Url.Action("deleteUndelete")', { Id: itemId, value: delUndel }, onDeleteSuccess, onDeleteError);
         });
+
+
     }
-    function GetCustomerKeysListhtml()
-    {
-        var TableRows = "";
-        $('input[class="CustomerKeysLists"]').each(function (index, item) {
+    function onActiveCallback(itemId, ActiveInactive) {
 
-            TableRows += '<div id="' + index + '">' +
-            '<input id="' + $(item).attr('id') + '" class="CustomerKeysLists"' +
-            'name="CustomerKeysLists[' + index + '].Name" type="text" value="' + $(item).val() + '" />' +
-            '<button id="RemoveObject' + index + '" onclick="RemoveObject(' + index + ')" type="button" class="btn btn-primary">remove Object</button>' +
-        '</div>'
+        openConfirmationDialog(
+            (ActiveInactive == true ? "Are you sure, you want to make select record Active?" : "Are you sure, you want to make select record Inactive?"),
+             function () {
+                 commonAjaxManager.postAsync('@Url.Action("ActiveInActive")', { Id: itemId, value: ActiveInactive }, onDeleteSuccess, onDeleteError);
+             });
 
-        })
-        return TableRows;
 
     }
 
-    function createJSON() {
-        jsonObj = [];
-        $("input[class=CustomerKeysLists]").each(function () {
+    //$(document).ready(function(){
+    //    $("#txtHourlyPay").val($(this).val() == 0 ? '' : $(this).val());
+    //})
 
-           
+</script>
+    
+    @*pet list operations script*@
+<script>
+    $(document).ready(function () {
+        $("#txtHourlyRate").val($(this).val() == 0 ? '' : $(this).val());
+    })
+</script>
+<script>
+        function ReorderListPet() {
+            var PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(true) });
+            var index = $('input[class="PetCollections"]').length;
+            $('#TablePet').empty();
+            if(index>0)
+            {
+                var url = '/admin/customer/RemoveObjectPet?index=' + index;
+                $.ajax({
+                    url: url,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    data: PetCollection,
+                    success: function (data) {
+
+                        $('#TablePet').empty();
+                        $('#TablePet').append('<tr ><td>' + data);
+                    },
+                    error: function (a, b, c) {
+                        alert(a + " " + b + " " + c);
+                    }
+                });
+            }
+        }
+       function RemoveObjectPet(index) {
+            $('#' + index + '').remove();
+            ReorderListPet();
+        }
+        function createJSONPet(del) {
+            jsonObj = [];
+            $("input[class=PetCollections]").each(function () {
+
+
+
+                myObj = {}
+                myObj["AnimalId"] = $(this).attr('id').split('_')[1];
+                myObj["Name"] = $(this).val();
+
+
+                jsonObj.push(myObj);
+            });
+            if (del == false) {
 
             myObj = {}
-            myObj["KeyId"] = $(this).attr('id').split('_')[1];
-            myObj["CustomerId"] = $(this).attr('id');
-            myObj["Name"] = $(this).val();
-            myObj["DateCreated"] = new Date();
-            ;
-
+            myObj["AnimalId"] = $('#PetId').val();
+            myObj["Name"] = $('#PetId :selected').text();
             jsonObj.push(myObj);
-        });
+        }
         return jsonObj;
-        console.log(jsonObj);
-    }
-    
-    function RemoveObject(index)
-    {
+       }
 
 
-        $('#'+index+''
-            ).remove();
-        ReorderList();
-    }
-    $('#AddObject1').click(function ()
-    {
-        $('#CustomerKeysList_0_Name').remove();
-    })
+        $('#AddPet').click(function () {
+            var index = $('input[class="PetCollections"]').length;
+            PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(false) });
+            var url = '/admin/customer/AddCustmerPet?index=' + index;
+            $.ajax({
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+
+                type: 'POST',
+                data: PetCollection,
+                success: function (data) {
+                    $('#TablePet').empty();
+                    $('#TablePet').append('<tr ><td>' + data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
 
 
 
-    $('#AddObject').click(function () {
-
-
-        var i = $('input[class="CustomerKeysLists"]').length;
-
-
-      
-        CustomerKeysList = JSON.stringify({ 'CustomerKeysList': createJSON() });
-        
-
-       
-     
-        var url = '/admin/customer/AddObject?index=' + i;
-        $.ajax({
-            url: url,
-            contentType: 'application/json; charset=utf-8',
-
-            type: 'POST',
-            data: CustomerKeysList,
-            success: function (data) {
-              //  var PreviousKeyList = GetCustomerKeysListhtml();
-                $('#Table').empty();
-              //  $('#Table').append('<tr ><td>' + PreviousKeyList).append('<button id="AddObject1" type="button" class="btn btn-primary">Add Object</button>');
-
-                $('#Table').append('<tr ><td>' + data);
-            },
-            error: function (a, b, c) {
-                alert(a + " " + b + " " + c);
-            }
         });
-
-
-     
-    });
-   
 </script>
-@*<script>
-    function RemoveObject(index)
-    {
-        alert(index)
-        $('#'+index+''
-            ).remove();
-    }
-    $('#AddObject1').click(function ()
-    {
-        $('#CustomerKeysList_0_Name').remove();
-    })
+@*end pet list operations script*@
+@*CustomerKeyslist opetations script*@
+<script>
 
+        function ReorderList() {
+            var CustomerKeysList = JSON.stringify({ 'CustomerKeysList': createJSON() });
+            var index = $('input[class="CustomerKeysLists"]').length;
+            $('#Table').empty();
+            if (index > 0) {
+                var url = '/admin/customer/RemoveObject?index=' + index;
+                $.ajax({
+                    url: url,
+                    contentType: 'application/json; charset=utf-8',
 
-
-    $('#AddObject').click(function () {
-        var CustomerKeysList = {
-            CustomerKeys: ["Code", "Coffee", "Stackoverflow"]
-        };
-        var i = $(".thingRow").length;
-        $.ajax({
-            url: '/admin/customer/AddObject?index=' + i,
-            success: function (data) {
-                alert(data)
-                $('#Table > tbody ').append('<tr id='+i+'><td>'+data).append('<button id="AddObject1" type="button" class="btn btn-primary">Add Object</button>');
-            },
-            error: function (a, b, c) {
-                alert(a + " " + b + " " + c);
+                    type: 'POST',
+                    data: CustomerKeysList,
+                    success: function (data) {
+                        $('#Table').empty();
+                        $('#Table').append('<tr ><td>' + data);
+                    },
+                    error: function (a, b, c) {
+                        alert(a + " " + b + " " + c);
+                    }
+                });
             }
+
+        }
+        function RemoveObject(DivId) {
+            $('#' + DivId + '').remove();
+            ReorderList();
+        }
+        function GetCustomerKeysListhtml() {
+            var TableRows = "";
+            $('input[class="CustomerKeysLists"]').each(function (index, item) {
+                TableRows += '<div id="' + index + '">' +
+                '<input id="' + $(item).attr('id') + '" class="CustomerKeysLists"' +
+                'name="CustomerKeysLists[' + index + '].Name" type="text" value="' + $(item).val() + '" />' +
+                '<button id="RemoveObject' + index + '" onclick="RemoveObject(' + index + ')" type="button" class="btn btn-primary">remove Object</button>' +
+            '</div>'
+
+            })
+            return TableRows;
+        }
+
+        function createJSON() {
+            jsonObj = [];
+            $("input[class=CustomerKeysLists]").each(function () {
+                myObj = {}
+                myObj["KeyId"] = $(this).attr('id').split('_')[1];
+                myObj["CustomerId"] = $(this).attr('id');
+                myObj["Name"] = $(this).val();
+                myObj["DateCreated"] = new Date();
+                jsonObj.push(myObj);
+            });
+            return jsonObj;
+        }
+
+
+
+
+
+
+        $('#AddObject').click(function () {
+            var index = $('input[class="CustomerKeysLists"]').length;
+            CustomerKeysList = JSON.stringify({ 'CustomerKeysList': createJSON() });
+            var url = '/admin/customer/AddObject?index=' + index;
+            $.ajax({
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+
+                type: 'POST',
+                data: CustomerKeysList,
+                success: function (data) {
+                   $('#Table').empty();
+                   $('#Table').append('<tr ><td>' + data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
         });
-    });
-</script>*@
+
+
+</script>
+@*end CustomerKeyslist opetations script*@

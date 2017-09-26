@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="CustomerKeysService.cs" />
+    <Compile Include="CustomerService.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="PetService.cs" />
     <Compile Include="CustomerPetService.cs" />

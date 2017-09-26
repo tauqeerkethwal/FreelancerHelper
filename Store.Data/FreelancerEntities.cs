@@ -1,6 +1,7 @@
 ﻿using Freelancer.Data.Configuration;
 using Freelancer.Model;
 using Freelancer.Model.Models.Customer;
+using Freelancer.Model.Models.CustomerKeys;
 using Freelancer.Model.Models.CustomerPet;
 using Freelancer.Model.Models.Employee;
 using Freelancer.Model.Models.EmployeeType;
@@ -16,6 +17,7 @@ namespace Freelancer.Data
 
             Database.SetInitializer<FreelancerEntities>(null);
         }
+        public DbSet<CustomerKeys> CustomerKey { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerPet> CustomerPets { get; set; }
         public DbSet<Pet> Animals { get; set; }
@@ -35,6 +37,7 @@ namespace Freelancer.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new CustomerKeysConfiguration());
             modelBuilder.Configurations.Add(new CustomerPetConfiguration());
             modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new EmployeeConfiguration());
