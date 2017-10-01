@@ -1319,6 +1319,7 @@
     <Content Include="Areas\Admin\Views\Customer\_DeleteRow.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\_CustomerPetRow.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\edit.cshtml" />
+    <None Include="Properties\PublishProfiles\Nordisk.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
