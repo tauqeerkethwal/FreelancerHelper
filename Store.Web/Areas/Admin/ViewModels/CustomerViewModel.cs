@@ -10,7 +10,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public CustomerViewModel()
         { }
 
-
+        public Guid Id { get; set; }
         public string CustomerId { get; set; }
         public List<CustomerKeys> CustomerKeysList { get; set; }
         public List<CustomerPet> PetCollection { get; set; }

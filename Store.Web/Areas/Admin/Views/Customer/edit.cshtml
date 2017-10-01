@@ -3,8 +3,6 @@
 @using Freelancer.Model.Models.Employee;
 @using Freelancer.Model.Common;
 @using Freelancer.Web.Areas.Admin.ViewModels;
-@using Freelancer.Web.Areas.Admin.HelperClasses;
-
 @using Freelancer.Model.Models.CustomerPet;
 @using Freelancer.Model.Models.CustomerKeys;
 @model CustomerViewModel
@@ -24,8 +22,8 @@
     </div>
     <div class="box-body">
 
-        <form id="Booking" method="post" enctype="multipart/form-data" action="@Url.Action("Index","Customer")">
-           
+        <form id="Booking" method="post" enctype="multipart/form-data" action="@Url.Action("edit","Customer")">
+            @Html.HiddenFor(m => m.Id)
             <div id="" class="">
 
                 <!-- Modal content-->
@@ -38,8 +36,8 @@
 
                             <div class="pull-left col-md-6 col-xs-12">
                                 Please Enter customer detail.
-                                    <h3 class="text-muted">
-                                        Customer<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
+                                 <h3 class="text-muted">
+                                     Customer<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
                                 </h3>
 
 
@@ -48,7 +46,7 @@
                                 <div class="form formWH form-group-sm">Customer information</div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.CustomerId, new { @type = "text", @id = "txtCustomerId", @onkeypress = "return alphanumeric(event)", @placeholder = "Customer Id *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.CustomerId, new { @type = "text", @id = "txtCustomerId", @onkeypress = "return alphanumeric(event)", @placeholder = "Customer Id *", @class = "form-control"  })
 
                                     </div>
                                 </div>
@@ -103,11 +101,19 @@
                                                     <option value="@((int)EGender.Women)">Kvinde</option>
                                                 </select>
                                             }
-                                            else
+                                            else if (Model.Gender == 0)
                                             {
                                                 <select name="Gender" class="form-control">
                                                     <option value="">Select Gender</option>
                                                     <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)" selected>Kvinde</option>
+                                                </select>
+                                            }
+                                            else if (Model.Gender == 1)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)" selected>Mand</option>
                                                     <option value="@((int)EGender.Women)">Kvinde</option>
                                                 </select>
                                             }
@@ -188,12 +194,12 @@
                                             <!-- /.box-header -->
                                             <div class="box-body">
                                                 <div class="box">
-                                                   
+
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
                                                         <div class="row">
                                                             <div class="form-group col-sm-8">
-                                                                @Html.TextBoxFor(m => m.KontactPName, new { @value = Model.KontactPName, @type = "text", @id = "txtKontactPName", @placeholder = "Name *", @class = "form-control" })
+                                                                @Html.TextBoxFor(m => m.KontactPName, new { @value = Model.KontactPName, @onkeypress = "return isNumberKey(event)", @type = "text", @id = "txtKontactPName", @placeholder = "Name *", @class = "form-control" })
 
                                                             </div>
                                                         </div>
@@ -229,8 +235,6 @@
 
                                 </div>
                                 <!-- /.box Konntact -->
-
-                              
                                 <!-- /.box Keys -->
                                 <div class="row">
                                     <!-- /.col -->
@@ -254,9 +258,9 @@
                                                     <!-- /.box-header -->
                                                     <div class="box-body no-padding">
                                                         <table id="Table" class="table table-condensed">
-
+                                                            @Html.Partial("_EmptyRow", Tuple.Create<List<CustomerKeys>, int>((Model.CustomerKeysList), 0))
                                                         </table>
-                                                        </div>
+                                                    </div>
                                                     <!-- /.box-body -->
                                                 </div>
 
@@ -266,13 +270,9 @@
                                         <!-- /.box -->
                                     </div>
                                     <!-- /.col -->
-                                   
-                                 </div>
-                                        <!-- /.box keys -->
 
-
-
-
+                                </div>
+                                <!-- /.box keys -->
                                 <!-- /.box pets -->
                                 <div class="row">
                                     <!-- /.col -->
@@ -300,7 +300,7 @@
 
                                                                     </td>
                                                                     <td>
-                                                                        <button id="AddPet" type="button"  class="btn btn-block btn-success btn-sm"  style="margin-left:10px">Add Pet</button>
+                                                                        <button id="AddPet" type="button" class="btn btn-block btn-success btn-sm">Add Pet</button>
 
                                                                     </td>
                                                                 </tr>
@@ -310,7 +310,7 @@
                                                     <!-- /.box-header -->
                                                     <div class="box-body no-padding">
                                                         <table id="TablePet">
-                                                            
+                                                            @Html.Partial("_CustomerPetRow", Tuple.Create<List<CustomerPet>, int>((Model.PetCollection), 0))
                                                         </table>
                                                     </div>
                                                     <!-- /.box-body -->
@@ -322,11 +322,9 @@
                                         <!-- /.box -->
                                     </div>
                                     <!-- /.col -->
-                                
+
                                 </div>
                                 <!-- /.box pets -->
-                              
-                          
                                 <!-- /.box Alarm -->
                                 <div class="row">
                                     <!-- /.col -->
@@ -345,10 +343,10 @@
                                             <div class="box-body">
                                                 <div class="box">
                                                     @*<div class="box-header">
-                                <h3 class="box-title">
-                                Kontact Person
-                                </h3>
-                            </div>*@
+                                                            <h3 class="box-title">
+                                                            Kontact Person
+                                                            </h3>
+                                                        </div>*@
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
                                                         <div class="row">
@@ -378,7 +376,6 @@
 
                                 </div>
                                 <!-- /.box Alarm -->
-                            
                                 <!-- /.box Others -->
                                 <div class="row">
                                     <!-- /.col -->
@@ -396,7 +393,7 @@
                                             <!-- /.box-header -->
                                             <div class="box-body">
                                                 <div class="box">
-                                                   
+
                                                     <div class="box-body">
                                                         <div class="row">
                                                             <div class="form-group col-sm-8">
@@ -425,50 +422,67 @@
 
                                 </div>
                                 <!-- /.box Others -->
-                            
-                            
-                            </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>Deleted?</span>
+                                            @Html.CheckBoxFor(m => m.del)
+                                        </label>
 
-
-
-                                    <div class="col-lg-3 pull-right">
-                                        <div>
-                                            <label>&nbsp;</label>
-                                            <div>
-                                                <button class="btn btn-success" type="submit">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                    Add
-                                                </button>
-
-                                                <a class="btn btn-default" href="@Url.Action("index")">
-                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                    Clear
-                                                </a>
-                                            </div>
-                                        </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="checkbox-inline right-align-checkbox">
+                                            <span>Active?</span>
+                                            @Html.CheckBoxFor(m => m.Active)
+                                        </label>
 
+                                    </div>
                                 </div>
 
-                                <lable ID="lbluserid"></lable>
                             </div>
+
+
+
+                            <div class="col-lg-3 pull-right">
+                                <div>
+                                    <label>&nbsp;</label>
+                                    <div>
+                                        <button class="btn btn-success" type="submit">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            Add
+                                        </button>
+
+                                        <a class="btn btn-default" href="@Url.Action("index")">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                            Clear
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <lable ID="lbluserid"></lable>
+                    </div>
                     <div id="SuccessMessage" class="modal-body" style="display:none;height:250px">
-                        @*Tak for din bestilling*@
-                        <a href="@Url.Action("index","Customer")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
+                       
+                        <a href="@Url.Action("edit","Customer")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
                     </div>
                 </div>
 
             </div>
-            
-            
-            @*<button type="submit" class="btn btn-primary">Save</button>*@
-          
 
 
-        </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+
+
+
+    </div>
 </div>
-    
-    
+
+
 <div class="box box-primary">
     <div class="box-header with-border">
 
@@ -504,7 +518,7 @@
                     <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Hourly Rate&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
-                    
+
                     <th><div class="col-lg-2">Deleted</div></th>
                     <th><div class="col-lg-2">Active</div></th>
 
@@ -586,21 +600,21 @@
                               if (full.CustomerKeysList.length == 0) {
                                   return "No keys"
                               }
-                         
+
                           html = '<div  class="btn-group pull-right"><button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">' +
                              'Keys' + ' <i class="fa fa-angle-down"></i></button>' +
                               '<ul class="dropdown-menu pull-right">';
                           for (let index = 0; index < full.CustomerKeysList.length; ++index)
                                        {
-                        
+
 
 
                               html = html + '<li>' +
                                    '<a  href="@Url.Action("Edit")?Id=' + full.Id + '&BackUrl=@Url.Action("Index", "Customer")"><i class="fa fa-key"></i> ' + full.CustomerKeysList[index].Name + '</a>' +
                                '</li>';
-                                 
 
-                     
+
+
 
                           }
                           html =html+'</ul></div>';
@@ -608,11 +622,11 @@
 
                  }
     },
-    
+
                  { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "HourlyRate", "name": "Hourly Rate", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
-              
+
 
 
 
@@ -684,7 +698,7 @@
 
     }
      function onDeleteCallback(itemId, delUndel) {
-         
+         alert(delUndel)
         openConfirmationDialog(
             (delUndel == true ? "Are you sure, you want to make select record slette?" : "Are you sure, you want to make select record Undeleted?"),
              function () {
@@ -709,12 +723,11 @@
     //})
 
 </script>
-    
-    @*pet list operations script*@
+
+@*pet list operations script*@
 <script>
-   
     $(document).ready(function () {
-        $("#txtHourlyRate").val($(this).val() == 0 ? '' : $(this).val());
+        //$("#txtHourlyRate").val($(this).val() == 0 ? '' : $(this).val());
     })
 </script>
 <script>
@@ -770,21 +783,17 @@
 
 
         $('#AddPet').click(function () {
-            
             if ($('#PetId option:selected').text() == "Select Pet") {
                 return;
             }
             else {
-                for(var i=0;i<$('input[class="PetCollections"]').length;i++)
-                {
-                   
-                    if($('#PetId option:selected').text()==$('input[class="PetCollections"]')[i].value)
-                    {
+                for (var i = 0; i < $('input[class="PetCollections"]').length; i++) {
+
+                    if ($('#PetId option:selected').text() == $('input[class="PetCollections"]')[i].value) {
                         return;
                     }
                 }
             }
-
             var index = $('input[class="PetCollections"]').length;
             PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(false) });
             var url = '/admin/customer/AddCustmerPet?index=' + index;

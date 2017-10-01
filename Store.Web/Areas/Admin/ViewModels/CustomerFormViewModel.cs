@@ -13,6 +13,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
             Active = true;
         }
 
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "Enter Customer Id")]
         public string CustomerId { get; set; }
         public List<CustomerKeys> CustomerKeysList { get; set; }

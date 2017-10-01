@@ -28,21 +28,37 @@ namespace Freelancer.Web.Areas.Admin.HelperClasses
 
 
             // Advance Search
-            items.Add(new MenuItem
-            {
-                MenuItemType = MenuItemType.AdvanceSearch,
-                DisplayText = "Søg",
-                Icon = "fa-search-plus",
-                Url = url.Action("Index", "AdvanceSearch")
-            });
+            //items.Add(new MenuItem
+            //{
+            //    MenuItemType = MenuItemType.AdvanceSearch,
+            //    DisplayText = "Søg",
+            //    Icon = "fa-search-plus",
+            //    Url = url.Action("Index", "AdvanceSearch")
+            //});
             // TolkWeeklyReport
 
+            // Employee
+
+            items.Add(new MenuItem
+            {
+                MenuItemType = MenuItemType.Employee,
+                DisplayText = "Employee",
+                Icon = " fa-child",
+                Url = url.Action("Index", "Employee")
+            });
+            // Employee
 
 
+            // Customer
 
-
-
-
+            items.Add(new MenuItem
+            {
+                MenuItemType = MenuItemType.Customers,
+                DisplayText = "Customer",
+                Icon = " fa-odnoklassniki",
+                Url = url.Action("Index", "Customer")
+            });
+            // Customer
 
 
 
@@ -58,29 +74,10 @@ namespace Freelancer.Web.Areas.Admin.HelperClasses
                 {
                     MenuItemType = MenuItemType.Animals,
                     DisplayText = "Pet",
-                    Icon = "fa-cog",
-                    Url = "#",
-                    Childs = new List<MenuItem>()
-                    {
+                    Icon = " fa-bug",
+                    Url = url.Action("Add", "Pet")
 
 
-                        new MenuItem
-                        {
-                            MenuItemType = MenuItemType.AddAnimals,
-                            DisplayText = "Add",
-                            Icon = "fa-language",
-                            Url = url.Action("Add", "Pet")
-                        },
-                         new MenuItem
-                        {
-                            MenuItemType = MenuItemType.ListAnimals,
-                            DisplayText = "View/Edit",
-                            Icon = "fa-language",
-                            Url = url.Action("List", "Pet"),
-                            IsActive=true
-                        }
-
-                    }
                 });
             #endregion
 
@@ -129,6 +126,7 @@ namespace Freelancer.Web.Areas.Admin.HelperClasses
     {
         None = 0,
         Dashboard = 1,
+        Employee,
         Animals,
         AddAnimals,
         ListAnimals,

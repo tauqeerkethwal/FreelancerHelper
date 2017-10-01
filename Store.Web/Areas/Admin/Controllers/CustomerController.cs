@@ -40,7 +40,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             Customer customer = new Customer();
             customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
             customerViewModel.PetList = _petService.GetAllPetDropdown();
-            IEnumerable<CustomerPet> customerPet = _customerPetService.GetPetsByCustomerId(Guid.NewGuid());
+            // IEnumerable<CustomerPet> customerPet = _customerPetService.GetPetsByCustomerId(Guid.NewGuid());
             customerViewModel.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.NewGuid()).ToList();
             customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
             return View(customerViewModel);
@@ -54,15 +54,26 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             var customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
             if (ModelState.IsValid)
             {
-                customer.Id = Guid.NewGuid();
-                _customerService.CreateCustomer(customer);
-                _customerKeysService.AddNewKeys(customer.Id, customerFormViewModel.CustomerKeysList);
-                _customerPetService.AddNewCustomerPets(customer.Id, customerFormViewModel.PetCollection);
-                customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
-                customerViewModel.TypeId = customerFormViewModel.TypeId;
-                _customerService.SaveCustomer();
-                customerViewModel.PetList = _petService.GetAllPetDropdown();
-                customerViewModel.PetId = customerFormViewModel.PetId;
+                if (_customerService.CheckCustomerIdExist(customerFormViewModel.CustomerId))
+                {
+                    customerViewModel.PetList = _petService.GetAllPetDropdown();
+                    customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
+                    customerViewModel.TypeId = customerViewModel.TypeId;
+                    customerViewModel.Gender = customerFormViewModel.Gender == null ? 3 : customerFormViewModel.Gender;
+                    ModelState.AddModelError("CustomerId", "already exist");
+                }
+                else
+                {
+                    customer.Id = Guid.NewGuid();
+                    _customerService.CreateCustomer(customer);
+                    _customerKeysService.AddNewKeys(customer.Id, customerFormViewModel.CustomerKeysList);
+                    _customerPetService.AddNewCustomerPets(customer.Id, customerFormViewModel.PetCollection);
+                    customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
+                    customerViewModel.TypeId = customerFormViewModel.TypeId;
+                    _customerService.SaveCustomer();
+                    customerViewModel.PetList = _petService.GetAllPetDropdown();
+                    customerViewModel.PetId = customerFormViewModel.PetId;
+                }
             }
             else
             {
@@ -75,6 +86,58 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             return View(customerViewModel);
 
         }
+
+        public ActionResult edit(string Id, string BackUrl)
+        {
+
+            CustomerViewModel viewModelCustomer;
+            Customer customer = _customerService.GetCustomer(Guid.Parse(Id));
+            viewModelCustomer = Mapper.Map<Customer, CustomerViewModel>(customer);
+            viewModelCustomer.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.Parse(Id)).ToList();
+            viewModelCustomer.CustomerKeysList = _customerKeysService.GetCustomerKeys(Guid.Parse(Id)).ToList();
+            viewModelCustomer.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
+            viewModelCustomer.PetList = _petService.GetAllPetDropdown();
+            // viewModelCustomer.PetId = customerFormViewModel.PetId;
+            return View(viewModelCustomer);
+        }
+
+        [HttpPost]
+
+        public ActionResult edit(CustomerFormViewModel customerFormViewModel)
+        {
+            Customer customer = Mapper.Map<CustomerFormViewModel, Customer>(customerFormViewModel);
+            var viewModelCustomer = Mapper.Map<Customer, CustomerViewModel>(customer);
+
+            if (ModelState.IsValid)
+            {
+               
+                {
+                    _customerService.Update(customer);
+
+                    _customerKeysService.AddNewKeys(customer.Id, customerFormViewModel.CustomerKeysList);
+                    _customerPetService.AddNewCustomerPets(customer.Id, customerFormViewModel.PetCollection);
+                    _customerService.SaveCustomer();
+                    return RedirectToAction("index", "customer");
+                }
+
+            }
+            else
+            {
+                viewModelCustomer.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
+                viewModelCustomer.TypeId = customerFormViewModel.TypeId;
+                viewModelCustomer.PetCollection = customerFormViewModel.PetCollection;
+                viewModelCustomer.CustomerKeysList = customerFormViewModel.CustomerKeysList;
+                viewModelCustomer.Gender = customerFormViewModel.Gender == null ? 3 : customerFormViewModel.Gender;
+                viewModelCustomer.PetList = _petService.GetAllPetDropdown();
+                viewModelCustomer.PetId = customerFormViewModel.PetId;
+            }
+            return View(viewModelCustomer);
+
+
+
+        }
+
+
         [HttpPost]
         public ActionResult AddCustmerPet(int index, List<CustomerPet> PetCollection)
         {
