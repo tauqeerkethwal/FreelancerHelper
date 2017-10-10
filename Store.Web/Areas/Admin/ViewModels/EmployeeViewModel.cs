@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Freelancer.Model.Models.EmployeePet;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 namespace Freelancer.Web.Areas.Admin.ViewModels
@@ -9,7 +11,9 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
 
         [Key]
         public int EmployeeId { get; set; }
-
+        public List<EmployeePet> PetCollection { get; set; }
+        public SelectList PetList { get; set; }
+        public int? PetId { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
         public string PostCode { get; set; }

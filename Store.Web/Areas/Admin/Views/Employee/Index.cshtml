@@ -129,7 +129,56 @@
                                      
                                     </div>
                                 </div>
-                               
+                                <!-- /.box pets -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Pets</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                    <div class="box-header">
+                                                        <h3 class="box-title">
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        @Html.DropDownListFor(m => m.PetId, Model.PetList, "Select Pet", new { @class = "form-control" })
+
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <button id="AddPet" type="button" class="btn btn-block btn-success btn-sm" style="margin-left:10px">Add Pet</button>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </h3>
+                                                    </div>
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body no-padding">
+                                                        <table id="TablePet"></table>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                                <!-- /.box pets -->
                                 <div class="row">
                                     <div class="form-group col-sm-8">
                                         <label class="checkbox-inline right-align-checkbox">
@@ -256,7 +305,103 @@
 
 </div>
 
+@*pet list operations script*@
 
+<script>
+        function ReorderListPet() {
+            var PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(true) });
+            var index = $('input[class="PetCollections"]').length;
+            $('#TablePet').empty();
+            if(index>0)
+            {
+                var url = '/admin/employee/RemoveObjectPet?index=' + index;
+                $.ajax({
+                    url: url,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    data: PetCollection,
+                    success: function (data) {
+
+                        $('#TablePet').empty();
+                        $('#TablePet').append('<tr ><td>' + data);
+                    },
+                    error: function (a, b, c) {
+                        alert(a + " " + b + " " + c);
+                    }
+                });
+            }
+        }
+        function RemoveObjectPet(index) {
+            alert(index);
+            $('#' + index + '').remove();
+            ReorderListPet();
+        }
+        function createJSONPet(del) {
+            jsonObj = [];
+            $("input[class=PetCollections]").each(function () {
+
+
+
+                myObj = {}
+                myObj["AnimalId"] = $(this).attr('id').split('_')[1];
+                myObj["Name"] = $(this).val();
+                myObj["PetName"] = $("#PetCollectionName_" + $(this).attr('id').split('_')[1]).val();
+
+
+                jsonObj.push(myObj);
+            });
+            if (del == false) {
+
+                myObj = {}
+                myObj["AnimalId"] = $('#PetId').val();
+                myObj["Name"] = $('#PetId :selected').text();
+                jsonObj.push(myObj);
+            }
+
+            return jsonObj;
+        }
+
+
+        $('#AddPet').click(function () {
+
+            if ($('#PetId option:selected').text() == "Select Pet") {
+                return;
+            }
+            else {
+                for(var i=0;i<$('input[class="PetCollections"]').length;i++)
+                {
+
+                    if($('#PetId option:selected').text()==$('input[class="PetCollections"]')[i].value)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            var index = $('input[class="PetCollections"]').length;
+            PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(false) });
+            var url = '/admin/employee/AddEmployeePet?index=' + index;
+            $.ajax({
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+
+                type: 'POST',
+                data: PetCollection,
+                success: function (data) {
+                    $('#TablePet').empty();
+                    $('#TablePet').append('<tr ><td>' + data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+
+
+
+        });
+</script>
+@*end pet list operations script*@
+@*CustomerKeyslist opetations script*@
 
 
 <script>

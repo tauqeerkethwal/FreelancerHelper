@@ -15,6 +15,7 @@ namespace Freelancer.Service
         void CreateCustomer(Customer customer);
         ListResult<CustomerListModel> GetAll(SearchParameters searchParameters, CustomerSearchModel model);
         void Update(Customer customer);
+        bool CheckCustomerIdExist(string CustomerId);
         void SaveCustomer();
     }
 
@@ -41,7 +42,13 @@ namespace Freelancer.Service
         public Customer GetCustomer(Guid Id)
         {
             var Customer = customerRepository.GetMany(x => x.Id == Id).FirstOrDefault();
+
             return Customer;
+        }
+
+        public bool CheckCustomerIdExist(string CustomerId)
+        {
+            return customerRepository.GetMany(x => x.CustomerId == CustomerId).ToList().Count > 0 ? true : false;
         }
 
         public void CreateCustomer(Customer customer)

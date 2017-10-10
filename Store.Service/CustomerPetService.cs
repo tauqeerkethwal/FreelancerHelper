@@ -40,6 +40,7 @@ namespace Freelancer.Service
 
             if (CustomerPetList != null)
             {
+                DeletePreviousCustomerPets(CustomerId);
                 foreach (var customerkey in CustomerPetList)
                 {
                     customerkey.CustomerId = CustomerId;

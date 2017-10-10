@@ -40,7 +40,6 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             Customer customer = new Customer();
             customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
             customerViewModel.PetList = _petService.GetAllPetDropdown();
-            // IEnumerable<CustomerPet> customerPet = _customerPetService.GetPetsByCustomerId(Guid.NewGuid());
             customerViewModel.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.NewGuid()).ToList();
             customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
             return View(customerViewModel);
@@ -147,6 +146,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             return PartialView("_CustomerPetRow", tuple);
         }
         [HttpPost]
+        public ActionResult RemoveObjectPet(int index, List<CustomerPet> PetCollection)
+        {
+            Tuple<List<CustomerPet>, int> tuple = new Tuple<List<CustomerPet>, int>(PetCollection, index);
+            return PartialView("_CustomerPetRow", tuple);
+        }
+        [HttpPost]
         public ActionResult AddObject(int index, List<CustomerKeys> CustomerKeysList)
         {
             List<CustomerKeys> customerKeyList = new List<CustomerKeys>();
@@ -155,12 +160,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             return PartialView("_EmptyRow", tuple);
         }
 
-        [HttpPost]
-        public ActionResult RemoveObjectPet(int index, List<CustomerPet> PetCollection)
-        {
-            Tuple<List<CustomerPet>, int> tuple = new Tuple<List<CustomerPet>, int>(PetCollection, index);
-            return PartialView("_CustomerPetRow", tuple);
-        }
+       
         [HttpPost]
         public ActionResult RemoveObject(int index, List<CustomerKeys> CustomerKeysList)
         {

@@ -52,6 +52,7 @@
     <Compile Include="Models\Customer\Customer.cs" />
     <Compile Include="Models\Customer\CustomerListModel.cs" />
     <Compile Include="Models\Customer\CustomerSearchModel.cs" />
+    <Compile Include="Models\EmployeePet\EmployeePet.cs" />
     <Compile Include="Models\Employee\EmployeeListModel.cs" />
     <Compile Include="Models\Employee\EmployeeSearchModel.cs" />
     <Compile Include="Models\Pets\PetListModel.cs" />
@@ -69,6 +70,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -18,6 +18,10 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string CustomerId { get; set; }
         public List<CustomerKeys> CustomerKeysList { get; set; }
         public List<CustomerPet> PetCollection { get; set; }
+
+        public SelectList PetList { get; set; }
+        public int? PetId { get; set; }
+
         [Required(ErrorMessage = "Enter Name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Enter  Street")]
@@ -52,8 +56,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public bool del { get; set; }
         public bool Active { get; set; }
         public int TypeId { get; set; }
-        public SelectList PetList { get; set; }
-        public int? PetId { get; set; }
+        
 
     }
 }

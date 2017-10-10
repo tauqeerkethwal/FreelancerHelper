@@ -1,23 +1,29 @@
 ﻿using AutoMapper;
 using Freelancer.Model.Models.Base;
 using Freelancer.Model.Models.Employee;
+using Freelancer.Model.Models.EmployeePet;
 using Freelancer.Service;
 using Freelancer.Web.Areas.Admin.ViewModels;
 using Freelancer.Web.Areas.Admin.ViewModels.DataTable;
+using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+
 namespace Freelancer.Web.Areas.Admin.Controllers
 {
     public class EmployeeController : Controller
     {
         // GET: Admin/Employee
         private readonly IEmployeeService _employeeService;
+        private readonly IPetService _petService;
         private readonly IEmployeeTypeService _employeeTypeService;
-      
-        public EmployeeController(IEmployeeService _employeeService, IEmployeeTypeService _employeeTypeService)
+        private readonly IEmployeePetService _employeePetService;
+        public EmployeeController(IEmployeeService _employeeService, IEmployeeTypeService _employeeTypeService, IPetService _petService, IEmployeePetService _employeePetService)
         {
             this._employeeService = _employeeService;
             this._employeeTypeService = _employeeTypeService;
-            
+            this._petService = _petService;
+            this._employeePetService = _employeePetService;
         }
         public ActionResult Index()
         {
@@ -25,6 +31,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             Employee employee = new Employee();
             viewModelEmployee = Mapper.Map<Employee, EmployeeViewModel>(employee);
             viewModelEmployee.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
+            viewModelEmployee.PetList = _petService.GetAllPetDropdown();
             return View(viewModelEmployee);
 
         }
@@ -41,13 +48,19 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 _employeeService.CreateEmployee(employee);
                 employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
                 employeeViewModel.TypeId = employeeFormViewModel.TypeId;
+
+                _employeePetService.AddNewEmployeePets(_employeeService.GetMaxEmployeeId(), employeeFormViewModel.PetCollection);
                 _employeeService.SaveEmployee();
+                employeeViewModel.PetList = _petService.GetAllPetDropdown();
+                employeeViewModel.PetId = employeeFormViewModel.PetId;
             }
             else
             {
                 employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
                 employeeViewModel.TypeId = employeeViewModel.TypeId;
                 employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
+
+
             }
 
             return View(employeeViewModel);
@@ -90,6 +103,23 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
 
         }
+
+
+        [HttpPost]
+        public ActionResult AddEmployeePet(int index, List<EmployeePet> PetCollection)
+        {
+            List<EmployeePet> employeePetList = new List<EmployeePet>();
+            employeePetList.Add(new EmployeePet());
+            Tuple<List<EmployeePet>, int> tuple = new Tuple<List<EmployeePet>, int>(PetCollection == null ? employeePetList : PetCollection, index);
+            return PartialView("_EmployeePetRow", tuple);
+        }
+        [HttpPost]
+        public ActionResult RemoveObjectPet(int index, List<EmployeePet> PetCollection)
+        {
+            Tuple<List<EmployeePet>, int> tuple = new Tuple<List<EmployeePet>, int>(PetCollection, index);
+            return PartialView("_EmployeePetRow", tuple);
+        }
+
         [HttpPost]
 
         public bool deleteUndelete(int id, bool value)

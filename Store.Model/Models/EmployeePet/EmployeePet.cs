@@ -1,20 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-namespace Freelancer.Model.Models.CustomerPet
+namespace Freelancer.Model.Models.EmployeePet
 {
-    public class CustomerPet
+    public class EmployeePet
     {
-        public CustomerPet()
+        public EmployeePet()
         {
             DateCreated = DateTime.Now;
         }
         [Key]
-        public int CustPetId { get; set; }
+        public int EmpPetId { get; set; }
         public int AnimalId { get; set; }
-        public Guid CustomerId { get; set; }
+        public int EmployeeId { get; set; }
         public bool del { get; set; }
         public string Name { get; set; }
-        public string PetName { get; set; }
+
         public DateTime DateCreated { get; set; }
     }
 }

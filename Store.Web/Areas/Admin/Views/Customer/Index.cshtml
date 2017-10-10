@@ -741,8 +741,9 @@
                 });
             }
         }
-       function RemoveObjectPet(index) {
-            $('#' + index + '').remove();
+        function RemoveObjectPet(index) {
+            alert(index)
+            $('#' + index + '').empty();
             ReorderListPet();
         }
         function createJSONPet(del) {
@@ -754,7 +755,8 @@
                 myObj = {}
                 myObj["AnimalId"] = $(this).attr('id').split('_')[1];
                 myObj["Name"] = $(this).val();
-
+                myObj["PetName"] = $("#PetCollectionName_" + $(this).attr('id').split('_')[1]).val();
+                
 
                 jsonObj.push(myObj);
             });
@@ -764,7 +766,8 @@
             myObj["AnimalId"] = $('#PetId').val();
             myObj["Name"] = $('#PetId :selected').text();
             jsonObj.push(myObj);
-        }
+            }
+            
         return jsonObj;
        }
 
@@ -787,6 +790,7 @@
 
             var index = $('input[class="PetCollections"]').length;
             PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(false) });
+            alert(PetCollection)
             var url = '/admin/customer/AddCustmerPet?index=' + index;
             $.ajax({
                 url: url,
@@ -810,6 +814,7 @@
 @*end pet list operations script*@
 @*CustomerKeyslist opetations script*@
 <script>
+
 
         function ReorderList() {
             var CustomerKeysList = JSON.stringify({ 'CustomerKeysList': createJSON() });

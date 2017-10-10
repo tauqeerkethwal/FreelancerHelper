@@ -14,6 +14,8 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string CustomerId { get; set; }
         public List<CustomerKeys> CustomerKeysList { get; set; }
         public List<CustomerPet> PetCollection { get; set; }
+        public SelectList PetList { get; set; }
+        public int? PetId { get; set; }
         public string Name { get; set; }
         public Nullable<short> Gender { get; set; }
         public string Street { get; set; }
@@ -40,8 +42,8 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public DateTime DateCreated { get; set; }
         public SelectList Type { get; set; }
         public int TypeId { get; set; }
-        public SelectList PetList { get; set; }
-        public int? PetId { get; set; }
+
+
 
     }
 }

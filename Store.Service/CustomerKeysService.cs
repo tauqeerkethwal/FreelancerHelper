@@ -47,6 +47,7 @@ namespace Freelancer.Service
 
             if (CustomerKeyList != null)
             {
+                DeletePreviousKeys(CustomerId);
                 foreach (var customerkey in CustomerKeyList)
                 {
                     customerkey.CustomerId = CustomerId;
@@ -59,7 +60,7 @@ namespace Freelancer.Service
         #region 
         public IEnumerable<CustomerKeys> GetCustomerKeys(Guid CustomerId)
         {
-            var Customer = customerKeysRepository.GetAll().Where(x => x.CustomerId == CustomerId);
+            var Customer = customerKeysRepository.GetAll().Where(x => x.CustomerId == CustomerId && x.del == false);
             return Customer;
         }
 

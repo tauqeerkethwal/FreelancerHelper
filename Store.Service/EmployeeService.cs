@@ -1,9 +1,9 @@
-﻿using Freelancer.Data.Infrastructure;
+﻿using Freelancer.Core.Extensions;
+using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model.Common;
 using Freelancer.Model.Models.Base;
 using Freelancer.Model.Models.Employee;
-using Freelancer.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +16,7 @@ namespace Freelancer.Service
         void CreateEmployee(Employee EmployeeAnimal);
         ListResult<EmployeeListModel> GetAll(SearchParameters searchParameters, EmployeeSearchModel model);
         void Update(Employee employee);
+        int GetMaxEmployeeId();
         void SaveEmployee();
     }
 
@@ -79,6 +80,11 @@ namespace Freelancer.Service
 
             return item.Select(x => ConvertToModel(x));
 
+        }
+
+        public int GetMaxEmployeeId()
+        {
+            return employeeRepository.GetAll().Max(x => x.EmployeeId);
         }
         public ListResult<EmployeeListModel> GetAll(SearchParameters searchParameters, EmployeeSearchModel model)
         {
