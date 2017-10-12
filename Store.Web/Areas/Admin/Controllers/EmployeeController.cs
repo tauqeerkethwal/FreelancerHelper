@@ -58,7 +58,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             {
                 employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
                 employeeViewModel.TypeId = employeeViewModel.TypeId;
-                employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
+                //employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
 
 
             }
@@ -96,7 +96,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             {
                 employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(model.TypeId.ToString());
                 employeeViewModel.TypeId = employeeViewModel.TypeId;
-                employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
+                //employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
             }
             return View(employeeViewModel);
 

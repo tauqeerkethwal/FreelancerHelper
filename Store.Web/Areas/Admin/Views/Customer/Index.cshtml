@@ -95,7 +95,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="form-group col-sm-8">
-                                            @if (Model.Gender == 3)
+                                            @*@if (Model.Gender == 3)
                                             {
                                                 <select name="Gender" class="input-validation-error form-control">
                                                     <option value="">Select Gender</option>
@@ -103,7 +103,8 @@
                                                     <option value="@((int)EGender.Women)">Kvinde</option>
                                                 </select>
                                             }
-                                            else
+                                            else*@
+                                            @if (true)
                                             {
                                                 <select name="Gender" class="form-control">
                                                     <option value="">Select Gender</option>
@@ -742,7 +743,7 @@
             }
         }
         function RemoveObjectPet(index) {
-            alert(index)
+          
             $('#' + index + '').empty();
             ReorderListPet();
         }
@@ -790,7 +791,7 @@
 
             var index = $('input[class="PetCollections"]').length;
             PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(false) });
-            alert(PetCollection)
+         
             var url = '/admin/customer/AddCustmerPet?index=' + index;
             $.ajax({
                 url: url,

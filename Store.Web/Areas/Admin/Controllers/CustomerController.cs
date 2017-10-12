@@ -58,7 +58,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                     customerViewModel.PetList = _petService.GetAllPetDropdown();
                     customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
                     customerViewModel.TypeId = customerViewModel.TypeId;
-                    customerViewModel.Gender = customerFormViewModel.Gender == null ? 3 : customerFormViewModel.Gender;
+                    //customerViewModel.Gender = customerFormViewModel.Gender == null ? 3 : customerFormViewModel.Gender;
                     ModelState.AddModelError("CustomerId", "already exist");
                 }
                 else
@@ -79,7 +79,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 customerViewModel.PetList = _petService.GetAllPetDropdown();
                 customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
                 customerViewModel.TypeId = customerViewModel.TypeId;
-                customerViewModel.Gender = customerViewModel.Gender == null ? 3 : customerViewModel.Gender;
+              //  customerViewModel.Gender = customerViewModel.Gender == null ? 3 : customerViewModel.Gender;
             }
 
             return View(customerViewModel);

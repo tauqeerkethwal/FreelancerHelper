@@ -79,7 +79,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="form-group col-sm-8">
-                                        @if (Model.Gender == 3)
+                                        @*@if (Model.Gender == 3)
                                         {
                                             <select name="Gender" class="input-validation-error form-control">
                                                 <option value="">Select Gender</option>
@@ -87,7 +87,8 @@
                                                 <option value="@((int)EGender.Women)">Kvinde</option>
                                             </select>
                                         }
-                                        else
+                                        else*@
+                                        @if (true)
                                         {
                                             <select name="Gender" class="form-control">
                                                 <option value="">Select Gender</option>
@@ -332,7 +333,7 @@
             }
         }
         function RemoveObjectPet(index) {
-            alert(index);
+          
             $('#' + index + '').remove();
             ReorderListPet();
         }
@@ -526,7 +527,7 @@
 
     }
      function onDeleteCallback(itemId, delUndel) {
-         alert(delUndel)
+    
         openConfirmationDialog(
             (delUndel == true ? "Are you sure, you want to make select record slette?" : "Are you sure, you want to make select record Undeleted?"),
              function () {

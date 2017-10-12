@@ -30,15 +30,15 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string PostCode { get; set; }
         [Required(ErrorMessage = "Enter City")]
         public string City { get; set; }
-        [Required(ErrorMessage = "Select Gender")]
+        //[Required(ErrorMessage = "Select Gender")]
         public Nullable<short> Gender { get; set; }
         [Required(ErrorMessage = "Enter Telephone nr.")]
         public string Tlf { get; set; }
         [Required(ErrorMessage = "Enter Email")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Enter Description")]
+
         public string Description { get; set; }
-        [Required(ErrorMessage = "Enter HourlyRate")]
+        [Required(ErrorMessage = "Enter Rate")]
         public double HourlyRate { get; set; }
 
         public string CVR { get; set; }
@@ -56,7 +56,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public bool del { get; set; }
         public bool Active { get; set; }
         public int TypeId { get; set; }
-        
+
 
     }
 }
