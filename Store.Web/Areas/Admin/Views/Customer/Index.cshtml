@@ -10,14 +10,13 @@
 @model CustomerViewModel
 @{
 
-
-}
-<
-@{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Scripts/Validation.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Add New Customer</h3>
@@ -38,8 +37,8 @@
 
                             <div class="pull-left col-md-6 col-xs-12">
                                 Please Enter customer detail.
-                                    <h3 class="text-muted">
-                                        Customer<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
+                                <h3 class="text-muted">
+                                    Customer<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
                                 </h3>
 
 
@@ -48,7 +47,7 @@
                                 <div class="form formWH form-group-sm">Customer information</div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.CustomerId, new { @type = "text", @id = "txtCustomerId", @onkeypress = "return alphanumeric(event)", @placeholder = "Customer Id *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.CustomerId, new { @type = "text", @id = "txtCustomerId", @onkeypress = "return alphanumericAndMinus(event)", @placeholder = "Customer Id *", @class = "form-control" })
 
                                     </div>
                                 </div>
@@ -63,7 +62,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.DropDownListFor(m => m.TypeId, Model.Type, "Select Type", new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.TypeId, Model.Type, "Select Type", new { @class = "form-control", @onchange = "TypeChange()" })
 
                                     </div>
                                 </div>
@@ -95,16 +94,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="form-group col-sm-8">
-                                            @*@if (Model.Gender == 3)
-                                            {
-                                                <select name="Gender" class="input-validation-error form-control">
-                                                    <option value="">Select Gender</option>
-                                                    <option value="@((int)EGender.Men)">Mand</option>
-                                                    <option value="@((int)EGender.Women)">Kvinde</option>
-                                                </select>
-                                            }
-                                            else*@
-                                            @if (true)
+                                            @if (Model.Gender == null)
                                             {
                                                 <select name="Gender" class="form-control">
                                                     <option value="">Select Gender</option>
@@ -112,33 +102,29 @@
                                                     <option value="@((int)EGender.Women)">Kvinde</option>
                                                 </select>
                                             }
-
+                                            else
+                                            if (Model.Gender == 0)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)" selected>Kvinde</option>
+                                                </select>
+                                            }
+                                            else
+                                            if (Model.Gender == 1)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)" selected>Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
 
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.CVR, new { @type = "text", @id = "txtCVR", @placeholder = "CVR/EAN *", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.EAN, new { @type = "text", @id = "txtEAN", @placeholder = "EAN *", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.WebSite, new { @type = "text", @id = "txtWebSite", @placeholder = "WebSite *", @class = "form-control" })
-
-                                    </div>
-                                </div>
-
+                               
                                 <div class="row">
                                     <div class="form-group col-sm-8">
                                         @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @onkeypress = "return isNumberKey(event)", @MaxLength = "8", @class = "form-control" })
@@ -155,6 +141,13 @@
                                 <div class="row">
                                     <div class="form-group col-sm-8">
                                         @Html.TextBoxFor(m => m.HourlyRate, new { @value = (Model.HourlyRate > 0 ? Model.HourlyRate.ToString() : "hourly Rate"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyRate", @placeholder = "HourlyRate *", @class = "form-control" })
+                                        <select name="Paymenttype" id="Paymenttype" class=@(Model.Paymenttype ==-1   ? "input-validation-error form-control" : "form-control")>
+                                            <option value="-1">Select PaymentType</option>
+
+                                            <option value="@((int)EPaymentTypes.HourlyPay)" @(Model.Paymenttype ==0   ? "selected" : "")  > @((string)EPaymentTypes.HourlyPay.ToString())</option>
+                                            <option value="@((int)EPaymentTypes.WeeklyPay)" @(Model.Paymenttype ==1   ? "selected" : "")>@((string)EPaymentTypes.WeeklyPay.ToString())</option>
+                                            <option value="@((int)EPaymentTypes.MonthlyPay)" @(Model.Paymenttype ==2   ? "selected" : "")>@((string)EPaymentTypes.MonthlyPay.ToString())</option>
+                                        </select>
 
                                     </div>
                                 </div>
@@ -164,6 +157,7 @@
                                         @Html.TextAreaFor(m => m.Description, new { @type = "text", rows = "6", @id = "txtDescription", @placeholder = "Description *", @class = "form-control" })
                                     </div>
                                 </div>
+                               
                             </div>
 
 
@@ -255,7 +249,7 @@
                                                     <!-- /.box-header -->
                                                     <div class="box-body no-padding">
                                                         <table id="Table" class="table table-condensed">
-
+                                                                       @Html.Partial("_EmptyRow", new Tuple<List<CustomerKeys>, int>(Model.CustomerKeysList == null ? Model.CustomerKeysList : Model.CustomerKeysList, 0))
                                                         </table>
                                                         </div>
                                                     <!-- /.box-body -->
@@ -311,7 +305,9 @@
                                                     <!-- /.box-header -->
                                                     <div class="box-body no-padding">
                                                         <table id="TablePet">
-                                                            
+                                                                       @Html.Partial("_CustomerPetRow", new Tuple<List<CustomerPet>, int>(Model.PetCollection , 0))
+
+
                                                         </table>
                                                     </div>
                                                     <!-- /.box-body -->
@@ -323,7 +319,8 @@
                                         <!-- /.box -->
                                     </div>
                                     <!-- /.col -->
-                                
+
+
                                 </div>
                                 <!-- /.box pets -->
                               
@@ -426,7 +423,28 @@
 
                                 </div>
                                 <!-- /.box Others -->
-                            
+                                <div id="TypeSelection">
+                                    <div class="row">
+                                        <div class="form-group col-sm-8">
+                                            @Html.TextBoxFor(m => m.CVR, new { @type = "text", @id = "txtCVR", @placeholder = "CVR*", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-8">
+                                            @Html.TextBoxFor(m => m.EAN, new { @type = "text", @id = "txtEAN", @placeholder = "EAN *", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-8">
+                                            @Html.TextBoxFor(m => m.WebSite, new { @type = "text", @id = "txtWebSite", @placeholder = "WebSite *", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                </div>
                             
                             </div>
 
@@ -525,8 +543,24 @@
 </div>
 
 <script>
+    function TypeChange()
+    {
+        
+        if ($('#TypeId').val() == 1)
+        {
+            $('#TypeSelection').hide();
+        }
+        else
+        {
+            $('#TypeSelection').show();
+        }
+       
+
+    }
+
     var mainTable;
     $(document).ready(function () {
+
 
         var url = "@Url.Action("LoadAllData","Customer")";
 
@@ -715,7 +749,28 @@
 <script>
    
     $(document).ready(function () {
-        $("#txtHourlyRate").val($(this).val() == 0 ? '' : $(this).val());
+       
+        $("#txtHourlyRate").val($("#txtHourlyRate").val() == 0 ? '' : $("#txtHourlyRate").val());
+        
+
+        $("#txtCustomerId").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/admin/customer/AutoCompleteCustomerids",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                      
+                        response($.map(data, function (item) {
+                            return { label: item.CustomerId, value: item.CustomerId };
+                        }))
+
+                    }
+                })
+            }
+        });
+
     })
 </script>
 <script>

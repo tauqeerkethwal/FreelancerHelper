@@ -32,16 +32,37 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult AutoCompleteCustomerids(string Prefix)
+        {
+            //Note : you can bind same list from database  
+
+            //Searching records from list using LINQ query  
+            var CustomerIds = _customerService.GetCustomerIdListAutoComplete(Prefix);
+            return Json(CustomerIds, JsonRequestBehavior.AllowGet);
+        }
+        public CustomerViewModel loadIndexPage()
+        {
+            CustomerViewModel customerViewModel;
+            Customer customer = new Customer();
+            customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
+            customerViewModel.PetList = _petService.GetAllPetDropdown("0");
+            ////customerViewModel.PetList = _petService.GetAllPetDropdown();
+            ////customerViewModel.PetId = customerFormViewModel.PetId;
+            customerViewModel.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.NewGuid()).ToList();
+            customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
+            return customerViewModel;
+        }
         // GET: Admin/Customer
         public ActionResult Index()
         {
 
-            CustomerViewModel customerViewModel;
-            Customer customer = new Customer();
-            customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
-            customerViewModel.PetList = _petService.GetAllPetDropdown();
-            customerViewModel.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.NewGuid()).ToList();
-            customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
+            CustomerViewModel customerViewModel = loadIndexPage();
+            //Customer customer = new Customer();
+            //customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
+            //customerViewModel.PetList = _petService.GetAllPetDropdown();
+            //customerViewModel.PetCollection = _customerPetService.GetPetsByCustomerId(Guid.NewGuid()).ToList();
+            //customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
             return View(customerViewModel);
         }
 
@@ -70,8 +91,9 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                     customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
                     customerViewModel.TypeId = customerFormViewModel.TypeId;
                     _customerService.SaveCustomer();
-                    customerViewModel.PetList = _petService.GetAllPetDropdown();
-                    customerViewModel.PetId = customerFormViewModel.PetId;
+                    //customerViewModel.PetList = _petService.GetAllPetDropdown();
+                    //customerViewModel.PetId = customerFormViewModel.PetId;
+                    return RedirectToAction("index");
                 }
             }
             else
@@ -79,7 +101,10 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 customerViewModel.PetList = _petService.GetAllPetDropdown();
                 customerViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(customerFormViewModel.TypeId.ToString());
                 customerViewModel.TypeId = customerViewModel.TypeId;
-              //  customerViewModel.Gender = customerViewModel.Gender == null ? 3 : customerViewModel.Gender;
+                customerViewModel.CustomerKeysList = customerFormViewModel.CustomerKeysList;
+                customerViewModel.PetCollection = customerFormViewModel.PetCollection;
+                customerViewModel.Paymenttype = customerFormViewModel.Paymenttype;
+                // customerViewModel.Gender = customerViewModel.Gender == null ? 3 : customerViewModel.Gender;
             }
 
             return View(customerViewModel);
@@ -109,7 +134,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-               
+
                 {
                     _customerService.Update(customer);
 
@@ -160,7 +185,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             return PartialView("_EmptyRow", tuple);
         }
 
-       
+
         [HttpPost]
         public ActionResult RemoveObject(int index, List<CustomerKeys> CustomerKeysList)
         {

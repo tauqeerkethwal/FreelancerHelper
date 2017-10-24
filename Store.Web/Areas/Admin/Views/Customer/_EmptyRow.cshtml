@@ -6,15 +6,17 @@
 @{
     int ind = 0;
 }
-@foreach (var a in Model.Item1)
-            {
-     
-        <tr>
+@if(Model.Item1!=null)
+{
+    foreach (var a in Model.Item1)
+    {
+
+    <tr>
 
 
-            <td>
-                <div id="@ind">
-                    <input id="CustomerKeysList_@(ind)" class="CustomerKeysLists" style="display: block;    width: 100%;
+        <td>
+            <div id="@ind">
+                <input id="CustomerKeysList_@(ind)" class="CustomerKeysLists" style="display: block;    width: 100%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -29,19 +31,19 @@
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"
-                           name="CustomerKeysList[@(ind)].Name" type="text" value="@a.Name" />
-                </div>
-</td>
-            <td>
-                
-                    <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" style="margin-top: 5px" class="btn btn-block btn-danger btn-xs">Remove Keys</button>
-                
-            </td>
+                       name="CustomerKeysList[@(ind)].Name" type="text" value="@a.Name" />
+            </div>
+        </td>
+        <td>
+
+            <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" style="margin-top: 5px" class="btn btn-block btn-danger btn-xs">Remove Keys</button>
+
+        </td>
 
 
 
 
-        </tr>
+    </tr>
 
     if (Model.Item1.Count == ind + 1 && Model.Item2 > 0)
     {
@@ -85,5 +87,6 @@
         </div>
     }
     ind++;
+}
 }
 

@@ -16,6 +16,7 @@ namespace Freelancer.Service
         ListResult<CustomerListModel> GetAll(SearchParameters searchParameters, CustomerSearchModel model);
         void Update(Customer customer);
         bool CheckCustomerIdExist(string CustomerId);
+        List<Customer> GetCustomerIdListAutoComplete(string customerId);
         void SaveCustomer();
     }
 
@@ -46,6 +47,14 @@ namespace Freelancer.Service
             return Customer;
         }
 
+        public List<Customer> GetCustomerIdListAutoComplete(string customerId)
+        {
+
+            var Customer = customerRepository.GetMany(x => x.CustomerId.StartsWith(customerId)).ToList();
+
+
+            return Customer;
+        }
         public bool CheckCustomerIdExist(string CustomerId)
         {
             return customerRepository.GetMany(x => x.CustomerId == CustomerId).ToList().Count > 0 ? true : false;

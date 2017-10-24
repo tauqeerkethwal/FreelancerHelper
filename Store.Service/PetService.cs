@@ -51,7 +51,7 @@ namespace Freelancer.Service
 
             else
             {
-                var listItems = petRepository.GetAll().Select(i => new SelectListItem()
+                var listItems = petRepository.GetMany(x => x.del == false).Select(i => new SelectListItem()
                 {
                     Text = i.Name,
                     Value = i.AnimalId.ToString()

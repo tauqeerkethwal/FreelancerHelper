@@ -53,13 +53,15 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 _employeeService.SaveEmployee();
                 employeeViewModel.PetList = _petService.GetAllPetDropdown();
                 employeeViewModel.PetId = employeeFormViewModel.PetId;
+                return RedirectToAction("index");
             }
             else
             {
                 employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
                 employeeViewModel.TypeId = employeeViewModel.TypeId;
                 //employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
-
+                employeeViewModel.PetList = _petService.GetAllPetDropdown();
+                employeeViewModel.PetId = employeeFormViewModel.PetId;
 
             }
 

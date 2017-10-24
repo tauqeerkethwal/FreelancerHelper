@@ -18,6 +18,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public int? PetId { get; set; }
         public string Name { get; set; }
         public Nullable<short> Gender { get; set; }
+        public Nullable<short> Paymenttype { get; set; }
         public string Street { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }

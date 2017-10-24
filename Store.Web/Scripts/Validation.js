@@ -12,7 +12,20 @@ function alphanumeric(event) {
     return false;
 
 }
+function alphanumericAndMinus(event) {
+   
+    if (event.keyCode >= 48 && event.keyCode <= 57)
+        return true;
+    if (event.keyCode >= 65 && event.keyCode <= 90)
+        return true;
+    if (event.keyCode >= 97 && event.keyCode <= 122)
+        return true;
+    if (event.keyCode == 45 || event.keyCode == 230 || event.keyCode == 216 || event.keyCode == 248 || event.keyCode == 229 || event.keyCode == 198 || event.keyCode == 32)
+        return true;
 
+    return false;
+
+}
 function isfloatKey(evt) {
     
     var charCode = (evt.which) ? evt.which : event.keyCode;

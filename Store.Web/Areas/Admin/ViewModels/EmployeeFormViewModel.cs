@@ -33,7 +33,6 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string Tlf { get; set; }
         [Required(ErrorMessage = "Enter Email")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Enter Description")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Enter HourlyPay")]
         public double HourlyPay { get; set; }

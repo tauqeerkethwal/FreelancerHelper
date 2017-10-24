@@ -21,6 +21,8 @@ namespace Freelancer.Model.Models.Customer
         public string Email { get; set; }
         public double HourlyRate { get; set; }
         public int? Gender { get; set; }
+
+        public int? Paymenttype { get; set; }
         public string CVR { get; set; }
         public string EAN { get; set; }
         public string WebSite { get; set; }
@@ -40,6 +42,8 @@ namespace Freelancer.Model.Models.Customer
         public DateTime DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
         public Guid UpdatedById { get; set; }
+
+        
         //public List<Freelancer.Model.Models.CustomerKeys.CustomerKeys> CustomerKeysList { get; set; }
         //public List<Freelancer.Model.Models.CustomerPet.CustomerPet> PetCollection { get; set; }
 

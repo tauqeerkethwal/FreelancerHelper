@@ -32,6 +32,9 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string City { get; set; }
         //[Required(ErrorMessage = "Select Gender")]
         public Nullable<short> Gender { get; set; }
+        [Required(ErrorMessage = "Select Paymenttype")]
+        public Nullable<short> Paymenttype { get; set; }
+
         [Required(ErrorMessage = "Enter Telephone nr.")]
         public string Tlf { get; set; }
         [Required(ErrorMessage = "Enter Email")]

@@ -7,8 +7,10 @@
 @{
     int ind = 0;
 }
-@foreach (var Pet in Model.Item1)
-            {  
+@if (Model.Item1 != null)
+{
+foreach (var Pet in Model.Item1)
+{
         <tr>
             <td>
                 <div id="PetCollection@(ind)">
@@ -46,7 +48,7 @@
 
                 <td>
 
-                    <button id="RemoveObject@(ind+"+p")" onclick="RemoveObjectPet('PetCollection@(ind)')" type="button" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove Pet</button>
+                    <button id="RemoveObject@(ind + "+p")" onclick="RemoveObjectPet('PetCollection@(ind)')" type="button" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove Pet</button>
 
                 </td>
             </tr>
@@ -54,5 +56,5 @@
 
     ind++;
 }
-
+}
 
