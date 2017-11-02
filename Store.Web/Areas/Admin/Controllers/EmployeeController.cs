@@ -46,11 +46,11 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _employeeService.CreateEmployee(employee);
+                _employeeService.SaveEmployee();
                 employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
                 employeeViewModel.TypeId = employeeFormViewModel.TypeId;
-
                 _employeePetService.AddNewEmployeePets(_employeeService.GetMaxEmployeeId(), employeeFormViewModel.PetCollection);
-                _employeeService.SaveEmployee();
+                _employeePetService.SaveEmployeePet();
                 employeeViewModel.PetList = _petService.GetAllPetDropdown();
                 employeeViewModel.PetId = employeeFormViewModel.PetId;
                 return RedirectToAction("index");

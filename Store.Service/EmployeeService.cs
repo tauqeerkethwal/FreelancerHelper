@@ -84,7 +84,11 @@ namespace Freelancer.Service
 
         public int GetMaxEmployeeId()
         {
-            return employeeRepository.GetAll().Max(x => x.EmployeeId);
+            if (employeeRepository.GetAll().Count() == 0)
+                return 0;
+            else
+                return employeeRepository.GetAll().Max(x => x.EmployeeId);
+            
         }
         public ListResult<EmployeeListModel> GetAll(SearchParameters searchParameters, EmployeeSearchModel model)
         {

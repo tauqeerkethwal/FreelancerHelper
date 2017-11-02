@@ -2,7 +2,6 @@
 using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model.Models.EmployeePet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace Freelancer.Service
@@ -14,7 +13,7 @@ namespace Freelancer.Service
         void AddNewEmployeePets(int EmployeeId, List<EmployeePet> EmployeePetList);
         IEnumerable<EmployeePet> GetPetsByEmployeeId(int Id);
         void CreateEmployeePet(EmployeePet employeePet);
-        void SaveCategory();
+        void SaveEmployeePet();
     }
 
     public class EmployeePetService : IEmployeePetService
@@ -30,7 +29,7 @@ namespace Freelancer.Service
         public void DeletePreviousEmployeePets(int EmployeeId)
         {
 
-            if (EmployeeId != null)
+            if (EmployeeId != 0)
             {
                 employeePetRepository.GetMany(x => x.EmployeeId == EmployeeId && x.del == false).ToList().ForEach(a => a.del = true);
             }
@@ -64,7 +63,7 @@ namespace Freelancer.Service
             employeePetRepository.Add(employeePet);
         }
 
-        public void SaveCategory()
+        public void SaveEmployeePet()
         {
             unitOfWork.Commit();
         }

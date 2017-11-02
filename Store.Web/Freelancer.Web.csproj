@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -1320,7 +1321,9 @@
     <Content Include="Areas\Admin\Views\Customer\_CustomerPetRow.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\_EmployeePetRow.cshtml" />
-    <None Include="Properties\PublishProfiles\Nordisk.pubxml" />
+    <None Include="Properties\PublishProfiles\Nordisk.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
