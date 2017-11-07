@@ -7,6 +7,7 @@ using Freelancer.Model.Models.Employee;
 using Freelancer.Model.Models.EmployeePet;
 using Freelancer.Model.Models.EmployeeType;
 using Freelancer.Model.Models.Pets;
+using Freelancer.Model.Models.Schedule;
 using System.Data.Entity;
 
 namespace Freelancer.Data
@@ -29,7 +30,11 @@ namespace Freelancer.Data
 
         public DbSet<Employee> Employees { get; set; }
 
-
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<WeekSchedule> WeekSchedules { get; set; }
+        public DbSet<DaySchedule> DaySchedules { get; set; }
+        public DbSet<ScheduleEmployee> ScheduleEmployees { get; set; }
+        public DbSet<DaysWithTime> DaysWithTimes { get; set; }
         public virtual void Commit()
         {
             base.SaveChanges();
@@ -39,6 +44,11 @@ namespace Freelancer.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new DaysWithTimeConfiguration());
+            modelBuilder.Configurations.Add(new ScheduleEmployeeConfiguration());
+            modelBuilder.Configurations.Add(new WeekScheduleConfiguration());
+            modelBuilder.Configurations.Add(new DayScheduleConfiguration());
+            modelBuilder.Configurations.Add(new ScheduleConfiguration());
             modelBuilder.Configurations.Add(new CustomerKeysConfiguration());
             modelBuilder.Configurations.Add(new EmployeePetConfiguration());
             modelBuilder.Configurations.Add(new CustomerPetConfiguration());

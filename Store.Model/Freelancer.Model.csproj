@@ -48,6 +48,7 @@
     <Compile Include="Common\CommonHelper.cs" />
     <Compile Include="Common\EPaymentTypes.cs" />
     <Compile Include="Common\EGender.cs" />
+    <Compile Include="Common\EScheduler.cs" />
     <Compile Include="Common\Extensions\EnitityFrameworkExtensions.cs" />
     <Compile Include="Common\SearchParameters.cs" />
     <Compile Include="Models\CustomerKeys\CustomerKeys.cs" />
@@ -67,12 +68,23 @@
     <Compile Include="Models\Pets\Pet.cs" />
     <Compile Include="Models\EmployeeType\EmployeeType.cs" />
     <Compile Include="Models\Gadget.cs" />
+    <Compile Include="Models\Schedule\DaysWithTime.cs" />
+    <Compile Include="Models\Schedule\ScheduleEmployee.cs" />
+    <Compile Include="Models\Schedule\Schedule.cs" />
+    <Compile Include="Models\Schedule\DaySchedule.cs" />
+    <Compile Include="Models\Schedule\WeekSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Freelancer.Core\Freelancer.Core.csproj">
+      <Project>{11bdd887-3bac-415d-8574-66d0a2d0f093}</Project>
+      <Name>Freelancer.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

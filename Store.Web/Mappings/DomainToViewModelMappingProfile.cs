@@ -4,6 +4,7 @@ using Freelancer.Model.Models.Customer;
 using Freelancer.Model.Models.CustomerPet;
 using Freelancer.Model.Models.Employee;
 using Freelancer.Model.Models.Pets;
+using Freelancer.Model.Models.Schedule;
 using Freelancer.Web.Areas.Admin.ViewModels;
 using Freelancer.Web.ViewModels;
 namespace Freelancer.Web.Mappings
@@ -28,6 +29,7 @@ namespace Freelancer.Web.Mappings
             Mapper.CreateMap<Pet, PetViewModel>();
             Mapper.CreateMap<PetFormViewModel, Pet>();
             Mapper.CreateMap<Gadget, GadgetViewModel>();
+            Mapper.CreateMap<Schedule, ScheduleViewModel>();
         }
     }
 }

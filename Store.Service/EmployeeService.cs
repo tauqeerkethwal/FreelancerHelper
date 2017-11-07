@@ -7,12 +7,14 @@ using Freelancer.Model.Models.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 namespace Freelancer.Service
 {
     public interface IEmployeeService
     {
-
+        IEnumerable<Employee> GetActiveEmplyee();
         Employee GetEmployee(int EmployeeId);
+        SelectList GetAllEmployeeDropdown(string Value = null);
         void CreateEmployee(Employee EmployeeAnimal);
         ListResult<EmployeeListModel> GetAll(SearchParameters searchParameters, EmployeeSearchModel model);
         void Update(Employee employee);
@@ -31,6 +33,39 @@ namespace Freelancer.Service
             this.employeeRepository = employeeRepository;
             this.unitOfWork = unitOfWork;
             this.employeeTypeRepository = employeeTypeRepository;
+        }
+        public SelectList GetAllEmployeeDropdown(string Value = null)
+        {
+            if (string.IsNullOrEmpty(Value))
+            {
+                var listItems = employeeRepository.GetMany(x => x.del == false && x.Active == true).Select(i => new SelectListItem()
+                {
+                    Text = i.Name,
+                    Value = i.EmployeeId.ToString()
+                }).ToList();
+
+
+                return new SelectList(listItems, "Value", "Text");
+
+
+            }
+
+            else
+            {
+                var listItems = employeeRepository.GetMany(x => x.del == false).Select(i => new SelectListItem()
+                {
+                    Text = i.Name,
+                    Value = i.EmployeeId.ToString()
+                }).ToList();
+
+
+                return new SelectList(listItems, "Value", "Text", Value);
+
+            }
+        }
+        public IEnumerable<Employee> GetActiveEmplyee()
+        {
+            return employeeRepository.GetMany(x => x.del == false && x.Active == true);
         }
         public void Update(Employee employee)
         {
@@ -88,7 +123,7 @@ namespace Freelancer.Service
                 return 0;
             else
                 return employeeRepository.GetAll().Max(x => x.EmployeeId);
-            
+
         }
         public ListResult<EmployeeListModel> GetAll(SearchParameters searchParameters, EmployeeSearchModel model)
         {

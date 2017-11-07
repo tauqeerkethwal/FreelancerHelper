@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Freelancer.Model.Models.Base
 {
@@ -11,5 +7,14 @@ namespace Freelancer.Model.Models.Base
         public long Id { get; set; }
         public int SNo { get; set; }
 
+    }
+    public abstract class UserActivityModel
+    {
+        public bool del { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateUpdated { get; set; }
+        public string UpdatedById { get; set; }
+
+        public string CreatedById { get; set; }
     }
 }

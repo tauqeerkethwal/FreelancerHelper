@@ -29,13 +29,14 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public bool Car { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
-        public int TypeId { get; set; }
+
         [System.ComponentModel.DefaultValue(1)]
         public bool Active { get; set; }
         public bool del { get; set; }
 
         public Guid? UpdatedById { get; set; }
 
+        public int TypeId { get; set; }
         public SelectList Type
         {
             get; set;

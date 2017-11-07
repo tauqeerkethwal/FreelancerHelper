@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using Freelancer.Core.Extensions;
 using System.ComponentModel.DataAnnotations;
+
 namespace Freelancer.Model.Models.Customer
 {
     public class Customer
@@ -37,8 +38,9 @@ namespace Freelancer.Model.Models.Customer
         public string AlarmDesc { get; set; }
         public bool IsOther { get; set; }
         public string OtherDesc { get; set; }
-        public bool del { get; set; }
+        
         public bool Active { get; set; }
+        public bool del { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
         public Guid UpdatedById { get; set; }

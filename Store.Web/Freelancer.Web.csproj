@@ -118,6 +118,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Cloack\assets\css\bootstrap-theme.css" />
+    <Content Include="Areas\Admin\Cloack\assets\css\bootstrap-theme.min.css" />
+    <Content Include="Areas\Admin\Cloack\assets\css\bootstrap.css" />
+    <Content Include="Areas\Admin\Cloack\assets\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Cloack\assets\css\github.min.css" />
+    <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\Cloack\assets\images\screenshot-1.png" />
+    <Content Include="Areas\Admin\Cloack\assets\js\bootstrap.js" />
+    <Content Include="Areas\Admin\Cloack\assets\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Cloack\assets\js\highlight.min.js" />
+    <Content Include="Areas\Admin\Cloack\assets\js\html5shiv.js" />
+    <Content Include="Areas\Admin\Cloack\assets\js\jquery.js" />
+    <Content Include="Areas\Admin\Cloack\assets\js\jquery.min.js" />
+    <Content Include="Areas\Admin\Cloack\assets\js\respond.min.js" />
+    <Content Include="Areas\Admin\Cloack\dist\bootstrap-clockpicker.css" />
+    <Content Include="Areas\Admin\Cloack\dist\bootstrap-clockpicker.js" />
+    <Content Include="Areas\Admin\Cloack\dist\bootstrap-clockpicker.min.css" />
+    <Content Include="Areas\Admin\Cloack\dist\bootstrap-clockpicker.min.js" />
+    <Content Include="Areas\Admin\Cloack\dist\jquery-clockpicker.css" />
+    <Content Include="Areas\Admin\Cloack\dist\jquery-clockpicker.js" />
+    <Content Include="Areas\Admin\Cloack\dist\jquery-clockpicker.min.css" />
+    <Content Include="Areas\Admin\Cloack\dist\jquery-clockpicker.min.js" />
+    <Content Include="Areas\Admin\Cloack\src\clockpicker.css" />
+    <Content Include="Areas\Admin\Cloack\src\clockpicker.js" />
+    <Content Include="Areas\Admin\Cloack\src\standalone.css" />
+    <Content Include="Areas\Admin\Cloack\test\all.html" />
+    <Content Include="Areas\Admin\Cloack\test\assets\qunit-1.14.0.css" />
+    <Content Include="Areas\Admin\Cloack\test\assets\qunit-1.14.0.js" />
+    <Content Include="Areas\Admin\Cloack\test\assets\utils.js" />
+    <Content Include="Areas\Admin\Cloack\test\suites\basic.js" />
+    <Content Include="Areas\Admin\Cloack\test\suites\data-api.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\.gitignore" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\bootstrap\css\bootstrap.css" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\bootstrap\css\bootstrap.min.css" />
@@ -1321,6 +1352,14 @@
     <Content Include="Areas\Admin\Views\Customer\_CustomerPetRow.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\_EmployeePetRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Scheduler\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Scheduler\_EmployeePetRow.cshtml" />
+    <Content Include="Areas\Admin\Views\Scheduler\_SchedulerDays.cshtml" />
+    <Content Include="Areas\Admin\Cloack\assets\css\bootstrap-theme.css.map" />
+    <Content Include="Areas\Admin\Cloack\assets\css\bootstrap.css.map" />
+    <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\Nordisk.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -1343,6 +1382,7 @@
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PetController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SchedulerController.cs" />
     <Compile Include="Areas\Admin\HelperClasses\AdminMenuProvider.cs" />
     <Compile Include="Areas\Admin\HelperClasses\CommonUtility.cs" />
     <Compile Include="Areas\Admin\ViewModels\CustomerFormViewModel.cs" />
@@ -1357,6 +1397,7 @@
     <Compile Include="Areas\Admin\ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CustomerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ScheduleViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
