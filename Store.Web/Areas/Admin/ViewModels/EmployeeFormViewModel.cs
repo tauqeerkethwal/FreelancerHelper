@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Freelancer.Model.Models.EmployeePet;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 namespace Freelancer.Web.Areas.Admin.ViewModels
 {
     public class EmployeeFormViewModel
@@ -10,6 +13,12 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         }
         [Key]
         public int EmployeeId { get; set; }
+
+        public List<EmployeePet> PetCollection { get; set; }
+
+        public SelectList PetList { get; set; }
+        public int? PetId { get; set; }
+
         [Required(ErrorMessage = "Enter Name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Enter  Street")]
@@ -24,7 +33,6 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string Tlf { get; set; }
         [Required(ErrorMessage = "Enter Email")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Enter Description")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Enter HourlyPay")]
         public double HourlyPay { get; set; }

@@ -1,0 +1,39 @@
+﻿@using System.Collections.Generic;
+@using Freelancer.Model.Models.Schedule
+
+
+@model Tuple<List<ScheduleEmployee>, int>
+
+@{
+    int ind = 0;
+}
+@if(Model.Item1!=null)
+{
+foreach (var emp in Model.Item1)
+{
+        <tr>
+    <td>
+        <div id="ScheduleEmployees@(ind)">
+            <input id="ScheduleEmployees_@(emp.EmployeeId)" class="ScheduleEmployees"
+                   name="ScheduleEmployees[@(ind)].EmployeeName" type="hidden" value="@emp.EmployeeName" />@emp.EmployeeName
+                <input id="ScheduleEmployeesId_@(emp.EmployeeId)"
+                       name="ScheduleEmployees[@(ind)].EmployeeId" type="hidden" value="@emp.EmployeeId" />
+            </div>
+
+</td>
+
+        <td>
+
+            <button id="RemoveObject@(ind+"+p")" onclick="RemoveObjectPet('ScheduleEmployees@(ind)')" type="button" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove Pet</button>
+
+        </td>
+    
+</tr>
+
+
+        ind++;
+    }
+}
+
+
+

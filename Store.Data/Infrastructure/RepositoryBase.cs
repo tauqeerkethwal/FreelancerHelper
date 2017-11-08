@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Freelancer.Data.Infrastructure
 {
@@ -26,6 +24,12 @@ namespace Freelancer.Data.Infrastructure
         }
         #endregion
 
+        public virtual void Delete(Expression<Func<T, bool>> where)
+        {
+            IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+            foreach (T obj in objects)
+                dbSet.Remove(obj);
+        }
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
@@ -49,12 +53,7 @@ namespace Freelancer.Data.Infrastructure
             dbSet.Remove(entity);
         }
 
-        public virtual void Delete(Expression<Func<T, bool>> where)
-        {
-            IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
-            foreach (T obj in objects)
-                dbSet.Remove(obj);
-        }
+
 
         public virtual T GetById(int id)
         {
@@ -77,6 +76,6 @@ namespace Freelancer.Data.Infrastructure
         }
 
         #endregion
-    
+
     }
 }

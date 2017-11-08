@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,9 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CommonHelper.cs" />
+    <Compile Include="Common\EPaymentTypes.cs" />
     <Compile Include="Common\EGender.cs" />
+    <Compile Include="Common\EScheduler.cs" />
     <Compile Include="Common\Extensions\EnitityFrameworkExtensions.cs" />
     <Compile Include="Common\SearchParameters.cs" />
+    <Compile Include="Models\CustomerKeys\CustomerKeys.cs" />
+    <Compile Include="Models\Customer\Customer.cs" />
+    <Compile Include="Models\Customer\CustomerListModel.cs" />
+    <Compile Include="Models\Customer\CustomerSearchModel.cs" />
+    <Compile Include="Models\EmployeePet\EmployeePet.cs" />
     <Compile Include="Models\Employee\EmployeeListModel.cs" />
     <Compile Include="Models\Employee\EmployeeSearchModel.cs" />
     <Compile Include="Models\Pets\PetListModel.cs" />
@@ -55,15 +63,27 @@
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\Base\ListResult.cs" />
     <Compile Include="Models\Employee\Employee.cs" />
-    <Compile Include="Models\EmployeeAnimal.cs" />
+    <Compile Include="Models\CustomerPet\CustomerPet.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Pets\Pet.cs" />
     <Compile Include="Models\EmployeeType\EmployeeType.cs" />
     <Compile Include="Models\Gadget.cs" />
+    <Compile Include="Models\Schedule\DaysWithTime.cs" />
+    <Compile Include="Models\Schedule\ScheduleEmployee.cs" />
+    <Compile Include="Models\Schedule\Schedule.cs" />
+    <Compile Include="Models\Schedule\DaySchedule.cs" />
+    <Compile Include="Models\Schedule\WeekSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Freelancer.Core\Freelancer.Core.csproj">
+      <Project>{11bdd887-3bac-415d-8574-66d0a2d0f093}</Project>
+      <Name>Freelancer.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

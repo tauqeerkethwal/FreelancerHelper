@@ -6,9 +6,11 @@ using Freelancer.Model.Models.Pets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 namespace Freelancer.Service
 {
     public interface IPetService
+
     {
         IEnumerable<Pet> GetAllPets(string name = null);
 
@@ -17,7 +19,7 @@ namespace Freelancer.Service
         void CreatePet(Pet employeeTypes);
         ListResult<PetListModel> GetAll(SearchParameters searchParameters, PetSearchModel model);
         void Update(Pet animal);
-
+        SelectList GetAllPetDropdown(string Value = null);
         void SavePet();
     }
 
@@ -31,6 +33,36 @@ namespace Freelancer.Service
             this.petRepository = petRepository;
             this.unitOfWork = unitOfWork;
         }
+        public SelectList GetAllPetDropdown(string Value = null)
+        {
+            if (string.IsNullOrEmpty(Value))
+            {
+                var listItems = petRepository.GetMany(x => x.del == false).Select(i => new SelectListItem()
+                {
+                    Text = i.Name,
+                    Value = i.AnimalId.ToString()
+                }).ToList();
+
+                listItems.Add(new SelectListItem() { Value = "-1", Text = "Others" });
+                return new SelectList(listItems, "Value", "Text");
+
+
+            }
+
+            else
+            {
+                var listItems = petRepository.GetMany(x => x.del == false).Select(i => new SelectListItem()
+                {
+                    Text = i.Name,
+                    Value = i.AnimalId.ToString()
+                }).ToList();
+
+                listItems.Add(new SelectListItem() { Value = "-1", Text = "Others" });
+                return new SelectList(listItems, "Value", "Text", Value);
+
+            }
+        }
+
         public void Update(Pet animal)
         {
 

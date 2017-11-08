@@ -1,0 +1,39 @@
+﻿@using System.Collections.Generic;
+@using Freelancer.Model.Models.Schedule
+
+
+@model Tuple<List<DaysWithTime>, int>
+
+@{
+    int ind = 0;
+}
+@if(Model.Item1!=null)
+{
+foreach (var days in Model.Item1)
+{
+        <tr>
+    <td>
+        <div id="DaysWithTimes@(ind)">
+            <input id="DaysWithTimes_@(days.Day)" class="DaysWithTimes"
+                   name="DaysWithTimes[@(ind)].Day" type="hidden" value="@days.Day" />@days.Day
+                <input id="DaysWithTimesId_@(days.DayWithTimeId)"
+                       name="DaysWithTimes[@(ind)].DayWithTimeId" type="hidden" value="@days.Day" />
+            </div>
+
+</td>
+
+        <td>
+
+            <button id="RemoveObject@(ind+"+p")" onclick="RemoveObjectPet('DaysWithTimes@(ind)')" type="button" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove Pet</button>
+
+        </td>
+    
+</tr>
+
+
+        ind++;
+    }
+}
+
+
+

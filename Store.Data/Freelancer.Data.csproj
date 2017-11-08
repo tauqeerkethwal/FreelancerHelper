@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,9 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\DaysWithTimeConfiguration.cs" />
+    <Compile Include="Configuration\DayScheduleConfiguration.cs" />
+    <Compile Include="Configuration\ScheduleEmployeeConfiguration.cs" />
+    <Compile Include="Configuration\WeekScheduleConfiguration.cs" />
+    <Compile Include="Configuration\ScheduleConfiguration.cs" />
+    <Compile Include="Configuration\CustomerKeysConfiguration.cs" />
+    <Compile Include="Configuration\EmployeePetConfiguration.cs" />
     <Compile Include="Configuration\EmployeeConfiguration.cs" />
-    <Compile Include="Configuration\EmployeeAnimalConfiguration.cs" />
+    <Compile Include="Configuration\CustomerPetConfiguration.cs" />
     <Compile Include="Configuration\CategoryConfiguration.cs" />
+    <Compile Include="Configuration\CustomerConfiguration.cs" />
     <Compile Include="Configuration\PetConfiguration.cs" />
     <Compile Include="Configuration\EmployeeTypeConfiguration.cs" />
     <Compile Include="Configuration\GadgetConfiguration.cs" />
@@ -66,10 +75,15 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\CustomerKeysRepository.cs" />
+    <Compile Include="Repositories\ScheduleEmployeeRepository.cs" />
+    <Compile Include="Repositories\ScheduleRepository.cs" />
+    <Compile Include="Repositories\EmployeePetRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\TypeRepository.cs" />
     <Compile Include="Repositories\PetRepository.cs" />
-    <Compile Include="Repositories\EmployeeAnimalRepository.cs" />
+    <Compile Include="Repositories\CustomerPetRepository.cs" />
     <Compile Include="Repositories\EmployeeTypeRepository.cs" />
     <Compile Include="Repositories\GadgetRepository.cs" />
     <Compile Include="FreelancerEntities.cs" />

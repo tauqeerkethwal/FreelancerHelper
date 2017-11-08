@@ -7,20 +7,8 @@
 
     
 }
-
-@*<!-- Date Picker -->
-    <link rel="stylesheet" href="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/datepicker/datepicker3.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/daterangepicker/daterangepicker.css">
-
-    <!-- daterangepicker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-    <script src="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- datepicker -->
-    <script src="~/Areas/Admin/Content/AdminLTE-2.3.7/plugins/datepicker/bootstrap-datepicker.js"></script>
-
-    <script src="~/Scripts/jquery.maskedinput.js"></script>
-    <script src="~/Areas/Admin/Scripts/commonAjaxHandler.js"></script>*@
+<script src="~/Scripts/Validation.js"></script>
+<script src="~/Areas/Admin/Scripts/commonTolkDanmark.js"></script>
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Add New Employee</h3>
@@ -39,19 +27,19 @@
                         <div class="formTextSize padding20px">
 
                             <div class="pull-left col-md-6 col-xs-12">
-                                Ændring af cookieindstillinger. Vi beklager de gener, dette måtte medføre. Indtast venligst dine bestilleroplysninger igen.
-                                <h3 class="text-muted">
-                                    Employee<small class="text-danger"> (*felterne skal udfyldes) @Html.ValidationSummary()</small>
+                                Please Enter Employee detail.
+                                  <h3 class="text-muted">
+                                      Employee<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
                                 </h3>
                               
                              
                                
 
-                                <div class="form formWH form-group-sm">Borgeroplysninger</div>
+                                <div class="form formWH form-group-sm">Employee informaiton</div>
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                       @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+                                       @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @onkeypress = "return isAlpha(event)", @placeholder = "Name *", @class = "form-control" })
                                        
                                     </div>
                                 </div>
@@ -73,7 +61,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @MaxLength = "4", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
                                        
                                     </div>
                                 </div>
@@ -91,7 +79,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="form-group col-sm-8">
-                                        @if (Model.Gender == 3)
+                                        @*@if (Model.Gender == 3)
                                         {
                                             <select name="Gender" class="input-validation-error form-control">
                                                 <option value="">Select Gender</option>
@@ -99,7 +87,8 @@
                                                 <option value="@((int)EGender.Women)">Kvinde</option>
                                             </select>
                                         }
-                                        else
+                                        else*@
+                                        @if (true)
                                         {
                                             <select name="Gender" class="form-control">
                                                 <option value="">Select Gender</option>
@@ -124,7 +113,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @onkeypress = "return isNumberKey(event)", @MaxLength = "8", @class = "form-control" })
                                        
                                     </div>
                                 </div>
@@ -137,11 +126,60 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() :"hourly pay"), @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() :"hourly pay"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
                                      
                                     </div>
                                 </div>
-                               
+                                <!-- /.box pets -->
+                                <div class="row">
+                                    <!-- /.col -->
+                                    <div class="form-group col-sm-8">
+                                        <div class="box box-default collapsed-box box-solid">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Pets</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="box">
+                                                    <div class="box-header">
+                                                        <h3 class="box-title">
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        @Html.DropDownListFor(m => m.PetId, Model.PetList, "Select Pet", new { @class = "form-control" })
+
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <button id="AddPet" type="button" class="btn btn-block btn-success btn-sm" style="margin-left:10px">Add Pet</button>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </h3>
+                                                    </div>
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body no-padding">
+                                                        <table id="TablePet"></table>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                                <!-- /.box pets -->
                                 <div class="row">
                                     <div class="form-group col-sm-8">
                                         <label class="checkbox-inline right-align-checkbox">
@@ -223,7 +261,7 @@
         <div class="row">
             <div class="col-md-6">
 
-                <h3 class="box-title">Available Pet List </h3>
+                <h3 class="box-title">Available Employee List </h3>
 
             </div>
 
@@ -268,7 +306,103 @@
 
 </div>
 
+@*pet list operations script*@
 
+<script>
+        function ReorderListPet() {
+            var PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(true) });
+            var index = $('input[class="PetCollections"]').length;
+            $('#TablePet').empty();
+            if(index>0)
+            {
+                var url = '/admin/employee/RemoveObjectPet?index=' + index;
+                $.ajax({
+                    url: url,
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    data: PetCollection,
+                    success: function (data) {
+
+                        $('#TablePet').empty();
+                        $('#TablePet').append('<tr ><td>' + data);
+                    },
+                    error: function (a, b, c) {
+                        alert(a + " " + b + " " + c);
+                    }
+                });
+            }
+        }
+        function RemoveObjectPet(index) {
+          
+            $('#' + index + '').remove();
+            ReorderListPet();
+        }
+        function createJSONPet(del) {
+            jsonObj = [];
+            $("input[class=PetCollections]").each(function () {
+
+
+
+                myObj = {}
+                myObj["AnimalId"] = $(this).attr('id').split('_')[1];
+                myObj["Name"] = $(this).val();
+                myObj["PetName"] = $("#PetCollectionName_" + $(this).attr('id').split('_')[1]).val();
+
+
+                jsonObj.push(myObj);
+            });
+            if (del == false) {
+
+                myObj = {}
+                myObj["AnimalId"] = $('#PetId').val();
+                myObj["Name"] = $('#PetId :selected').text();
+                jsonObj.push(myObj);
+            }
+
+            return jsonObj;
+        }
+
+
+        $('#AddPet').click(function () {
+
+            if ($('#PetId option:selected').text() == "Select Pet") {
+                return;
+            }
+            else {
+                for(var i=0;i<$('input[class="PetCollections"]').length;i++)
+                {
+
+                    if($('#PetId option:selected').text()==$('input[class="PetCollections"]')[i].value)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            var index = $('input[class="PetCollections"]').length;
+            PetCollection = JSON.stringify({ 'PetCollection': createJSONPet(false) });
+            var url = '/admin/employee/AddEmployeePet?index=' + index;
+            $.ajax({
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+
+                type: 'POST',
+                data: PetCollection,
+                success: function (data) {
+                    $('#TablePet').empty();
+                    $('#TablePet').append('<tr ><td>' + data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+
+
+
+        });
+</script>
+@*end pet list operations script*@
+@*CustomerKeyslist opetations script*@
 
 
 <script>
@@ -393,7 +527,7 @@
 
     }
      function onDeleteCallback(itemId, delUndel) {
-         alert(delUndel)
+    
         openConfirmationDialog(
             (delUndel == true ? "Are you sure, you want to make select record slette?" : "Are you sure, you want to make select record Undeleted?"),
              function () {

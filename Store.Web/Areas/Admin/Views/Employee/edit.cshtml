@@ -2,15 +2,16 @@
 @using Freelancer.Model.Common;
 @using Freelancer.Web.Areas.Admin.ViewModels;
 @using Freelancer.Web.Areas.Admin.HelperClasses;
+
 @model EmployeeViewModel
 @{
 
 
 }
-
+<script src="~/Scripts/Validation.js"></script>
 <div class="box box-primary">
      <div class="box-header with-border">
-        <h3 class="box-title">Add New Employee</h3>
+        <h3 class="box-title">Edit Employee</h3>
     </div>
     <div class="box-body">
 
@@ -26,19 +27,19 @@
                         <div class="formTextSize padding20px">
 
                             <div class="pull-left col-md-6 col-xs-12">
-                                Ændring af cookieindstillinger. Vi beklager de gener, dette måtte medføre. Indtast venligst dine bestilleroplysninger igen.
-                                <h3 class="text-muted">
-                                    Employee<small class="text-danger"> (*felterne skal udfyldes) @Html.ValidationSummary()</small>
+                                Please Enter Employee detail.
+                             <h3 class="text-muted">
+                                    Employee<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
                                 </h3>
 
 
 
 
-                                <div class="form formWH form-group-sm">Borgeroplysninger</div>
+                                <div class="form formWH form-group-sm">Employee information</div>
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @placeholder = "Name *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Name, new { @type = "text", @id = "txtName", @onkeypress = "return isAlpha(event)", @placeholder = "Name *", @class = "form-control" })
 
                                     </div>
                                 </div>
@@ -60,7 +61,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.PostCode, new { @type = "text", @id = "txtPostCode", @placeholder = "PostCode *", @MaxLength = "4", @onkeypress = "return isNumberKey(event)", @class = "form-control" })
 
                                     </div>
                                 </div>
@@ -78,30 +79,32 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="form-group col-sm-8">
-                                            @if (Model.Gender == 3)
-                                            {
-                                                <select name="Gender" class="input-validation-error form-control">
-                                                    <option value="">Select Gender</option>
-                                                    <option value="@((int)EGender.Men)">Mand</option>
-                                                    <option value="@((int)EGender.Women)">Kvinde</option>
-                                                </select>
-                                            }
-                                            else if (Model.Gender == 0)
-                                            {
-                                                <select name="Gender" class="form-control">
-                                                    <option value="">Select Gender</option>
-                                                    <option value="@((int)EGender.Men)">Mand</option>
-                                                    <option value="@((int)EGender.Women)" selected>Kvinde</option>
-                                                </select>
-                                            }
-                                            else if (Model.Gender == 1)
-                                            {
-                                                <select name="Gender" class="form-control">
-                                                    <option value="">Select Gender</option>
-                                                    <option value="@((int)EGender.Men)" selected>Mand</option>
-                                                    <option value="@((int)EGender.Women)">Kvinde</option>
-                                                </select>
-                                            }
+                                          @if (Model.Gender == 3 || Model.Gender == null)
+                                          {
+                                            @*<select name="Gender" class="input-validation-error form-control">*@
+                                            <select name="Gender" class="form-control">
+                                                <option value="">Select Gender</option>
+                                                <option value="@((int)EGender.Men)">Mand</option>
+                                                <option value="@((int)EGender.Women)">Kvinde</option>
+                                            </select>
+                                          }
+                                          else
+                                            if (Model.Gender == 0)
+                                          {
+                                            <select name="Gender" class="form-control">
+                                                <option value="">Select Gender</option>
+                                                <option value="@((int)EGender.Men)">Mand</option>
+                                                <option value="@((int)EGender.Women)" selected>Kvinde</option>
+                                            </select>
+                                          }
+                                          else if (Model.Gender == 1)
+                                          {
+                                            <select name="Gender" class="form-control">
+                                                <option value="">Select Gender</option>
+                                                <option value="@((int)EGender.Men)" selected>Mand</option>
+                                                <option value="@((int)EGender.Women)">Kvinde</option>
+                                            </select>
+                                          }
 
 
                                         </div>
@@ -114,12 +117,11 @@
 
 
 
-
                             <div class="pull-right col-md-6 col-sm-12">
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Tlf, new { @type = "text", @id = "txttlf", @placeholder = "Tlf *", @onkeypress = "return isNumberKey(event)", @MaxLength = "8", @class = "form-control" })
 
                                     </div>
                                 </div>
@@ -132,10 +134,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() : "hourly pay"), @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.HourlyPay, new { @value = (Model.HourlyPay > 0 ? Model.HourlyPay.ToString() : "hourly pay"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyPay", @placeholder = "HourlyPay *", @class = "form-control" })
 
                                     </div>
                                 </div>
+
 
                                 <div class="row">
                                     <div class="form-group col-sm-8">
@@ -218,8 +221,8 @@
                         <lable ID="lbluserid"></lable>
                     </div>
                     <div id="SuccessMessage" class="modal-body" style="display:none;height:250px">
-                        Tak for din bestilling
-                        <a href="@Url.Action("BookingModal","Booking")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
+                        
+                        <a href="@Url.Action("edit","Employee")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
                     </div>
                 </div>
 
@@ -238,7 +241,7 @@
         <div class="row">
             <div class="col-md-6">
 
-                <h3 class="box-title">Available Pet List </h3>
+                <h3 class="box-title">Available Employee List </h3>
 
             </div>
 

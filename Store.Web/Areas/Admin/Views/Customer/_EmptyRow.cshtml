@@ -1,0 +1,92 @@
+﻿@using System.Collections.Generic;
+@using Freelancer.Model.Models.CustomerKeys
+
+@model Tuple<List<CustomerKeys>, int>
+
+@{
+    int ind = 0;
+}
+@if(Model.Item1!=null)
+{
+    foreach (var a in Model.Item1)
+    {
+
+    <tr>
+
+
+        <td>
+            <div id="@ind">
+                <input id="CustomerKeysList_@(ind)" class="CustomerKeysLists" style="display: block;    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"
+                       name="CustomerKeysList[@(ind)].Name" type="text" value="@a.Name" />
+            </div>
+        </td>
+        <td>
+
+            <button id="RemoveObject@(ind)" onclick="RemoveObject(@(ind))" type="button" style="margin-top: 5px" class="btn btn-block btn-danger btn-xs">Remove Keys</button>
+
+        </td>
+
+
+
+
+    </tr>
+
+    if (Model.Item1.Count == ind + 1 && Model.Item2 > 0)
+    {
+        <div id="@Model.Item2">
+            <tr>
+
+                <td>
+
+
+
+
+                    <input id="CustomerKeysList_@Model.Item2" class="CustomerKeysLists" style="display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;"
+                           name="CustomerKeysList[@Model.Item2].Name" type="text" value="" />
+
+                </td>
+
+                <td>
+                    <button id="RemoveObject@(Model.Item2)" onclick="RemoveObject(@(Model.Item2))" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove Keys</button>
+
+
+
+                </td>
+
+
+            </tr>
+        </div>
+    }
+    ind++;
+}
+}
+
