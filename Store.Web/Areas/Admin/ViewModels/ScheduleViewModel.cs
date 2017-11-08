@@ -1,6 +1,4 @@
-﻿
-using Freelancer.Model.Models.Base;
-using Freelancer.Model.Models.Schedule;
+﻿using Freelancer.Model.Models.Schedule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -43,9 +41,9 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public bool Tuesday { get; set; }
         public TimeSpan TuesdayStartTime { get; set; }
         public TimeSpan TuesdayEndTime { get; set; }
-        public bool Wednessday { get; set; }
-        public TimeSpan WednessdayStartTime { get; set; }
-        public TimeSpan WednessdayEndTime { get; set; }
+        public bool Wednesday { get; set; }
+        public TimeSpan WednesdayStartTime { get; set; }
+        public TimeSpan WednesdayEndTime { get; set; }
         public bool Thursday { get; set; }
         public TimeSpan ThursdayStartTime { get; set; }
         public TimeSpan ThursdayEndTime { get; set; }
@@ -61,21 +59,33 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
 
     }
 
-    public class ScheduleViewModel : UserActivityModel
+
+
+    public class ScheduleFormViewModel
     {
+        //: UserActivityModel
         [Key]
         public Guid ScheduleId { get; set; }
         public string CustomerId { get; set; }
-
-
-        public List<WeekSchedule> WeekSchedules { get; set; }
-
         public List<ScheduleEmployee> ScheduleEmployees { get; set; }
-
-        //public virtual List<DaySchedule> DaySchedules { get; set; }
         public WeekModel weekModel { get; set; }
         public DaysModel NormalDays { get; set; }
+        public DaysModel WishDays { get; set; }
+        public SelectList EmployeeList
+        {
+            get; set;
+        }
+    }
 
+    public class ScheduleViewModel
+    {
+        //: UserActivityModel
+        [Key]
+        public Guid ScheduleId { get; set; }
+        public string CustomerId { get; set; }
+        public List<ScheduleEmployee> ScheduleEmployees { get; set; }
+        public WeekModel weekModel { get; set; }
+        public DaysModel NormalDays { get; set; }
         public DaysModel WishDays { get; set; }
         public string EmployeeId { get; set; }
         public SelectList EmployeeList
