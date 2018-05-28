@@ -45,12 +45,12 @@
                                 </div>
 
 
-                                <div class="row">
+                                @*<div class="row">
                                     <div class="form-group col-sm-8">
                                      @Html.DropDownListFor(m => m.TypeId,Model.Type,"Select Type", new { @class = "form-control" })
                                        
                                     </div>
-                                </div>
+                                </div>*@
 
 
                                 <div class="row">
@@ -79,29 +79,36 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="form-group col-sm-8">
-                                        @*@if (Model.Gender == 3)
-                                        {
-                                            <select name="Gender" class="input-validation-error form-control">
-                                                <option value="">Select Gender</option>
-                                                <option value="@((int)EGender.Men)">Mand</option>
-                                                <option value="@((int)EGender.Women)">Kvinde</option>
-                                            </select>
-                                        }
-                                        else*@
-                                        @if (true)
-                                        {
-                                            <select name="Gender" class="form-control">
-                                                <option value="">Select Gender</option>
-                                                <option value="@((int)EGender.Men)">Mand</option>
-                                                <option value="@((int)EGender.Women)">Kvinde</option>
-                                            </select>
-                                        }
-
+                                            @if (Model.Gender == null)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
+                                            else
+                                            if (Model.Gender == 0)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)">Mand</option>
+                                                    <option value="@((int)EGender.Women)" selected>Kvinde</option>
+                                                </select>
+                                            }
+                                            else
+                                            if (Model.Gender == 1)
+                                            {
+                                                <select name="Gender" class="form-control">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="@((int)EGender.Men)" selected>Mand</option>
+                                                    <option value="@((int)EGender.Women)">Kvinde</option>
+                                                </select>
+                                            }
 
                                         </div>
                                     </div>
-                                    </div>
-
+                                </div>
 
                                 </div>
 
@@ -286,7 +293,7 @@
                     <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Hourly Pay&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
+                   
                     <th><div class="col-lg-2">DateCreated</div></th>
                     <th><div class="col-lg-2">Deleted</div></th>
                     <th><div class="col-lg-2">Active</div></th>
@@ -454,8 +461,7 @@
                  { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "HourlyPay", "name": "Hourly Pay", "autoWidth": true, "orderable": true, "searchable": true },
-                 { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
-                  { "data": "DateCreated", "name": "DateCreated", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "DateCreated", "name": "DateCreated", "autoWidth": true, "orderable": true, "searchable": true },
                  
 
 

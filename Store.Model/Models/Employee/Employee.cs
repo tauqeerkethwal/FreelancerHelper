@@ -26,7 +26,7 @@ namespace Freelancer.Model.Models.Employee
         public bool Car { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
-        public int TypeId { get; set; }
+    
         [System.ComponentModel.DefaultValue(1)]
         public bool? Active { get; set; }
         public bool del { get; set; }

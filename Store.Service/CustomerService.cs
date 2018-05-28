@@ -23,12 +23,14 @@ namespace Freelancer.Service
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository customerRepository;
+        private readonly ICustomerPetRepository customerPetRepository;
         private readonly ICustomerKeysService customerKeysService;
         private readonly IUnitOfWork unitOfWork;
         private readonly IEmployeeTypeRepository employeeTypeRepository;
 
-        public CustomerService(ICustomerRepository customerRepository, IEmployeeTypeRepository employeeTypeRepository, ICustomerKeysService customerKeysService, IUnitOfWork unitOfWork)
+        public CustomerService(ICustomerPetRepository customerPetRepository, ICustomerRepository customerRepository, IEmployeeTypeRepository employeeTypeRepository, ICustomerKeysService customerKeysService, IUnitOfWork unitOfWork)
         {
+            this.customerPetRepository = customerPetRepository;
             this.customerRepository = customerRepository;
             this.customerKeysService = customerKeysService;
             this.unitOfWork = unitOfWork;
@@ -81,13 +83,19 @@ namespace Freelancer.Service
                 Address = item.Street + ", " + item.PostCode + " " + item.City,
                 Email = item.Email,
                 CustomerId = item.CustomerId,
-                HourlyRate = item.HourlyRate,
+                HourlyRate = " ( " + item.HourlyRate.ToString() + " ) " +
+                (item.Paymenttype == null ? "" :
+                (item.Paymenttype == (int)EPaymentTypes.HourlyPay ? EPaymentTypes.HourlyPay.ToString() :
+                (item.Paymenttype == (int)EPaymentTypes.MonthlyPay ? EPaymentTypes.MonthlyPay.ToString() :
+                item.Paymenttype == (int)EPaymentTypes.WeeklyPay ? EPaymentTypes.WeeklyPay.ToString() : ""
+                ))).ToString(),
                 Name = item.Name,
                 Tlf = item.Tlf,
                 Type = employeeTypeRepository.GetById(item.TypeId).Name,
                 CVR = item.CVR,
                 EAN = item.EAN,
-                CustomerKeysList = customerKeysService.GetCustomerKeys(item.Id).ToList()
+                CustomerKeysList = customerKeysService.GetCustomerKeys(item.Id).ToList(),
+                CustomerPetList = customerPetRepository.GetPetsByCustomerId(item.Id).ToList()
             };
         }
 

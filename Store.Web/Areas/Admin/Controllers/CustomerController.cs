@@ -72,7 +72,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             Customer customer = Mapper.Map<CustomerFormViewModel, Customer>(customerFormViewModel);
             var customerViewModel = Mapper.Map<Customer, CustomerViewModel>(customer);
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && customerFormViewModel.Paymenttype != -1)
             {
                 if (_customerService.CheckCustomerIdExist(customerFormViewModel.CustomerId))
                 {
@@ -104,8 +104,11 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 customerViewModel.CustomerKeysList = customerFormViewModel.CustomerKeysList;
                 customerViewModel.PetCollection = customerFormViewModel.PetCollection;
                 customerViewModel.Paymenttype = customerFormViewModel.Paymenttype;
+                ModelState.AddModelError("Paymenttype", "Select Paymenttype");
                 // customerViewModel.Gender = customerViewModel.Gender == null ? 3 : customerViewModel.Gender;
             }
+
+
 
             return View(customerViewModel);
 
@@ -132,7 +135,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             Customer customer = Mapper.Map<CustomerFormViewModel, Customer>(customerFormViewModel);
             var viewModelCustomer = Mapper.Map<Customer, CustomerViewModel>(customer);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && customerFormViewModel.Paymenttype != -1)
             {
 
                 {
@@ -154,6 +157,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 viewModelCustomer.Gender = customerFormViewModel.Gender == null ? 3 : customerFormViewModel.Gender;
                 viewModelCustomer.PetList = _petService.GetAllPetDropdown();
                 viewModelCustomer.PetId = customerFormViewModel.PetId;
+                ModelState.AddModelError("Paymenttype", "Select Paymenttype");
             }
             return View(viewModelCustomer);
 

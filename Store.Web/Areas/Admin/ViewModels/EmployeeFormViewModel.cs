@@ -27,7 +27,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public string PostCode { get; set; }
         [Required(ErrorMessage = "Enter City")]
         public string City { get; set; }
-        [Required(ErrorMessage = "Select Gender")]
+
         public Nullable<short> Gender { get; set; }
         [Required(ErrorMessage = "Enter Telephone nr.")]
         public string Tlf { get; set; }
@@ -39,8 +39,8 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public bool Orange { get; set; }
         public bool DrivingLicence { get; set; }
         public bool Car { get; set; }
-        [Required(ErrorMessage = "Select Type")]
-        public int TypeId { get; set; }
+
+        // public int TypeId { get; set; }
 
         public bool Active { get; set; }
         public bool del { get; set; }

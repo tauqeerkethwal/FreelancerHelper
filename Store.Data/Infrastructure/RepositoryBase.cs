@@ -44,8 +44,17 @@ namespace Freelancer.Data.Infrastructure
 
         public virtual void Update(T entity)
         {
-            dbSet.Attach(entity);
-            dataContext.Entry(entity).State = EntityState.Modified;
+            //if (dataContext.Entry(entity).State == EntityState.Modified)
+            //{
+                dbSet.Attach(entity);
+                dataContext.Entry(entity).State = EntityState.Modified;
+            //}
+            //else
+            //{
+            //    dataContext.Entry(entity).State = EntityState.Detached;
+            //    //dbSet.Attach(entity);
+            //    dataContext.Entry(entity).State = EntityState.Modified;
+            //}
         }
 
         public virtual void Delete(T entity)

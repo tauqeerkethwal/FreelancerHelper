@@ -103,7 +103,7 @@ namespace Freelancer.Service
                 HourlyPay = item.HourlyPay,
                 Name = item.Name,
                 Tlf = item.Tlf,
-                Type = employeeTypeRepository.GetById(item.TypeId).Name
+               // Type = employeeTypeRepository.GetById(item.TypeId).Name
 
 
 

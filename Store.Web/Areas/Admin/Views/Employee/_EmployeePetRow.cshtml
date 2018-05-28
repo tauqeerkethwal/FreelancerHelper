@@ -1,0 +1,37 @@
+﻿@using System.Collections.Generic;
+@using Freelancer.Model.Models.EmployeePet
+
+
+@model Tuple<List<EmployeePet>, int>
+
+@{
+    int ind = 0;
+}
+@foreach (var Pet in Model.Item1)
+            {  
+        <tr>
+    <td>
+        <div id="PetCollection@(ind)">
+            <input id="PetCollection_@(Pet.AnimalId)" class="PetCollections"
+                   name="PetCollection[@(ind)].Name" type="hidden" value="@Pet.Name" />@Pet.Name
+                <input id="PetCollectionId_@(Pet.AnimalId)"
+                       name="PetCollection[@(ind)].AnimalId" type="hidden" value="@Pet.AnimalId" />
+            </div>
+
+</td>
+
+        <td>
+
+            <button id="RemoveObject@(ind+"+p")" onclick="RemoveObjectPet('PetCollection@(ind)')" type="button" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove Pet</button>
+
+        </td>
+    
+</tr>
+      
+
+    ind++;
+}
+
+
+
+

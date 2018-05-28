@@ -30,7 +30,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             EmployeeViewModel viewModelEmployee;
             Employee employee = new Employee();
             viewModelEmployee = Mapper.Map<Employee, EmployeeViewModel>(employee);
-            viewModelEmployee.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
+           // viewModelEmployee.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
             viewModelEmployee.PetList = _petService.GetAllPetDropdown();
             return View(viewModelEmployee);
 
@@ -47,8 +47,8 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             {
                 _employeeService.CreateEmployee(employee);
                 _employeeService.SaveEmployee();
-                employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
-                employeeViewModel.TypeId = employeeFormViewModel.TypeId;
+                //employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
+                //employeeViewModel.TypeId = employeeFormViewModel.TypeId;
                 _employeePetService.AddNewEmployeePets(_employeeService.GetMaxEmployeeId(), employeeFormViewModel.PetCollection);
                 _employeePetService.SaveEmployeePet();
                 employeeViewModel.PetList = _petService.GetAllPetDropdown();
@@ -57,8 +57,8 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             }
             else
             {
-                employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
-                employeeViewModel.TypeId = employeeViewModel.TypeId;
+                //employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(employeeFormViewModel.TypeId.ToString());
+                //employeeViewModel.TypeId = employeeViewModel.TypeId;
                 //employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
                 employeeViewModel.PetList = _petService.GetAllPetDropdown();
                 employeeViewModel.PetId = employeeFormViewModel.PetId;
@@ -76,7 +76,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             EmployeeViewModel viewModelEmployee;
             Employee employee = _employeeService.GetEmployee(Id);
             viewModelEmployee = Mapper.Map<Employee, EmployeeViewModel>(employee);
-            viewModelEmployee.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
+           // viewModelEmployee.Type = _employeeTypeService.GetAllEmployeeTypesDropdown();
             return View(viewModelEmployee);
         }
 
@@ -96,9 +96,9 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             }
             else
             {
-                employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(model.TypeId.ToString());
-                employeeViewModel.TypeId = employeeViewModel.TypeId;
-                //employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
+                //employeeViewModel.Type = _employeeTypeService.GetAllEmployeeTypesDropdown(model.TypeId.ToString());
+                //employeeViewModel.TypeId = employeeViewModel.TypeId;
+                ////employeeViewModel.Gender = employeeViewModel.Gender == null ? 3 : employeeViewModel.Gender;
             }
             return View(employeeViewModel);
 

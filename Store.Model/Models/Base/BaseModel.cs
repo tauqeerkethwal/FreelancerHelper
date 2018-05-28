@@ -10,6 +10,10 @@ namespace Freelancer.Model.Models.Base
     }
     public abstract class UserActivityModel
     {
+        public UserActivityModel()
+        {
+            DateCreated = DateTime.Now;
+        }
         public bool del { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }

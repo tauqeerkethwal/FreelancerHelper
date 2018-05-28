@@ -23,13 +23,13 @@ namespace Freelancer.Web.Mappings
             Mapper.CreateMap<Customer, CustomerViewModel>().ForMember(dest => dest.Type,
               opts => opts.Ignore());
 
-            Mapper.CreateMap<Employee, EmployeeViewModel>().ForMember(dest => dest.Type,
-               opts => opts.Ignore());
+            Mapper.CreateMap<Employee, EmployeeViewModel>();
 
             Mapper.CreateMap<Pet, PetViewModel>();
             Mapper.CreateMap<PetFormViewModel, Pet>();
             Mapper.CreateMap<Gadget, GadgetViewModel>();
             Mapper.CreateMap<Schedule, ScheduleViewModel>();
+            Mapper.CreateMap<ScheduleFormViewModel, Schedule>();
         }
     }
 }

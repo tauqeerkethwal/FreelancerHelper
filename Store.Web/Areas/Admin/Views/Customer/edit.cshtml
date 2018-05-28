@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
-                                        @Html.TextBoxFor(m => m.HourlyRate, new { @value = (Model.HourlyRate > 0 ? Model.HourlyRate.ToString() : "hourly Rate"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyRate", @placeholder = "HourlyRate *", @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.HourlyRate, new { @value = (Model.HourlyRate > 0 ? Model.HourlyRate.ToString() : "Rate"), @onkeypress = "return isfloatKey(event)", @type = "text", @id = "txtHourlyRate", @placeholder = "Rate *", @class = "form-control" })
                                         <select name="Paymenttype" id="Paymenttype" class=@(Model.Paymenttype ==-1   ? "input-validation-error form-control" : "form-control")>
                                             <option value="-1">Select PaymentType</option>
 
@@ -518,16 +518,17 @@
                 <tr>
                     <th>SNo</th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Actions&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Customer ID&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Name&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Address&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;EAN&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;CVR&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Keys&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Hourly Rate&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Address&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Keys&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Pets&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Rate&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
-
+                    <th><div class="col-lg-2"><nobr>&nbsp;CVR&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;EAN&nbsp;</nobr></div></th>
+                    <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
                     <th><div class="col-lg-2">Deleted</div></th>
                     <th><div class="col-lg-2">Active</div></th>
 
@@ -559,7 +560,8 @@
 
     }
     var mainTable;
-    $(document).ready(function () {
+        $(document).ready(function () {
+
 
         var url = "@Url.Action("LoadAllData","Customer")";
 
@@ -600,11 +602,10 @@
 
                       }
                   },
+                   { "data": "CustomerId", "name": "CustomerId", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "Name", "name": "Name", "autoWidth": true, "orderable": true, "searchable": true },
+                 { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
                  { "data": "Address", "name": "Address", "autoWidth": true, "orderable": true, "searchable": true },
-                     { "data": "EAN", "name": "EAN", "autoWidth": true, "orderable": true, "searchable": true },
-                       { "data": "CVR", "name": "CVR", "autoWidth": true, "orderable": true, "searchable": true },
-                 { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
                   {
 
                       "data": null,
@@ -612,8 +613,7 @@
                       "autoWidth": false,
                       "render": function (data, type, full, meta) {
                           var html = "";
-                          if (full.CustomerKeysList == null)
-                          {
+                          if (full.CustomerKeysList == null) {
                               return "No keys"
                           }
                           else
@@ -624,8 +624,7 @@
                           html = '<div  class="btn-group pull-right"><button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">' +
                              'Keys' + ' <i class="fa fa-angle-down"></i></button>' +
                               '<ul class="dropdown-menu pull-right">';
-                          for (let index = 0; index < full.CustomerKeysList.length; ++index)
-                                       {
+                          for (let index = 0; index < full.CustomerKeysList.length; ++index) {
 
 
 
@@ -637,15 +636,56 @@
 
 
                           }
-                          html =html+'</ul></div>';
-                     return html;
+                          html = html + '</ul></div>';
+                          return html;
 
-                 }
-    },
+                      }
+                  },
+                   {
 
-                 { "data": "Tlf", "name": "Tlf", "autoWidth": true, "orderable": true, "searchable": true },
-                 { "data": "HourlyRate", "name": "Hourly Rate", "autoWidth": true, "orderable": true, "searchable": true },
-                 { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
+                       "data": null,
+                       "orderable": false,
+                       "autoWidth": false,
+                       "render": function (data, type, full, meta) {
+                           var html = "";
+                           if (full.CustomerPetList == null) {
+                               return "No pets"
+                           }
+                           else
+                               if (full.CustomerPetList.length == 0) {
+                                   return "No pets"
+                               }
+
+                           html = '<div  class="btn-group pull-right"><button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">' +
+                              'Pets' + ' <i class="fa fa-angle-down"></i></button>' +
+                               '<ul class="dropdown-menu pull-right">';
+                           for (let index = 0; index < full.CustomerPetList.length; ++index) {
+
+
+
+                               html = html + '<li>' +
+                                    '<a  href="@Url.Action("Edit")?Id=' + full.Id + '&BackUrl=@Url.Action("Index", "Customer")"><i class="fa fa-paw"></i> ' + full.CustomerPetList[index].Name + '(' + full.CustomerPetList[index].PetName + ')' + '</a>' +
+                                '</li>';
+
+
+
+
+                           }
+                           html = html + '</ul></div>';
+                           return html;
+
+                       }
+                   },
+                   { "data": "HourlyRate", "name": "Rate", "autoWidth": true, "orderable": true, "searchable": true },
+                    { "data": "Type", "name": "Type", "autoWidth": true, "orderable": true, "searchable": true },
+                     { "data": "CVR", "name": "CVR", "autoWidth": true, "orderable": true, "searchable": true },
+                      { "data": "EAN", "name": "EAN", "autoWidth": true, "orderable": true, "searchable": true },
+                        { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
+
+
+
+
+
 
 
 

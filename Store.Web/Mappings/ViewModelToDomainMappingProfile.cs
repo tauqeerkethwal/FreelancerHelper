@@ -18,7 +18,7 @@ namespace Freelancer.Web.Mappings
         {
             Mapper.CreateMap<ScheduleFormViewModel, ScheduleViewModel>();
             Mapper.CreateMap<ScheduleViewModel, ScheduleFormViewModel>();
-            Mapper.CreateMap<EmployeeFormViewModel, EmployeeViewModel>().ForMember(g => g.Type, opts => opts.Ignore());
+            Mapper.CreateMap<EmployeeFormViewModel, EmployeeViewModel>();
             Mapper.CreateMap<EmployeeFormViewModel, Employee>();
 
             Mapper.CreateMap<CustomerFormViewModel, Customer>();

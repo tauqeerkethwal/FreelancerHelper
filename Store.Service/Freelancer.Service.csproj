@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScheduleEmployeeService.cs" />
     <Compile Include="ScheduleService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="CustomerKeysService.cs" />

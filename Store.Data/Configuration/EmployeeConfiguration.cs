@@ -10,7 +10,7 @@ namespace Freelancer.Data.Configuration
             ToTable("Employee");
             Property(c => c.EmployeeId).IsRequired();
             Property(c => c.Name).IsRequired().HasMaxLength(50);
-            Property(c => c.TypeId).IsRequired();
+           
         }
     }
 }

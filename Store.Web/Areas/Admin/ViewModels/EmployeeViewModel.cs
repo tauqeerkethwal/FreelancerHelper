@@ -36,14 +36,14 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
 
         public Guid? UpdatedById { get; set; }
 
-        public int TypeId { get; set; }
-        public SelectList Type
-        {
-            get; set;
+        //public int? TypeId { get; set; }
+        //public SelectList Type
+        //{
+        //    get; set;
 
 
 
-        }
+        //}
 
 
     }
