@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CustomerKeysRepository.cs" />
+    <Compile Include="Repositories\DayScheduleRepository.cs" />
     <Compile Include="Repositories\ScheduleEmployeeRepository.cs" />
     <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\EmployeePetRepository.cs" />
