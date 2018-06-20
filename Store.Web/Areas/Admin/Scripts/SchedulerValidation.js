@@ -26,11 +26,12 @@ $(document).ready(function () {
         checkboxValidation('#weekModel_EveryWeek');
     }
     else if ($("#weekModel_EvenWeek").is(':checked')) {
-
+        debugger
         checkboxValidation('#weekModel_EvenWeek');
     }
     else
         if ($("#weekModel_OddWeek").is(':checked')) {
+            debugger
             checkboxValidation('#weekModel_OddWeek');
         }
         else
@@ -69,12 +70,17 @@ function ShowAlldiv() {
 }
 
 function checkboxValidation(selector) {
+    debugger
     if ($(selector).is(':checked')) {
         if ($(selector).attr('name') == "weekModel.EveryWeek") {
             $('input[class=WeekCheckbox]').attr('disabled', true);
             $('input[class=WeekCheckbox]').prop('checked', false);
+            $('input[class=WeekCheckbox]').val('false');
+            $('input[class=hiddencheckbox]').val('false');
+            
             $(selector).prop("disabled", false);;
             $(selector).prop('checked', true);
+            $(selector).val('true');
             hideAlldiv();
             showthidiv("EveryWeek")
         }
@@ -82,11 +88,15 @@ function checkboxValidation(selector) {
             if ($(selector).attr('name') == "weekModel.EvenWeek") {
                 $('input[class=WeekCheckbox]').attr('disabled', true);
                 $('input[class=WeekCheckbox]').prop('checked', false);
+                $('input[class=hiddencheckbox]').val('false');
                 $(selector).prop("disabled", false);
                 $(selector).prop('checked', true);
+                $(selector).val('true');
                 $("#weekModel_Every4thWeek").attr("disabled", true);
+                $('input[name="weekModel.Every4thWeek"]').prop('value', true);
                 $("#weekModel_Every4thWeek").prop('checked', true);
                 $("#weekModel_Every2ndWeek").attr("disabled", true);
+                $('input[name="weekModel.Every2ndWeek"]').prop('value',true);
                 $("#weekModel_Every2ndWeek").prop('checked', true);
                 hideAlldiv();
                 showthidiv("EvenWeek");
@@ -97,13 +107,17 @@ function checkboxValidation(selector) {
                 if ($(selector).attr('name') == "weekModel.OddWeek") {
                     $('input[class=WeekCheckbox]').attr('disabled', true);
                     $('input[class=WeekCheckbox]').prop('checked', false);
+                    $('input[class=hiddencheckbox]').val('false');
                     $(selector).attr("disabled", false);
                     $(selector).prop('checked', true);
                     $("#weekModel_Every1stWeek").attr("disabled", true);
+                    $('input[name="weekModel.Every1stWeek"]').prop('value', true);
                     $("#weekModel_Every1stWeek").prop('checked', true);
                     $("#weekModel_Every3rdWeek").attr("disabled", true);
+                    $('input[name="weekModel.Every3rdWeek"]').prop('value', true);
                     $("#weekModel_Every3rdWeek").prop('checked', true);
                     $("#weekModel_Every5thWeek").attr("disabled", true);
+                    $('input[name="weekModel.Every5thWeek"]').prop('value', true);
                     $("#weekModel_Every5thWeek").prop('checked', true);
                     hideAlldiv();
                     showthidiv("OddWeek");
@@ -116,6 +130,8 @@ function checkboxValidation(selector) {
     }
     else {
         $('input[class=WeekCheckbox]').prop("disabled", false);;;
+        $('input[class=WeekCheckbox]').prop('checked', false);
+        $('input[class="hiddencheckbox"]').val('false');
         ShowAlldiv();
     }
 }

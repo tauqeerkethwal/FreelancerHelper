@@ -6,11 +6,11 @@ using System.Linq;
 using System.Data;
 using System;
 
-namespace Store.Service
+namespace Freelancer.Service
 {
     public interface IDayScheduleService
     {
-        void DeletePreviousDaySchedule(Guid ScheduleId);
+        void DeletePreviousDaySchedule(Guid ScheduleId, string UpdatedByID);
         void CreateDayScheudle(List<DaySchedule> daySchedule);
         IEnumerable<DaySchedule> GetDayScheduleByScheduleId(Guid ScheduleId);
         void SaveDaySchedule();
@@ -19,7 +19,7 @@ namespace Store.Service
     {
         private readonly IDayScheduleRepository _dayScheduleRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public DayScheduleService(IDayScheduleRepository dayScheduleRepository, UnitOfWork unitofWork)
+        public DayScheduleService(IDayScheduleRepository dayScheduleRepository, IUnitOfWork unitofWork)
         {
             _dayScheduleRepository = dayScheduleRepository;
             _unitOfWork = unitofWork;
@@ -34,9 +34,9 @@ namespace Store.Service
 
         }
 
-        public void DeletePreviousDaySchedule(Guid ScheduleId)
+        public void DeletePreviousDaySchedule(Guid ScheduleId, string UpdatedByID)
         {
-            _dayScheduleRepository.DeleteDaySchedule(ScheduleId);
+            _dayScheduleRepository.DeleteDaySchedule(ScheduleId,  UpdatedByID);
         }
 
         public IEnumerable<DaySchedule> GetDayScheduleByScheduleId(Guid ScheduleId)

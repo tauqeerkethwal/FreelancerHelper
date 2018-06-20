@@ -10,7 +10,7 @@ namespace Freelancer.Data.Repositories
     {
 
         IEnumerable<DaySchedule> GetDayScheduleByScheduleId(Guid ScheduleId);
-        void DeleteDaySchedule(Guid ScheduleId);
+        void DeleteDaySchedule(Guid ScheduleId, string UpdatedByID);
         void CreateDayScheudle(DaySchedule daySchedule);
 
     }
@@ -34,13 +34,15 @@ namespace Freelancer.Data.Repositories
            
 
         }
-        public  void DeleteDaySchedule(Guid ScheduleId)
+        public  void DeleteDaySchedule(Guid ScheduleId,string UpdatedByID)
         {
 
             var daySchedule = GetDayScheduleByScheduleId(ScheduleId);
             foreach (var dSchedule in daySchedule)
             {
                 dSchedule.del = true;
+                dSchedule.DateUpdated = DateTime.Now;
+                dSchedule.UpdatedById = UpdatedByID;
                 base.Update(dSchedule);
             }
 

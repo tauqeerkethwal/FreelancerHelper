@@ -18,7 +18,7 @@
 <link href="~/Areas/Admin/Cloack/src/clockpicker.css" rel="stylesheet" />
 <link href="~/Areas/Admin/Cloack/src/standalone.css" rel="stylesheet" />
 <script src="~/Areas/Admin/Cloack/src/clockpicker.js"></script>
-<script src="~/Areas/Admin/Scripts/SchedulerValidation.js"></script>
+<script src="~/Areas/Admin/Scripts/SchedulerValidation.js?i=1.158"></script>
 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -278,7 +278,7 @@
                                         <span>@(WeekTypes.EveryWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.EveryWeek,new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.EveryWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.EveryWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
 
@@ -291,56 +291,56 @@
                                         <span>@(WeekTypes.EvenWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.EvenWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.EvenWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                      
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.OddWeek.ToString())">
                                         <span>@(WeekTypes.OddWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.OddWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.OddWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.OddWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.Every1stWeek.ToString())">
                                         <span>@(WeekTypes.Every1stWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.Every1stWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.Every1stWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.Every1stWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.Every2ndWeek.ToString())">
                                         <span>@(WeekTypes.Every2ndWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.Every2ndWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.Every2ndWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.Every2ndWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.Every3rdWeek.ToString())">
                                         <span>@(WeekTypes.Every3rdWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.Every3rdWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.Every3rdWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.Every3rdWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.Every4thWeek.ToString())">
                                         <span>@(WeekTypes.Every4thWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.Every4thWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.Every4thWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.Every4thWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.Every5thWeek.ToString())">
                                         <span>@(WeekTypes.Every5thWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.Every5thWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.Every5thWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.Every5thWeek , new { @class = "hiddencheckbox" })
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.EveryLastWeek.ToString())">
                                         <span>@(WeekTypes.EveryLastWeek.ToString())</span>
                                         @Html.CheckBoxFor(m => m.weekModel.EveryLastWeek, new { @class = "WeekCheckbox" })
                                         @Html.TextBoxFor(m => m.weekModel.EveryLastWeekHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
-
+                                        @Html.HiddenFor(m => m.weekModel.EveryLastWeek, new { @class = "hiddencheckbox" })
 
                                     </div>
                                 </div>
@@ -595,7 +595,8 @@
                         Tak for din bestilling
                         <a href="@Url.Action("BookingModal","Booking")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
                     </div>
-              
+
+
         </form>
 
     </div>
