@@ -89,6 +89,7 @@
     <Compile Include="Repositories\GadgetRepository.cs" />
     <Compile Include="FreelancerEntities.cs" />
     <Compile Include="FreelancerSeedData.cs" />
+    <Compile Include="Repositories\WeekScheduleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
