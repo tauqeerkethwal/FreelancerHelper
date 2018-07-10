@@ -1362,6 +1362,7 @@
     <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Areas\Admin\Cloack\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\Scheduler\_ScheduleDates.cshtml" />
     <None Include="Properties\PublishProfiles\Nordisk.pubxml">
       <SubType>Designer</SubType>
     </None>

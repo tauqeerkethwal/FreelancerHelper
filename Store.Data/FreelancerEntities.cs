@@ -34,6 +34,9 @@ namespace Freelancer.Data
         public DbSet<WeekSchedule> WeekSchedules { get; set; }
         public DbSet<DaySchedule> DaySchedules { get; set; }
         public DbSet<ScheduleEmployee> ScheduleEmployees { get; set; }
+
+        public DbSet<ScheduleWithDates> ScheduleWithDatess { get; set; }
+
         public DbSet<DaysWithTime> DaysWithTimes { get; set; }
         public virtual void Commit()
         {
@@ -44,6 +47,7 @@ namespace Freelancer.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new ScheduleDatesConfiguration());
             modelBuilder.Configurations.Add(new DaysWithTimeConfiguration());
             modelBuilder.Configurations.Add(new ScheduleEmployeeConfiguration());
             modelBuilder.Configurations.Add(new WeekScheduleConfiguration());

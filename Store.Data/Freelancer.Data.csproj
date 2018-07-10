@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Configuration\DaysWithTimeConfiguration.cs" />
     <Compile Include="Configuration\DayScheduleConfiguration.cs" />
+    <Compile Include="Configuration\ScheduleDatesConfiguration.cs" />
     <Compile Include="Configuration\ScheduleEmployeeConfiguration.cs" />
     <Compile Include="Configuration\WeekScheduleConfiguration.cs" />
     <Compile Include="Configuration\ScheduleConfiguration.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CustomerKeysRepository.cs" />
     <Compile Include="Repositories\DayScheduleRepository.cs" />
+    <Compile Include="Repositories\ScheduleDatesRepository.cs" />
     <Compile Include="Repositories\ScheduleEmployeeRepository.cs" />
     <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\EmployeePetRepository.cs" />

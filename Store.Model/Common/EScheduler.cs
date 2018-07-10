@@ -19,18 +19,18 @@
     }
     public enum WeekTypes
     {
-        EveryWeek,
-        EvenWeek,
-        OddWeek,
-        Every1stWeek,
-        Every2ndWeek,
-        Every3rdWeek,
-        Every4thWeek,
-        Every5thWeek,
-        EveryLastWeek,
+        EveryWeekofYear,
+        Every2ndWeekofYear,
+        Every3rdWeekofYear,
+        Every4thWeekofYear,
+        FirstWeekOfMonth,
+        SecondWeekOfMonth,
+        ThirdWeekOfMonth,
+        FourthWeekOfMonth,
+        LastWeekOfMonth,
 
 
     }
 
-    
+
 }

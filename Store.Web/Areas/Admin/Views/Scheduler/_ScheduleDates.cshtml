@@ -1,0 +1,31 @@
+﻿@using System.Collections.Generic;
+@using Freelancer.Model.Models.Schedule
+
+@model Tuple<List<ScheduleWithDates>, int>
+@{
+    int ind = 0;
+}
+@if (Model.Item1 != null)
+{
+    foreach (var emp in Model.Item1)
+    {
+        <tr>
+            <td>
+                <div id="ScheduleWithDates@(ind)">
+                    <input id="ScheduleWithDates_@(emp.ScheduleDates)" class="ScheduleDates"
+                           name="ScheduleWithDates[@(ind)].ScheduleDates" type="hidden" value="@emp.ScheduleDates" />@emp.ScheduleDates
+                        @*<input id="ScheduleWithDates_@(emp.ScheduleWithDatesId)" class="ScheduleDates"
+                               name="ScheduleWithDates[@(ind)].ScheduleWithDatesId" type="hidden" value="@emp.ScheduleWithDatesId" />*@
+
+                    </div>
+                </td>
+                <td>
+                    <button id="RemoveObjectDates@(ind+"+p")" onclick="RemoveObjectDates('ScheduleWithDates@(ind)')" type="button" style="margin-top: 5px" type="button" class="btn btn-block btn-danger btn-xs">Remove date</button>
+                </td>
+
+            </tr>
+
+
+        ind++;
+    }
+}

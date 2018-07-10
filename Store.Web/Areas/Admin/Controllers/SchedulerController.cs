@@ -40,42 +40,42 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
                 switch (weekSchedule[i].WeekType)
                 {
-                    case (int)WeekTypes.EvenWeek:
-                        finalList.EvenWeek = true;
-                        finalList.EvenWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.EveryWeekofYear:
+                        finalList.EveryWeekofYear = true;
+                        finalList.EveryWeekofYearHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.OddWeek:
-                        finalList.OddWeek = true;
-                        finalList.OddWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.Every2ndWeekofYear:
+                        finalList.Every2ndWeekofYear = true;
+                        finalList.Every2ndWeekofYearHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.EveryWeek:
-                        finalList.EveryWeek = true;
-                        finalList.EveryWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.Every3rdWeekofYear:
+                        finalList.Every3rdWeekofYear = true;
+                        finalList.Every3rdWeekofYearHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.Every1stWeek:
-                        finalList.Every1stWeek = true;
-                        finalList.Every1stWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.Every4thWeekofYear:
+                        finalList.Every4thWeekofYear = true;
+                        finalList.Every4thWeekofYearHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.Every2ndWeek:
-                        finalList.Every2ndWeek = true;
-                        finalList.Every2ndWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.FirstWeekOfMonth:
+                        finalList.FirstWeekOfMonth = true;
+                        finalList.FirstWeekOfMonthHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.Every3rdWeek:
-                        finalList.Every3rdWeek = true;
-                        finalList.Every3rdWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.SecondWeekOfMonth:
+                        finalList.SecondWeekOfMonth = true;
+                        finalList.SecondWeekOfMonthHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.Every4thWeek:
-                        finalList.Every4thWeek = true;
-                        finalList.Every4thWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.ThirdWeekOfMonth:
+                        finalList.ThirdWeekOfMonth = true;
+                        finalList.ThirdWeekOfMonthHours = weekSchedule[i].hours;
                         break;
 
-                    case (int)WeekTypes.Every5thWeek:
-                        finalList.Every5thWeek = true;
-                        finalList.Every5thWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.FourthWeekOfMonth:
+                        finalList.FourthWeekOfMonth = true;
+                        finalList.FourthWeekOfMonthHours = weekSchedule[i].hours;
                         break;
-                    case (int)WeekTypes.EveryLastWeek:
-                        finalList.EveryLastWeek = true;
-                        finalList.EveryLastWeekHours = weekSchedule[i].hours;
+                    case (int)WeekTypes.LastWeekOfMonth:
+                        finalList.LastWeekOfMonth = true;
+                        finalList.LastWeekOfMonthHours = weekSchedule[i].hours;
                         break;
 
 
@@ -199,12 +199,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
 
 
-            if (weekSchedule.EvenWeek)
+            if (weekSchedule.EveryWeekofYear)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.EvenWeek,
-                    hours = weekSchedule.EvenWeekHours,
+                    WeekType = (int)WeekTypes.EveryWeekofYear,
+                    hours = weekSchedule.EveryWeekofYearHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -213,12 +213,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 });
 
             }
-            if (weekSchedule.OddWeek)
+            if (weekSchedule.Every2ndWeekofYear)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.OddWeek,
-                    hours = weekSchedule.OddWeekHours,
+                    WeekType = (int)WeekTypes.Every2ndWeekofYear,
+                    hours = weekSchedule.Every2ndWeekofYearHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -227,12 +227,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 });
             }
 
-            if (weekSchedule.EveryWeek)
+            if (weekSchedule.Every3rdWeekofYear)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.EveryWeek,
-                    hours = weekSchedule.EveryWeekHours,
+                    WeekType = (int)WeekTypes.Every3rdWeekofYear,
+                    hours = weekSchedule.Every3rdWeekofYearHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -242,12 +242,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 );
 
             }
-            if (weekSchedule.Every1stWeek)
+            if (weekSchedule.Every4thWeekofYear)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.Every1stWeek,
-                    hours = weekSchedule.Every1stWeekHours,
+                    WeekType = (int)WeekTypes.Every4thWeekofYear,
+                    hours = weekSchedule.Every4thWeekofYearHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -257,12 +257,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             }
 
-            if (weekSchedule.Every2ndWeek)
+            if (weekSchedule.FirstWeekOfMonth)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.Every2ndWeek,
-                    hours = weekSchedule.Every2ndWeekHours,
+                    WeekType = (int)WeekTypes.FirstWeekOfMonth,
+                    hours = weekSchedule.FirstWeekOfMonthHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -273,12 +273,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             }
 
-            if (weekSchedule.Every3rdWeek)
+            if (weekSchedule.SecondWeekOfMonth)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.Every3rdWeek,
-                    hours = weekSchedule.Every3rdWeekHours,
+                    WeekType = (int)WeekTypes.SecondWeekOfMonth,
+                    hours = weekSchedule.SecondWeekOfMonthHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -288,12 +288,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             }
 
-            if (weekSchedule.Every4thWeek)
+            if (weekSchedule.ThirdWeekOfMonth)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.Every4thWeek,
-                    hours = weekSchedule.Every4thWeekHours,
+                    WeekType = (int)WeekTypes.ThirdWeekOfMonth,
+                    hours = weekSchedule.ThirdWeekOfMonthHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -302,12 +302,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 });
 
             }
-            if (weekSchedule.Every5thWeek)
+            if (weekSchedule.FourthWeekOfMonth)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.Every5thWeek,
-                    hours = weekSchedule.Every5thWeekHours,
+                    WeekType = (int)WeekTypes.FourthWeekOfMonth,
+                    hours = weekSchedule.FourthWeekOfMonthHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -317,12 +317,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             }
 
-            if (weekSchedule.EveryLastWeek)
+            if (weekSchedule.LastWeekOfMonth)
             {
                 finalList.Add(new WeekSchedule
                 {
-                    WeekType = (int)WeekTypes.EveryLastWeek,
-                    hours = weekSchedule.EveryLastWeekHours,
+                    WeekType = (int)WeekTypes.LastWeekOfMonth,
+                    hours = weekSchedule.LastWeekOfMonthHours,
                     ScheduleId = scheduleId,
                     CreatedById = adminid,
                     DateCreated = DateTime.Now,
@@ -462,48 +462,48 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                     DayScheduleId = DayScheduleID,
                     DaysWithTimes = daywithTime,
                     Type = i,// 0 for normal days
-                    ScheduleId=scheduleId
-                    
+                    ScheduleId = scheduleId
+
                 });
             }
-             
+
             return finalList;
         }
         public ActionResult Index()
-{
-
-    Schedule schedule = _scheduleService.GetScheduleByCustomerId("gCD89A82-8D4D-4B73-BFB8-047C028B4CF5");
-    var scheduleViewModel = Mapper.Map<Schedule, ScheduleViewModel>(schedule);
-    scheduleViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
-    scheduleViewModel.NormalDays = FillDays(schedule.DaySchedules)[0];
-    scheduleViewModel.WishDays = FillDays(schedule.DaySchedules)[1];
-    scheduleViewModel.weekModel = FillWeeks(schedule.WeekSchedules.ToList());
-
-
-    return View(scheduleViewModel);
-}
-
-[HttpPost]
-public ActionResult Index(ScheduleFormViewModel scheduleFormViewModel)
-{
-
-    if (ModelState.IsValid)
-    {
-        Schedule schedule = _scheduleService.GetScheduleByCustomerId("gCD89A82-8D4D-4B73-BFB8-047C028B4CF5");
-        if (schedule.ScheduleId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
         {
-            var schedulee = Mapper.Map<ScheduleFormViewModel, Schedule>(scheduleFormViewModel);
 
-            schedulee.CustomerId = "gCD89A82-8D4D-4B73-BFB8-047C028B4CF5";
-            schedulee.ScheduleId = Guid.NewGuid();
-            schedulee.WeekSchedules = ConvertWeekModelToWeekSchedule(scheduleFormViewModel.weekModel, schedulee.ScheduleId);
+            Schedule schedule = _scheduleService.GetScheduleByCustomerId("gCD89A82-8D4D-4B73-BFB8-047C028B4CF5");
+            var scheduleViewModel = Mapper.Map<Schedule, ScheduleViewModel>(schedule);
+            scheduleViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
+            scheduleViewModel.NormalDays = FillDays(schedule.DaySchedules)[0];
+            scheduleViewModel.WishDays = FillDays(schedule.DaySchedules)[1];
+            scheduleViewModel.weekModel = FillWeeks(schedule.WeekSchedules.ToList());
+
+
+            return View(scheduleViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Index(ScheduleFormViewModel scheduleFormViewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Schedule schedule = _scheduleService.GetScheduleByCustomerId("gCD89A82-8D4D-4B73-BFB8-047C028B4CF5");
+                if (schedule.ScheduleId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                {
+                    var schedulee = Mapper.Map<ScheduleFormViewModel, Schedule>(scheduleFormViewModel);
+
+                    schedulee.CustomerId = "gCD89A82-8D4D-4B73-BFB8-047C028B4CF5";
+                    schedulee.ScheduleId = Guid.NewGuid();
+                    schedulee.WeekSchedules = ConvertWeekModelToWeekSchedule(scheduleFormViewModel.weekModel, schedulee.ScheduleId);
                     List<DaysModel> daymodel = new List<DaysModel>();
                     daymodel.Add(scheduleFormViewModel.NormalDays);
                     daymodel.Add(scheduleFormViewModel.WishDays);
                     schedulee.DaySchedules = ConvertDayModelToDaySchedule(daymodel, schedulee.ScheduleId);
-            _scheduleService.CreateSchedule(schedulee);
-            _scheduleService.SaveSchedule();
-        }
+                    _scheduleService.CreateSchedule(schedulee);
+                    _scheduleService.SaveSchedule();
+                }
                 else
                 {
                     _scheduleEmployeeService.CreateAndUpdateScheduleEmployee(schedule, scheduleFormViewModel.ScheduleEmployees);
@@ -598,26 +598,43 @@ public ActionResult Index(ScheduleFormViewModel scheduleFormViewModel)
                     _scheduleEmployeeService.SaveCategory();
                     scheduleFormViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
                 }
-       
-    }
-    scheduleFormViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
-    var scheduleViewModel = Mapper.Map<ScheduleFormViewModel, ScheduleViewModel>(scheduleFormViewModel);
-    return View(scheduleViewModel);
-}
-[HttpPost]
-public ActionResult AddScheduleEmployee(int index, List<ScheduleEmployee> scheduleEmployee)
-{
-    List<ScheduleEmployee> ScheduleEmployeelist = new List<ScheduleEmployee>();
-    ScheduleEmployeelist.Add(new ScheduleEmployee());
-    Tuple<List<ScheduleEmployee>, int> tuple = new Tuple<List<ScheduleEmployee>, int>(scheduleEmployee == null ? ScheduleEmployeelist : scheduleEmployee, index);
-    return PartialView("_EmployeePetRow", tuple);
 
-}
-[HttpPost]
-public ActionResult RemoveScheduleEmployee(int index, List<ScheduleEmployee> scheduleEmployee)
-{
-    Tuple<List<ScheduleEmployee>, int> tuple = new Tuple<List<ScheduleEmployee>, int>(scheduleEmployee, index);
-    return PartialView("_EmployeePetRow", tuple);
-}
+            }
+            scheduleFormViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
+            var scheduleViewModel = Mapper.Map<ScheduleFormViewModel, ScheduleViewModel>(scheduleFormViewModel);
+            return View(scheduleViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddScheduleEmployee(int index, List<ScheduleEmployee> scheduleEmployee)
+        {
+            List<ScheduleEmployee> ScheduleEmployeelist = new List<ScheduleEmployee>();
+            ScheduleEmployeelist.Add(new ScheduleEmployee());
+            Tuple<List<ScheduleEmployee>, int> tuple = new Tuple<List<ScheduleEmployee>, int>(scheduleEmployee == null ? ScheduleEmployeelist : scheduleEmployee, index);
+            return PartialView("_EmployeePetRow", tuple);
+
+        }
+        [HttpPost]
+        public ActionResult RemoveScheduleEmployee(int index, List<ScheduleEmployee> scheduleEmployee)
+        {
+            Tuple<List<ScheduleEmployee>, int> tuple = new Tuple<List<ScheduleEmployee>, int>(scheduleEmployee, index);
+            return PartialView("_EmployeePetRow", tuple);
+        }
+
+        [HttpPost]
+        public ActionResult AddScheduleDates(int index, List<ScheduleWithDates> ScheduleDates)
+        {
+            List<ScheduleWithDates> ScheduleEmployeelist = new List<ScheduleWithDates>();
+            ScheduleEmployeelist.Add(new ScheduleWithDates());
+            Tuple<List<ScheduleWithDates>, int> tuple = new Tuple<List<ScheduleWithDates>, int>(ScheduleDates == null ? ScheduleEmployeelist : ScheduleDates, index);
+            return PartialView("_ScheduleDates", tuple);
+
+        }
+        [HttpPost]
+        public ActionResult RemoveScheduleDates(int index, List<ScheduleWithDates> ScheduleDates)
+        {
+            Tuple<List<ScheduleWithDates>, int> tuple = new Tuple<List<ScheduleWithDates>, int>(ScheduleDates, index);
+            return PartialView("_ScheduleDates", tuple);
+        }
     }
 }

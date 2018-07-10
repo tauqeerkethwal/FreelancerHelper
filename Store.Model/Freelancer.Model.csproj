@@ -72,6 +72,7 @@
     <Compile Include="Models\Schedule\ScheduleEmployee.cs" />
     <Compile Include="Models\Schedule\Schedule.cs" />
     <Compile Include="Models\Schedule\DaySchedule.cs" />
+    <Compile Include="Models\Schedule\ScheduleWithDates.cs" />
     <Compile Include="Models\Schedule\WeekSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,26 +8,28 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
     public class WeekModel
     {
 
-        public bool EveryWeek { get; set; }
 
-        public double? EveryWeekHours { get; set; }
 
-        public bool EvenWeek { get; set; }
-        public double? EvenWeekHours { get; set; }
-        public bool OddWeek { get; set; }
-        public double? OddWeekHours { get; set; }
-        public bool Every1stWeek { get; set; }
-        public double? Every1stWeekHours { get; set; }
-        public bool Every2ndWeek { get; set; }
-        public double? Every2ndWeekHours { get; set; }
-        public bool Every3rdWeek { get; set; }
-        public double? Every3rdWeekHours { get; set; }
-        public bool Every4thWeek { get; set; }
-        public double? Every4thWeekHours { get; set; }
-        public bool Every5thWeek { get; set; }
-        public double? Every5thWeekHours { get; set; }
-        public bool EveryLastWeek { get; set; }
-        public double? EveryLastWeekHours { get; set; }
+        public bool EveryWeekofYear { get; set; }
+
+        public double? EveryWeekofYearHours { get; set; }
+
+        public bool Every2ndWeekofYear { get; set; }
+        public double? Every2ndWeekofYearHours { get; set; }
+        public bool Every3rdWeekofYear { get; set; }
+        public double? Every3rdWeekofYearHours { get; set; }
+        public bool Every4thWeekofYear { get; set; }
+        public double? Every4thWeekofYearHours { get; set; }
+        public bool FirstWeekOfMonth { get; set; }
+        public double? FirstWeekOfMonthHours { get; set; }
+        public bool SecondWeekOfMonth { get; set; }
+        public double? SecondWeekOfMonthHours { get; set; }
+        public bool ThirdWeekOfMonth { get; set; }
+        public double? ThirdWeekOfMonthHours { get; set; }
+        public bool FourthWeekOfMonth { get; set; }
+        public double? FourthWeekOfMonthHours { get; set; }
+        public bool LastWeekOfMonth { get; set; }
+        public double? LastWeekOfMonthHours { get; set; }
 
 
     }
@@ -84,10 +86,14 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public Guid ScheduleId { get; set; }
         public string CustomerId { get; set; }
         public List<ScheduleEmployee> ScheduleEmployees { get; set; }
+        public List<ScheduleWithDates> ScheduleWithDatess { get; set; }
         public WeekModel weekModel { get; set; }
         public DaysModel NormalDays { get; set; }
         public DaysModel WishDays { get; set; }
         public string EmployeeId { get; set; }
+
+        public bool WeekScheduleOrDay { get; set; }
+        public DateTime StartingDate { get; set; }
         public SelectList EmployeeList
         {
             get; set;

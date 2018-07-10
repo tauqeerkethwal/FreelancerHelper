@@ -83,7 +83,8 @@
 
 	// Picker object
 
-	var Datepicker = function(element, options){
+	var Datepicker = function (element, options) {
+        debugger
 		this.dates = new DateArray();
 		this.viewDate = UTCToday();
 		this.focusDate = null;
