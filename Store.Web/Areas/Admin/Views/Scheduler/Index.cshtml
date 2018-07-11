@@ -587,8 +587,8 @@
 </script>
 <script>
     function ReorderListPet() {
-        var PetCollection = JSON.stringify({ 'ScheduleDatess': createJSONPet(true) });
-        var index = $('input[class="ScheduleDates"]').length;
+        var PetCollection = JSON.stringify({ 'ScheduleEmployee': createJSONPet(true) });
+        var index = $('input[class="ScheduleEmployees"]').length;
         $('#Tableemployee').empty();
         if (index > 0) {
             var url = '/admin/Scheduler/RemoveScheduleEmployee?index=' + index;
@@ -610,6 +610,7 @@
         }
     }
     function RemoveObjectPet(index) {
+
         alert(index);
         $('#' + index + '').remove();
         ReorderListPet();

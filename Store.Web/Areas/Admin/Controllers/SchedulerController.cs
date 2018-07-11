@@ -18,15 +18,17 @@ namespace Freelancer.Web.Areas.Admin.Controllers
         private readonly IScheduleEmployeeService _scheduleEmployeeService;
         private readonly IDayScheduleService _dayScheduleService;
         private readonly IWeekScheduleService _weekScheduleService;
+        private readonly IScheduleWithDatesService _scheduleWithDatesService;
         private readonly string adminid = "65AA0C14-037F-44DA-9EBA-0CF58F4B7B3A";
         // GET: Admin/Scheduler
-        public SchedulerController(IScheduleService _scheduleService, IEmployeeService _employeeService, IScheduleEmployeeService _scheduleEmployeeService, IDayScheduleService dayScheduleService, IWeekScheduleService weekScheduleService)
+        public SchedulerController(IScheduleService _scheduleService, IEmployeeService _employeeService, IScheduleEmployeeService _scheduleEmployeeService, IDayScheduleService dayScheduleService, IWeekScheduleService weekScheduleService, IScheduleWithDatesService scheduleWithDatesService)
         {
             this._scheduleEmployeeService = _scheduleEmployeeService;
             this._scheduleService = _scheduleService;
             this._employeeService = _employeeService;
             this._dayScheduleService = dayScheduleService;
             this._weekScheduleService = weekScheduleService;
+            this._scheduleWithDatesService = scheduleWithDatesService;
         }
 
         public WeekModel FillWeeks(List<WeekSchedule> weekSchedule)
@@ -507,6 +509,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 else
                 {
                     _scheduleEmployeeService.CreateAndUpdateScheduleEmployee(schedule, scheduleFormViewModel.ScheduleEmployees);
+                    _scheduleWithDatesService.CreateAndUpdateSchedulewithDated(schedule, scheduleFormViewModel.ScheduleWithDatess);
                     _dayScheduleService.DeletePreviousDaySchedule(scheduleFormViewModel.ScheduleId, adminid);
                     Guid _dayScheduleId = Guid.NewGuid();
 

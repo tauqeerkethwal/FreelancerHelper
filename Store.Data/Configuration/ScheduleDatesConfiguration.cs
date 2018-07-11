@@ -7,12 +7,9 @@ namespace Freelancer.Data.Configuration
     {
         public ScheduleDatesConfiguration()
         {
-            ToTable("ScheduleDates");
-
-
-
+            ToTable("ScheduleWithDates");
             HasKey(c => c.ScheduleWithDatesId);
-            /* HasRequired(c => c.Schedules).WithMany(s => s.WeekSchedules).HasForeignKey(c => c.ScheduleId); */
+            HasRequired(c => c.Schedules).WithMany(s => s.ScheduleWithDatess).HasForeignKey(c => c.ScheduleId);
             ;
 
 
