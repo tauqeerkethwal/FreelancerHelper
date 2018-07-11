@@ -70,6 +70,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public Guid ScheduleId { get; set; }
         public string CustomerId { get; set; }
         public List<ScheduleEmployee> ScheduleEmployees { get; set; }
+        public List<ScheduleWithDates> ScheduleWithDatess { get; set; }
         public WeekModel weekModel { get; set; }
         public DaysModel NormalDays { get; set; }
         public DaysModel WishDays { get; set; }

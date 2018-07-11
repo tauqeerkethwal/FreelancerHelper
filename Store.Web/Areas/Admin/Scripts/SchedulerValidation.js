@@ -273,7 +273,8 @@ function CheckEmployeeExist() {
     return $("#ScheduleEmployees0").length > 0;
 }
 
-function ValidateScheduler(event){
+function ValidateScheduler(event) {
+    debugger
     var validated = true;
     if (!CheckEmployeeExist())
         validated = false;

@@ -61,6 +61,18 @@ namespace Freelancer.Service
                     UpdatedById = d.UpdatedById,
                     WeekType = d.WeekType
                 }).ToList(),
+                ScheduleWithDatess= c.ScheduleWithDatess.Where(x=>x.del==false).ToList().Select(e=> new ScheduleWithDates()
+                {
+                    CreatedById = e.CreatedById,
+                    DateCreated = e.DateCreated,
+                    DateUpdated = e.DateUpdated,
+                    del = e.del,
+                    ScheduleDates=e.ScheduleDates,
+                    ScheduleId=e.ScheduleId,
+                    Schedules=e.Schedules,
+                    ScheduleWithDatesId=e.ScheduleWithDatesId,
+                    UpdatedById=e.UpdatedById
+                }).ToList(),
                 ScheduleEmployees = c.ScheduleEmployees.Where(x => x.del == false).ToList().Select(e => new ScheduleEmployee()
                 {
                     CreatedById = e.CreatedById,

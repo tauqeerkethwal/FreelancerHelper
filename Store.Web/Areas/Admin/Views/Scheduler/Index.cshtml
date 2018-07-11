@@ -236,6 +236,13 @@
 
                                     </div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.Every2ndWeekofYear.ToString())">
+                                        <span>@(WeekTypes.Every2ndWeekofYear.ToString())</span>
+                                        @* @Html.HiddenFor(m => m.weekModel.OddWeek, new { @class = "hiddencheckbox" })*@
+                                        @Html.CheckBoxFor(m => m.weekModel.Every2ndWeekofYear, new { @class = "WeekCheckbox" })
+                                        @Html.TextBoxFor(m => m.weekModel.Every2ndWeekofYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+                                    </div>
+                                    <div class="form-group col-sm-8" name="@(WeekTypes.Every3rdWeekofYear.ToString())">
                                         @*<script>
                                                 $("#Every2ndWeekofYear").keyup(function () {
                                                     $("#Every2ndWeekofYear").val($("#Every2ndWeekofYear").val());

@@ -17,5 +17,6 @@ namespace Freelancer.Model.Models.Schedule
         public virtual List<ScheduleEmployee> ScheduleEmployees { get; set; }
 
         public virtual List<DaySchedule> DaySchedules { get; set; }
+        public virtual List<ScheduleWithDates> ScheduleWithDatess { get; set; }
     }
 }
