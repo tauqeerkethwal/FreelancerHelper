@@ -36,7 +36,7 @@ namespace Freelancer.Data.Repositories
         }
         public  void DeleteDaySchedule(Guid ScheduleId,string UpdatedByID)
         {
-
+            
             var daySchedule = GetDayScheduleByScheduleId(ScheduleId);
             foreach (var dSchedule in daySchedule)
             {

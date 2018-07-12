@@ -12,6 +12,7 @@ namespace Freelancer.Service
         //
         Schedule GetScheduleByCustomerId(string CustomerId);
         void CreateSchedule(Schedule schedule);
+        void UpdateScheduleStartingDate(Schedule schedule);
         void SaveSchedule();
     }
 
@@ -97,7 +98,8 @@ namespace Freelancer.Service
                 del = c.del,
 
                 ScheduleId = c.ScheduleId,
-                UpdatedById = c.UpdatedById
+                UpdatedById = c.UpdatedById,
+                StartingDate=c.StartingDate
 
             }
 
@@ -119,6 +121,10 @@ namespace Freelancer.Service
         public void CreateSchedule(Schedule schedule)
         {
             scheduleRepository.Add(schedule);
+        }
+        public void UpdateScheduleStartingDate(Schedule schedule)
+        {
+            scheduleRepository.UpdateStartingDateByScheduleId(schedule);
         }
         #endregion
     }

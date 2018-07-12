@@ -19,7 +19,7 @@ namespace Freelancer.Service
         WeekSchedule GetWeekSchedule(Guid ScheduleWeekId);
        
         void CreateWeekSchedule(WeekSchedule weekSchedule);
-
+        void CreateWeekSchedules(List<WeekSchedule> weekSchedule);
         void DeletePreviousWeekSchedule(Guid ScheduleId, string UpdatedByID);
 
         void Update(WeekSchedule weekSchedule);
@@ -31,7 +31,14 @@ namespace Freelancer.Service
     {
         private readonly IWeekScheduleRepository _weekScheduleRepository;
         private readonly IUnitOfWork _unitOfWork;
+        public void CreateWeekSchedules(List<WeekSchedule> weekSchedule)
+        {
+            foreach (var dSchedule in weekSchedule)
+            {
+                _weekScheduleRepository.CreateWeekSchedule(dSchedule);
+            }
 
+        }
         public IEnumerable<WeekSchedule> GetAllWeekScheduleByScheduleId(Guid scheduleId)
         {
             return _weekScheduleRepository.GetMany(x => x.ScheduleId == scheduleId);
@@ -46,14 +53,8 @@ namespace Freelancer.Service
         }
         public void DeletePreviousWeekSchedule(Guid ScheduleId, string UpdatedByID)
         {
-         foreach(var weekSchedule in    _weekScheduleRepository.GetMany(x => x.ScheduleId == ScheduleId))
-            {
-                weekSchedule.del = true;
-                weekSchedule.DateUpdated = DateTime.Now;
-                weekSchedule.UpdatedById = UpdatedByID;
-                Update(weekSchedule);
-
-            }
+            _weekScheduleRepository.DeleteWeekSchedule(ScheduleId, UpdatedByID);
+            
         }
         public WeekScheduleService(IWeekScheduleRepository weekScheduleRepository, IUnitOfWork unitOfWork)
         {

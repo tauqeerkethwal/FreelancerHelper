@@ -158,7 +158,7 @@ namespace Freelancer.Service
             }
 
 
-            return items;
+            return items.OrderBy(x=>x.Name);
         }
 
         public IQueryable<Customer> FilterRecords(IQueryable<Customer> items, SearchParameters searchParameters, CustomerSearchModel model)

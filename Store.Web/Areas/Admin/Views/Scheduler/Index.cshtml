@@ -17,7 +17,7 @@
 <link href="~/Areas/Admin/Cloack/src/clockpicker.css" rel="stylesheet" />
 <link href="~/Areas/Admin/Cloack/src/standalone.css" rel="stylesheet" />
 <script src="~/Areas/Admin/Cloack/src/clockpicker.js"></script>
-<script src="~/Areas/Admin/Scripts/SchedulerValidation.js?i=1.39"></script>
+<script src="~/Areas/Admin/Scripts/SchedulerValidation.js?i=1.43"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
@@ -89,12 +89,7 @@
                                         <!-- /.col -->
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form formWH form-group-sm">Starting Date</div>
-                                    <div class="form-group col-sm-8">
-                                        @Html.TextAreaFor(x => x.StartingDate, new { @type = "text", @class = "form-control" });
-                                    </div>
-                                </div>
+                              
                                 <div class="row">
                                     <div class="form formWH form-group-sm">Normal Days</div>
                                     <div class="form-group col-sm-8">
@@ -221,13 +216,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form formWH form-group-sm">Week schedule</div>
-                                    <div class="form-group col-sm-8">
-                                        @Html.RadioButtonFor(x => x.WeekScheduleOrDay, "Week schedule")
-                                    </div>
-                                </div>
-                                <div class="row">
+                                 <div class="row">
                                     <div class="form formWH form-group-sm">Week Selection</div>
                                     <div class="form-group col-sm-8" name="@(WeekTypes.EveryWeekofYear.ToString())">
                                         <span>@(WeekTypes.EveryWeekofYear.ToString())</span>
@@ -297,13 +286,35 @@
                                     </div>
 
                                 </div>
+                                
+                            </div>
+                        </div>
+                    </div>
 
-                                <div class="row">
-                                    <div class="form formWH form-group-sm">Day schedule</div>
-                                    <div class="form-group col-sm-8">
-                                        @Html.RadioButtonFor(x => x.WeekScheduleOrDay, "Day schedule")
-                                    </div>
-                                </div>
+
+                    <div class="pull-right col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="form formWH form-group-sm"></div>
+                            <div class="form-group col-sm-8"></div>
+                        </div>
+                        <div class="row">
+                            <div class="form formWH form-group-sm"></div>
+                            <div class="form-group col-sm-8"></div>
+                        </div>
+                        <div class="row">
+                            <div class="form formWH form-group-sm"></div>
+                            <div class="form-group col-sm-8"></div>
+                        </div>
+                        <div class="row">
+                            <div class="form formWH form-group-sm"></div>
+                            <div class="form-group col-sm-8"></div>
+                        </div>
+                       
+                   
+                    
+                        <div class="row">
+                            <div class="form formWH form-group-sm">Dates if any</div>
+                            <div class="form-group col-sm-8">
 
                                 <div class="box-body">
                                     <div class="box">
@@ -333,58 +344,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="pull-right col-md-6 col-sm-12">
                         <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
-                        <div class="row">
-                            <div class="form formWH form-group-sm"></div>
-                            <div class="form-group col-sm-8"></div>
-                        </div>
+                            
+                                <div class="form formWH form-group-sm">Starting Date</div>
+                                <div class="form-group col-sm-8">
+                                    @Html.TextBoxFor(x => x.StartingDate, new { @type = "text", @class = "form-control" })
+                                </div>
+                            </div>
+                       
                         <div class="row">
                             <div class="form formWH form-group-sm">Wish Days</div>
                             <div class="form-group col-sm-8">
@@ -511,26 +478,33 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 pull-right">
-                        <div>
-                            <label>&nbsp;</label>
-                            <div>
-                                <button class="btn btn-success" type="submit" onclick="return ValidateScheduler(event)">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    Add
-                                </button>
-                                <a class="btn btn-default" href="@Url.Action("index")">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                    Clear
-                                </a>
+                        <div class="row">
+                            <div class="form formWH form-group-sm"></div>
+                            <div class="form-group col-sm-8">
+                               
                             </div>
                         </div>
+
+
+
+                            <div class="col-lg-3 pull-right">
+                                <div>
+                                    <label>&nbsp;</label>
+                                    <div>
+                                        <button class="btn btn-success" type="submit" onclick="return ValidateScheduler(event)">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            Add
+                                        </button>
+                                        <a class="btn btn-default" href="@Url.Action("index")">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                            Clear
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <lable ID="lbluserid"></lable>
                     </div>
-                </div>
-                <lable ID="lbluserid"></lable>
-            </div>
             <div id="SuccessMessage" class="modal-body" style="display:none;height:250px">
                 Tak for din bestilling
                 <a href="@Url.Action("BookingModal","Booking")"><input type="button" name="btnclose" value="Close" id="btnclose"></a>
@@ -541,36 +515,12 @@
 
 </div>
 <div class="box box-primary">
-    <div class="box-header with-border">
-        <div class="row">
-            <div class="col-md-6">
-                <h3 class="box-title">Available Employee List </h3>
-            </div>
-
-        </div>
-    </div>
+   
     <!-- /.box-header -->
     <!-- form start -->
     <div class="box-body">
 
-        <table id="myTable" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>SNo</th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Actions&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Name&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Address&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Email&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Tlf&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Hourly Pay&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2"><nobr>&nbsp;Type&nbsp;</nobr></div></th>
-                    <th><div class="col-lg-2">DateCreated</div></th>
-                    <th><div class="col-lg-2">Deleted</div></th>
-                    <th><div class="col-lg-2">Active</div></th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    
 
     </div>
     <!-- /.box-body -->

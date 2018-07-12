@@ -10,12 +10,9 @@ namespace Freelancer.Model.Models.Schedule
         [Key]
         public Guid ScheduleId { get; set; }
         public string CustomerId { get; set; }
-      
-
+        public DateTime StartingDate { get; set; }
         public virtual ICollection<WeekSchedule> WeekSchedules { get; set; }
-
         public virtual List<ScheduleEmployee> ScheduleEmployees { get; set; }
-
         public virtual List<DaySchedule> DaySchedules { get; set; }
         public virtual List<ScheduleWithDates> ScheduleWithDatess { get; set; }
     }

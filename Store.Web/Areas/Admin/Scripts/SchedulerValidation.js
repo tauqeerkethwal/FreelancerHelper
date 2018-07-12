@@ -1,41 +1,41 @@
 ﻿
 
 $(function () {
-    $('input[class=WeekCheckbox]').click(function () {
-        checkboxValidation(this);
-    })
+    //$('input[class=WeekCheckbox]').click(function () {
+    //    checkboxValidation(this);
+    //})
 });
 
 $(document).ready(function () {
   
-    $("#weekModel_EvenWeekHours").focusout(function () {
-        if($("#weekModel_Every2ndWeekHours").val().length==0)
-            $("#weekModel_Every2ndWeekHours").val($("#weekModel_EvenWeekHours").val());
-        if ($("#weekModel_Every4thWeekHours").val().length == 0)
-        $("#weekModel_Every4thWeekHours").val($("#weekModel_EvenWeekHours").val());
-    });
-    $("#weekModel_OddWeekHours").focusout(function () {
-        if ($("#weekModel_Every1stWeekHours").val().length == 0)
-            $("#weekModel_Every1stWeekHours").val($("#weekModel_OddWeekHours").val());
-        if ($("#weekModel_Every3rdWeekHours").val().length == 0)
-            $("#weekModel_Every3rdWeekHours").val($("#weekModel_OddWeekHours").val());
-        if ($("#weekModel_Every5thWeekHours").val().length == 0)
-        $("#weekModel_Every5thWeekHours").val($("#weekModel_OddWeekHours").val());
-    });
-    if ($("#weekModel_EveryWeek").is(':checked')) {
-        checkboxValidation('#weekModel_EveryWeek');
-    }
-    else if ($("#weekModel_EvenWeek").is(':checked')) {
-        debugger
-        checkboxValidation('#weekModel_EvenWeek');
-    }
-    else
-        if ($("#weekModel_OddWeek").is(':checked')) {
-            debugger
-            checkboxValidation('#weekModel_OddWeek');
-        }
-        else
-            ShowAlldiv();
+    //$("#weekModel_EvenWeekHours").focusout(function () {
+    //    if($("#weekModel_Every2ndWeekHours").val().length==0)
+    //        $("#weekModel_Every2ndWeekHours").val($("#weekModel_EvenWeekHours").val());
+    //    if ($("#weekModel_Every4thWeekHours").val().length == 0)
+    //    $("#weekModel_Every4thWeekHours").val($("#weekModel_EvenWeekHours").val());
+    //});
+    //$("#weekModel_OddWeekHours").focusout(function () {
+    //    if ($("#weekModel_Every1stWeekHours").val().length == 0)
+    //        $("#weekModel_Every1stWeekHours").val($("#weekModel_OddWeekHours").val());
+    //    if ($("#weekModel_Every3rdWeekHours").val().length == 0)
+    //        $("#weekModel_Every3rdWeekHours").val($("#weekModel_OddWeekHours").val());
+    //    if ($("#weekModel_Every5thWeekHours").val().length == 0)
+    //    $("#weekModel_Every5thWeekHours").val($("#weekModel_OddWeekHours").val());
+    //});
+    //if ($("#weekModel_EveryWeek").is(':checked')) {
+    //    checkboxValidation('#weekModel_EveryWeek');
+    //}
+    //else if ($("#weekModel_EvenWeek").is(':checked')) {
+    //    debugger
+    //    checkboxValidation('#weekModel_EvenWeek');
+    //}
+    //else
+    //    if ($("#weekModel_OddWeek").is(':checked')) {
+    //        debugger
+    //        checkboxValidation('#weekModel_OddWeek');
+    //    }
+    //    else
+    //        ShowAlldiv();
 
 
 });
@@ -175,10 +175,10 @@ function checkboxValidation(selector) {
 }
 
 $(function () {
-    $('input[class=WeekCheckbox]').click(function () {
-        debugger
-        checkboxValidation(this);
-    })
+    //$('input[class=WeekCheckbox]').click(function () {
+    //    debugger
+    //    checkboxValidation(this);
+    //})
 });
 
                                                   function CheckWeekValidation(WeekType) {
@@ -272,10 +272,11 @@ function CheckEmployeeExist() {
     }
     return $("#ScheduleEmployees0").length > 0;
 }
-
 function ValidateScheduler(event) {
-    debugger
+   debugger
     var validated = true;
+   
+
     if (!CheckEmployeeExist())
         validated = false;
     //if (!CheckDaysValidation("NormalDays"))
@@ -284,9 +285,25 @@ function ValidateScheduler(event) {
     //    validated = false;
     if (!CheckWeekValidation("weekModel"))
         validated = false;
-                                                        
-    if(!validated)
+
+    if (!validated)
         event.preventDefault();
-        
+
 }
+//function ValidateScheduler(event) {
+//    debugger
+//    var validated = true;
+//    if (!CheckEmployeeExist())
+//        validated = false;
+//    //if (!CheckDaysValidation("NormalDays"))
+//    //    validated = false;
+//    //if (!CheckDaysValidation("WishDays"))
+//    //    validated = false;
+//    if (!CheckWeekValidation("weekModel"))
+//        validated = false;
+                                                        
+//    if(!validated)
+//        event.preventDefault();
+        
+//}
 

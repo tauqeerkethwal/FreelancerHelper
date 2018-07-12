@@ -34,6 +34,7 @@ namespace Freelancer.Data.Repositories
                 ScheduleWithDates scheduleDates = GetById(scheduleEmployee.ScheduleWithDatesId);
 
                 scheduleDates.DateUpdated = DateTime.Now;
+                scheduleDates.UpdatedById = entity.FirstOrDefault().UpdatedById;
                 scheduleDates.del = true;
                 base.Update(scheduleDates);
             }

@@ -471,20 +471,110 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             return finalList;
         }
-        public ActionResult Index()
+        public ActionResult Index(string Id)
         {
 
-            Schedule schedule = _scheduleService.GetScheduleByCustomerId("gCD89A82-8D4D-4B73-BFB8-047C028B4CF5");
+            Schedule schedule = _scheduleService.GetScheduleByCustomerId(Id);
             var scheduleViewModel = Mapper.Map<Schedule, ScheduleViewModel>(schedule);
             scheduleViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
             scheduleViewModel.NormalDays = FillDays(schedule.DaySchedules)[0];
             scheduleViewModel.WishDays = FillDays(schedule.DaySchedules)[1];
             scheduleViewModel.weekModel = FillWeeks(schedule.WeekSchedules.ToList());
-
-
+            
             return View(scheduleViewModel);
         }
 
+        private DaySchedule ConvertscheduleFormViewModelToDayScheduleNormal(ScheduleFormViewModel scheduleFormViewModel,Guid ScheduleId, Guid _dayScheduleId)
+        {
+           
+            DaySchedule daySchedule = new DaySchedule();
+            List<DaySchedule> daySchedulelist = new List<DaySchedule>();
+            daySchedule.Type = (int)DayType.NormalDays;
+            daySchedule.ScheduleId = ScheduleId;
+
+            daySchedule.DayScheduleId = _dayScheduleId;
+            List<DaysWithTime> daysWithTimelist = new List<DaysWithTime>();
+            if (scheduleFormViewModel.NormalDays.Friday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Fridag, Starttime = scheduleFormViewModel.NormalDays.FridayStartTime, Endtime = scheduleFormViewModel.NormalDays.FridayEndTime, DayScheduleId = _dayScheduleId });
+            }
+            if (scheduleFormViewModel.NormalDays.Saturday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Lørdag, Starttime = scheduleFormViewModel.NormalDays.SaturdayStartTime, Endtime = scheduleFormViewModel.NormalDays.SaturdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.NormalDays.Sunday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Søndag, Starttime = scheduleFormViewModel.NormalDays.SundayStartTime, Endtime = scheduleFormViewModel.NormalDays.SundayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.NormalDays.Monday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Mandag, Starttime = scheduleFormViewModel.NormalDays.MondayStartTime, Endtime = scheduleFormViewModel.NormalDays.MondayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.NormalDays.Tuesday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Tirsdag, Starttime = scheduleFormViewModel.NormalDays.TuesdayStartTime, Endtime = scheduleFormViewModel.NormalDays.TuesdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.NormalDays.Wednesday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Onsdag, Starttime = scheduleFormViewModel.NormalDays.WednesdayStartTime, Endtime = scheduleFormViewModel.NormalDays.WednesdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.NormalDays.Thursday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Torsdag, Starttime = scheduleFormViewModel.NormalDays.ThursdayStartTime, Endtime = scheduleFormViewModel.NormalDays.ThursdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+            daySchedule.DaysWithTimes = daysWithTimelist;
+            
+            return daySchedule;
+        }
+        private DaySchedule ConvertscheduleFormViewModelToDayScheduleWish(ScheduleFormViewModel scheduleFormViewModel, Guid ScheduleId, Guid _dayScheduleId )
+        {
+            DaySchedule daySchedule = new DaySchedule();
+            daySchedule.Type = (int)DayType.WishDays;
+            daySchedule.ScheduleId = ScheduleId;
+            daySchedule.DayScheduleId = Guid.NewGuid();
+            List<DaysWithTime>  daysWithTimelist = new List<DaysWithTime>();
+            if (scheduleFormViewModel.WishDays.Friday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Fridag, Starttime = scheduleFormViewModel.WishDays.FridayStartTime, Endtime = scheduleFormViewModel.WishDays.FridayEndTime, DayScheduleId = _dayScheduleId });
+            }
+            if (scheduleFormViewModel.WishDays.Saturday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Lørdag, Starttime = scheduleFormViewModel.WishDays.SaturdayStartTime, Endtime = scheduleFormViewModel.WishDays.SaturdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.WishDays.Sunday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Søndag, Starttime = scheduleFormViewModel.WishDays.SundayStartTime, Endtime = scheduleFormViewModel.WishDays.SundayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.WishDays.Monday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Mandag, Starttime = scheduleFormViewModel.WishDays.MondayStartTime, Endtime = scheduleFormViewModel.WishDays.MondayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.WishDays.Tuesday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Tirsdag, Starttime = scheduleFormViewModel.WishDays.TuesdayStartTime, Endtime = scheduleFormViewModel.WishDays.TuesdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.WishDays.Wednesday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Onsdag, Starttime = scheduleFormViewModel.WishDays.WednesdayStartTime, Endtime = scheduleFormViewModel.WishDays.WednesdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            if (scheduleFormViewModel.WishDays.Thursday)
+            {
+                daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Torsdag, Starttime = scheduleFormViewModel.WishDays.ThursdayStartTime, Endtime = scheduleFormViewModel.WishDays.ThursdayEndTime, DayScheduleId = _dayScheduleId });
+            }
+
+            daySchedule.DaysWithTimes = daysWithTimelist;
+            return daySchedule;
+        }
         [HttpPost]
         public ActionResult Index(ScheduleFormViewModel scheduleFormViewModel)
         {
@@ -508,96 +598,24 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                 }
                 else
                 {
+                    schedule.UpdatedById = adminid;
+                    schedule.StartingDate = scheduleFormViewModel.StartingDate;
+                    scheduleFormViewModel.ScheduleEmployees.ForEach(x => x.UpdatedById = adminid);
+                    scheduleFormViewModel.ScheduleWithDatess.ForEach(x => x.UpdatedById = adminid);
                     _scheduleEmployeeService.CreateAndUpdateScheduleEmployee(schedule, scheduleFormViewModel.ScheduleEmployees);
                     _scheduleWithDatesService.CreateAndUpdateSchedulewithDated(schedule, scheduleFormViewModel.ScheduleWithDatess);
-                    _dayScheduleService.DeletePreviousDaySchedule(scheduleFormViewModel.ScheduleId, adminid);
-                    Guid _dayScheduleId = Guid.NewGuid();
+                    _dayScheduleService.DeletePreviousDaySchedule(schedule.ScheduleId, adminid);
+                    _weekScheduleService.DeletePreviousWeekSchedule(schedule.ScheduleId, adminid);
 
-                    DaySchedule daySchedule = new DaySchedule();
+                     ;
+                    _weekScheduleService.CreateWeekSchedules(ConvertWeekModelToWeekSchedule(scheduleFormViewModel.weekModel, schedule.ScheduleId));
                     List<DaySchedule> daySchedulelist = new List<DaySchedule>();
-                    daySchedule.Type = (int)DayType.NormalDays;
-                    daySchedule.ScheduleId = schedule.ScheduleId;
-
-                    daySchedule.DayScheduleId = _dayScheduleId;
-                    List<DaysWithTime> daysWithTimelist = new List<DaysWithTime>();
-                    if (scheduleFormViewModel.NormalDays.Friday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Fridag, Starttime = scheduleFormViewModel.NormalDays.FridayStartTime, Endtime = scheduleFormViewModel.NormalDays.FridayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-                    if (scheduleFormViewModel.NormalDays.Saturday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Lørdag, Starttime = scheduleFormViewModel.NormalDays.SaturdayStartTime, Endtime = scheduleFormViewModel.NormalDays.SaturdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.NormalDays.Sunday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Søndag, Starttime = scheduleFormViewModel.NormalDays.SundayStartTime, Endtime = scheduleFormViewModel.NormalDays.SundayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.NormalDays.Monday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Mandag, Starttime = scheduleFormViewModel.NormalDays.MondayStartTime, Endtime = scheduleFormViewModel.NormalDays.MondayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.NormalDays.Tuesday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Tirsdag, Starttime = scheduleFormViewModel.NormalDays.TuesdayStartTime, Endtime = scheduleFormViewModel.NormalDays.TuesdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.NormalDays.Wednesday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Onsdag, Starttime = scheduleFormViewModel.NormalDays.WednesdayStartTime, Endtime = scheduleFormViewModel.NormalDays.WednesdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.NormalDays.Thursday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Torsdag, Starttime = scheduleFormViewModel.NormalDays.ThursdayStartTime, Endtime = scheduleFormViewModel.NormalDays.ThursdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    daySchedule.DaysWithTimes = daysWithTimelist;
-                    daySchedulelist.Add(daySchedule);
-                    daySchedule = new DaySchedule();
-                    daySchedule.Type = (int)DayType.WishDays;
-                    daySchedule.ScheduleId = schedule.ScheduleId;
-                    daySchedule.DayScheduleId = Guid.NewGuid();
-                    daysWithTimelist = new List<DaysWithTime>();
-                    if (scheduleFormViewModel.WishDays.Friday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Fridag, Starttime = scheduleFormViewModel.WishDays.FridayStartTime, Endtime = scheduleFormViewModel.WishDays.FridayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-                    if (scheduleFormViewModel.WishDays.Saturday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Lørdag, Starttime = scheduleFormViewModel.WishDays.SaturdayStartTime, Endtime = scheduleFormViewModel.WishDays.SaturdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.WishDays.Sunday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Søndag, Starttime = scheduleFormViewModel.WishDays.SundayStartTime, Endtime = scheduleFormViewModel.WishDays.SundayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.WishDays.Monday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Mandag, Starttime = scheduleFormViewModel.WishDays.MondayStartTime, Endtime = scheduleFormViewModel.WishDays.MondayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.WishDays.Tuesday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Tirsdag, Starttime = scheduleFormViewModel.WishDays.TuesdayStartTime, Endtime = scheduleFormViewModel.WishDays.TuesdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.WishDays.Wednesday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Onsdag, Starttime = scheduleFormViewModel.WishDays.WednesdayStartTime, Endtime = scheduleFormViewModel.WishDays.WednesdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    if (scheduleFormViewModel.WishDays.Thursday)
-                    {
-                        daysWithTimelist.Add(new DaysWithTime { CreatedById = adminid, DayWithTimeId = Guid.NewGuid(), Day = (int)Days.Torsdag, Starttime = scheduleFormViewModel.WishDays.ThursdayStartTime, Endtime = scheduleFormViewModel.WishDays.ThursdayEndTime, DayScheduleId = _dayScheduleId });
-                    }
-
-                    daySchedule.DaysWithTimes = daysWithTimelist;
-                    daySchedulelist.Add(daySchedule);
+                    Guid _dayScheduleId = Guid.NewGuid();
+                    daySchedulelist.Add(ConvertscheduleFormViewModelToDayScheduleNormal(scheduleFormViewModel,schedule.ScheduleId, _dayScheduleId));
+                    daySchedulelist.Add(ConvertscheduleFormViewModelToDayScheduleWish(scheduleFormViewModel, schedule.ScheduleId, _dayScheduleId));
                     _dayScheduleService.CreateDayScheudle(daySchedulelist);
+
+                    _scheduleService.UpdateScheduleStartingDate(schedule);
                     _scheduleEmployeeService.SaveCategory();
                     scheduleFormViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
                 }

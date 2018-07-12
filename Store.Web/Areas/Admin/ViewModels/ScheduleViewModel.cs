@@ -74,6 +74,7 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public WeekModel weekModel { get; set; }
         public DaysModel NormalDays { get; set; }
         public DaysModel WishDays { get; set; }
+        public DateTime StartingDate { get; set; }
         public SelectList EmployeeList
         {
             get; set;
@@ -92,8 +93,6 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
         public DaysModel NormalDays { get; set; }
         public DaysModel WishDays { get; set; }
         public string EmployeeId { get; set; }
-
-        public bool WeekScheduleOrDay { get; set; }
         public DateTime StartingDate { get; set; }
         public SelectList EmployeeList
         {

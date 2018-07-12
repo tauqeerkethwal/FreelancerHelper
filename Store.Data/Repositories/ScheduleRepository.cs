@@ -1,6 +1,7 @@
 ﻿using Freelancer.Data.Infrastructure;
 using Freelancer.Model.Models.Schedule;
 using System.Linq;
+using System;
 namespace Freelancer.Data.Repositories
 {
 
@@ -17,19 +18,28 @@ namespace Freelancer.Data.Repositories
             return base.GetMany(x => x.CustomerId == CustomerId && x.del == false).ToList().SingleOrDefault();
         }
 
-        //public override void Update(Customer customer)
-        //{
+        public void UpdateStartingDateByScheduleId(Schedule entity)
+        {
 
-        //    base.Update(customer);
 
-        //}
+            Schedule schedule = GetMany(x => x.ScheduleId == entity.ScheduleId).FirstOrDefault();
+
+                schedule.DateUpdated = DateTime.Now;
+                schedule.UpdatedById = entity.UpdatedById;
+                schedule.StartingDate = entity.StartingDate;
+                base.Update(schedule);
+            
+
+
+
+        }
     }
 
     public interface IScheduleRepository : IRepository<Schedule>
     {
 
         Schedule GetScheduleByCustomerId(string CustomerId);
-
+        void UpdateStartingDateByScheduleId(Schedule entity);
 
     }
 }

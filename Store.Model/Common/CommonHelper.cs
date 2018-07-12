@@ -66,7 +66,7 @@ namespace Freelancer.Model.Common
 
 
 
-                sortList.Add(new SortInfo { SortColumnName = "DateCreated", SortOrderDescending = false });
+                sortList.Add(new SortInfo { SortColumnName = "Name", SortOrderDescending = false });
 
 
                 items = items.ApplySortingAndPagging(sortList, searchParameters.PageSize, searchParameters.PageStart);
@@ -87,7 +87,7 @@ namespace Freelancer.Model.Common
 
 
 
-                sortList.Add(new SortInfo { SortColumnName = "DateCreated", SortOrderDescending = false });
+                sortList.Add(new SortInfo { SortColumnName = "Name", SortOrderDescending = false });
 
 
                 items = items.ApplySortingAndPagging(sortList, searchParameters.PageSize, searchParameters.PageStart);
@@ -109,7 +109,7 @@ namespace Freelancer.Model.Common
 
 
 
-                sortList.Add(new SortInfo { SortColumnName = "DateCreated", SortOrderDescending = false });
+                sortList.Add(new SortInfo { SortColumnName = "Name", SortOrderDescending = false });
 
 
                 items = items.ApplySortingAndPagging(sortList, searchParameters.PageSize, searchParameters.PageStart);

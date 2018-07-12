@@ -2,6 +2,7 @@
 using Freelancer.Model.Models.Schedule;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace Freelancer.Data.Repositories
 {
 
@@ -33,6 +34,7 @@ namespace Freelancer.Data.Repositories
                 ScheduleEmployee scheduleEmployeee = GetById(scheduleEmployee.ScheduleEmployeeId);
 
                 scheduleEmployeee.DateUpdated = DateTime.Now;
+                scheduleEmployee.UpdatedById = entity.FirstOrDefault().UpdatedById;
                 scheduleEmployeee.del = true;
                 base.Update(scheduleEmployeee);
             }

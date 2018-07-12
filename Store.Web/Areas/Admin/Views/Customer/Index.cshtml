@@ -546,7 +546,7 @@
 <script>
     function TypeChange()
     {
-        
+
         if ($('#TypeId').val() == 1)
         {
             $('#TypeSelection').hide();
@@ -555,7 +555,7 @@
         {
             $('#TypeSelection').show();
         }
-       
+
 
     }
 
@@ -583,6 +583,9 @@
 
                                       '<li>' +
                                            '<a  href="@Url.Action("Edit")?Id=' + full.Id + '&BackUrl=@Url.Action("Index", "Customer")"><i class="fa fa-bars"></i> Ret</a>' +
+                                       '</li>' +
+                                        '<li>' +
+                                           '<a  href="@Url.Action("Index","Scheduler")?Id=' + full.Id +'"><i class="fa fa-bars"></i> Schedule</a>' +
                                        '</li>' +
                                       '<li>' +
                                             '<a  href="#" onClick="onDeleteCallback(\'' + full.CustomerKeysList.Id + '\',true)"><i class="fa fa-remove"></i> Delete</a>' +
@@ -681,12 +684,12 @@
                      { "data": "CVR", "name": "CVR", "autoWidth": true, "orderable": true, "searchable": true },
                       { "data": "EAN", "name": "EAN", "autoWidth": true, "orderable": true, "searchable": true },
                         { "data": "Email", "name": "Email", "autoWidth": true, "orderable": true, "searchable": true },
-                 
-    
-                 
-                
-                
-              
+
+
+
+
+
+
 
 
 
@@ -758,7 +761,7 @@
 
     }
      function onDeleteCallback(itemId, delUndel) {
-         
+
         openConfirmationDialog(
             (delUndel == true ? "Are you sure, you want to make select record slette?" : "Are you sure, you want to make select record Undeleted?"),
              function () {
