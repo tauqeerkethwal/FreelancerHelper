@@ -17,10 +17,8 @@
 <link href="~/Areas/Admin/Cloack/src/clockpicker.css" rel="stylesheet" />
 <link href="~/Areas/Admin/Cloack/src/standalone.css" rel="stylesheet" />
 <script src="~/Areas/Admin/Cloack/src/clockpicker.js"></script>
-<script src="~/Areas/Admin/Scripts/SchedulerValidation.js?i=1.43"></script>
+<script src="~/Areas/Admin/Scripts/SchedulerValidation.js?i=1.46"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">Scheduler</h3>
@@ -39,8 +37,7 @@
                                 <h3 class="text-muted">
                                     Scheduler<small class="text-danger"> (*Fields must be filled in) @Html.ValidationSummary()</small>
                                 </h3>
-
-
+                             
                                 <div class="form formWH form-group-sm">Employee informaiton</div>
                                 <div class="row">
                                     <div class="form-group col-sm-8">
@@ -323,7 +320,7 @@
                                                 <table>
                                                     <tr>
                                                         <td>
-                                                            <input type="text" id="txtScheduleDate" name="txtScheduleDate" />
+                                                            <input type="date" id="txtScheduleDate" name="txtScheduleDate" class="date-picker" />
                                                         </td>
                                                         <td>
                                                             <button id="AddDate" type="button" class="btn btn-block btn-success btn-sm" style="margin-left:10px">Add Dates</button>
@@ -348,7 +345,7 @@
                             
                                 <div class="form formWH form-group-sm">Starting Date</div>
                                 <div class="form-group col-sm-8">
-                                    @Html.TextBoxFor(x => x.StartingDate, new { @type = "text", @class = "form-control" })
+                                    @Html.TextBoxFor(x => x.StartingDate, new { @type = "date", @class = "form-control" })
                                 </div>
                             </div>
                        
@@ -472,6 +469,7 @@
                                 <div class="input-group clockpicker">
 
                                     @Html.TextBoxFor(m => m.WishDays.SundayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+                                   
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-time"></span>
                                     </span>
@@ -629,17 +627,58 @@
     });
 </script>
 <script type="text/javascript">
+   
     $(function () {
         debugger
+        //$('#txtScheduleDate').datepicker({ dateFormat: 'dd-mm-yy' });
+       // $('#txtScheduleDate').datetimepicker({ dateFormat: 'dd-mm-yy' });
+        //$('#txtScheduleDate').datepicker({
+        //    format: {
+        //        toDisplay: function (date, format, language) {
+        //            var date = new Date(date),
+        //            month = '' + (date.getMonth() + 1),
+        //            day = '' + date.getDate(),
+        //            year = date.getFullYear();
+
+        //            if (month.length < 2) month = '0' + month;
+        //            if (day.length < 2) day = '0' + day;
+        //            return [day, month, year].join('/');
+        //        },
+        //        toValue: function (date, format, language) {
+        //            var date = new Date(date),
+        //            month = '' + (date.getMonth() + 1),
+        //            day = '' + date.getDate(),
+        //            year = date.getFullYear();
+
+        //            if (month.length < 2) month = '0' + month;
+        //            if (day.length < 2) day = '0' + day;
+
+        //            return [year, month, day].join('-');
+        //        }
+        //    }
+        //});
+
+
+
+        //$('#txtScheduleDate').datepicker({
+        //    language: 'da',
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    showButtonPanel: true,
+        //    dateFormat: 'dd-mm-yy'
+        //});
         //var dateObject = $("#txtScheduleDate").datepicker("getDate");
         //var dateString = $.datepicker.formatDate("dd-mm-yy", dateObject);
         //$("#txtScheduleDate").datepicker($.datepicker.regional['da']);
-        $("#txtScheduleDate").datepicker('option', 'format', 'dd-mm-yy');
-                $('#txtScheduleDate').datepicker({
-                    language: 'da',
-                    dateFormat: 'dd-mm-yyyy',
-                    Format: 'dd-mm-yyyy'
-                });
+        //$.datepicker.setDefaults({
+        //    dateFormat: 'dd-mm-yyyy'
+        //});
+        //$("#txtScheduleDate").datepicker('option', 'format', 'dd-mm-yy');
+        //        $('#txtScheduleDate').datepicker({
+        //            language: 'da',
+        //            dateFormat: 'dd-mm-yyyy',
+        //            Format: 'dd-mm-yyyy'
+        //        });
                 //$("#txtScheduleDate").datepicker({ dateFormat: "dd-mm-yyyy" }).val()
                 //$("#txtScheduleDate").datepicker($.datepicker.language['da']);
                 //$("#txtScheduleDate").datepicker('option', 'dateFormat', 'dd.mm.yy');

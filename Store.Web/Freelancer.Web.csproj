@@ -829,6 +829,10 @@
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\daterangepicker\daterangepicker.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\daterangepicker\moment.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\daterangepicker\moment.min.js" />
+    <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\DatetimePicker\bootstrap-datetimepicker.js" />
+    <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\DatetimePicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\DatetimePicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\DatetimePicker\css\bootstrap-datetimepicker.min.css" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\fastclick\fastclick.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\fastclick\fastclick.min.js" />
     <Content Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\flot\excanvas.js" />
@@ -1439,6 +1443,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Content\AdminLTE-2.3.7\plugins\DatetimePicker\locales\" />
     <Folder Include="Areas\Admin\Images\" />
     <Folder Include="Areas\Admin\timrpicker\" />
     <Folder Include="Extensions\" />
