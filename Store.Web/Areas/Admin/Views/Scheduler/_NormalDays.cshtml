@@ -1,0 +1,134 @@
+﻿
+@using Freelancer.Web.Areas.Admin.ViewModels;
+@using Freelancer.Model.Common;
+
+@model ScheduleViewModel
+@{
+
+
+}
+
+<div class="form formWH form-group-sm">Normal Days</div>
+<div class="form-group col-sm-8">
+    <span>@(Days.Mandag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Monday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.MondayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.MondayEndTime, new { @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+
+    <span>@(Days.Tirsdag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Tuesday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.TuesdayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.TuesdayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+
+    <span>@(Days.Onsdag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Wednesday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.WednesdayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.WednesdayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+    <span>@(Days.Torsdag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Thursday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.ThursdayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.ThursdayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+    <span>@(Days.Fridag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Friday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.FridayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.FridayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+    <span>@(Days.Lørdag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Saturday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.SaturdayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.SaturdayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+    <span>@(Days.Søndag.ToString())</span>
+    @Html.CheckBoxFor(m => m.NormalDays.Sunday)
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.SundayStartTime, new { @type = "text", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+
+    </div>
+    <div class="input-group clockpicker">
+
+        @Html.TextBoxFor(m => m.NormalDays.SundayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+    </div>
+</div>

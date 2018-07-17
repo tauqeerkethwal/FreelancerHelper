@@ -88,13 +88,13 @@
 		this.dates = new DateArray();
 		this.viewDate = UTCToday();
 		this.focusDate = null;
+		this.isInput = this.element.is('input');
+		this.component = this.element.is('.date') ? this.element.find('.add-on, .input-g
 
 		this._process_options(options);
 
 		this.element = $(element);
-		this.isInline = false;
-		this.isInput = this.element.is('input');
-		this.component = this.element.is('.date') ? this.element.find('.add-on, .input-group-addon, .btn') : false;
+		this.isInline = false;roup-addon, .btn') : false;
 		this.hasInput = this.component && this.element.find('input').length;
 		if (this.component && this.component.length === 0)
 			this.component = false;

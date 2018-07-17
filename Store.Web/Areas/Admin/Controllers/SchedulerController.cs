@@ -480,7 +480,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             scheduleViewModel.NormalDays = FillDays(schedule.DaySchedules)[0];
             scheduleViewModel.WishDays = FillDays(schedule.DaySchedules)[1];
             scheduleViewModel.weekModel = FillWeeks(schedule.WeekSchedules.ToList());
-            
+            scheduleViewModel.CustomerId = Id;
             return View(scheduleViewModel);
         }
 
@@ -581,12 +581,12 @@ namespace Freelancer.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                Schedule schedule = _scheduleService.GetScheduleByCustomerId("gCD89A82-8D4D-4B73-BFB8-047C028B4CF5");
+                Schedule schedule = _scheduleService.GetScheduleByCustomerId(scheduleFormViewModel.CustomerId);
                 if (schedule.ScheduleId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
                 {
                     var schedulee = Mapper.Map<ScheduleFormViewModel, Schedule>(scheduleFormViewModel);
 
-                    schedulee.CustomerId = "gCD89A82-8D4D-4B73-BFB8-047C028B4CF5";
+                    schedulee.CustomerId = scheduleFormViewModel.CustomerId;
                     schedulee.ScheduleId = Guid.NewGuid();
                     schedulee.WeekSchedules = ConvertWeekModelToWeekSchedule(scheduleFormViewModel.weekModel, schedulee.ScheduleId);
                     List<DaysModel> daymodel = new List<DaysModel>();
@@ -623,6 +623,7 @@ namespace Freelancer.Web.Areas.Admin.Controllers
             }
             scheduleFormViewModel.EmployeeList = _employeeService.GetAllEmployeeDropdown();
             var scheduleViewModel = Mapper.Map<ScheduleFormViewModel, ScheduleViewModel>(scheduleFormViewModel);
+            scheduleViewModel.CustomerId = scheduleFormViewModel.CustomerId;
             return View(scheduleViewModel);
         }
 
