@@ -1,0 +1,75 @@
+﻿@using Freelancer.Web.Areas.Admin.ViewModels;
+@using Freelancer.Model.Common;
+
+@model ScheduleViewModel
+@{
+
+
+}
+<div class="form formWH form-group-sm">Week Selection</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.EveryWeekofYear.ToString())">
+    <span>@(WeekTypes.EveryWeekofYear.ToString())</span>
+    @Html.CheckBoxFor(m => m.weekModel.EveryWeekofYear, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.EveryWeekofYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.Every2ndWeekofYear.ToString())">
+    <span>@(WeekTypes.Every2ndWeekofYear.ToString())</span>
+    @* @Html.HiddenFor(m => m.weekModel.OddWeek, new { @class = "hiddencheckbox" })*@
+    @Html.CheckBoxFor(m => m.weekModel.Every2ndWeekofYear, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.Every2ndWeekofYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.Every3rdWeekofYear.ToString())">
+    @*<script>
+            $("#Every2ndWeekofYear").keyup(function () {
+                $("#Every2ndWeekofYear").val($("#Every2ndWeekofYear").val());
+            });
+        </script>*@
+    <span>@(WeekTypes.Every3rdWeekofYear.ToString())</span>
+
+    @Html.CheckBoxFor(m => m.weekModel.Every3rdWeekofYear, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.Every3rdWeekofYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.Every4thWeekofYear.ToString())">
+    <span>@(WeekTypes.Every4thWeekofYear.ToString())</span>
+    @* @Html.HiddenFor(m => m.weekModel.OddWeek, new { @class = "hiddencheckbox" })*@
+    @Html.CheckBoxFor(m => m.weekModel.Every4thWeekofYear, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.Every4thWeekofYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.FirstWeekOfMonth.ToString())">
+    <span>@(WeekTypes.FirstWeekOfMonth.ToString())</span>
+    @* @Html.HiddenFor(m => m.weekModel.Every1stWeek, new { @class = "hiddencheckbox" })*@
+    @Html.CheckBoxFor(m => m.weekModel.FirstWeekOfMonth, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.FirstWeekOfMonthHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.SecondWeekOfMonth.ToString())">
+    <span>@(WeekTypes.SecondWeekOfMonth.ToString())</span>
+    @* @Html.HiddenFor(m => m.weekModel.Every2ndWeek, new { @class = "hiddencheckbox" })*@
+    @Html.CheckBoxFor(m => m.weekModel.SecondWeekOfMonth, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.SecondWeekOfMonthHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.ThirdWeekOfMonth.ToString())">
+    <span>@(WeekTypes.ThirdWeekOfMonth.ToString())</span>
+    @*@Html.HiddenFor(m => m.weekModel.Every3rdWeek, new { @class = "hiddencheckbox" })*@
+
+    @Html.CheckBoxFor(m => m.weekModel.ThirdWeekOfMonth, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.ThirdWeekOfMonthHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.FourthWeekOfMonth.ToString())">
+    <span>@(WeekTypes.FourthWeekOfMonth.ToString())</span>
+    @*@Html.HiddenFor(m => m.weekModel.Every4thWeek, new { @class = "hiddencheckbox" })*@
+    @Html.CheckBoxFor(m => m.weekModel.FourthWeekOfMonth, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.FourthWeekOfMonthHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.LastWeekOfMonth.ToString())">
+    <span>@(WeekTypes.LastWeekOfMonth.ToString())</span>
+    @* @Html.HiddenFor(m => m.weekModel.Every5thWeek, new { @class = "hiddencheckbox" })*@
+    @Html.CheckBoxFor(m => m.weekModel.LastWeekOfMonth, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.LastWeekOfMonthHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>

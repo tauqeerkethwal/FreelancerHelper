@@ -35,5 +35,99 @@ foreach (var emp in Model.Item1)
     }
 }
 
+<script>
+    function ReorderListPet() {
+        var PetCollection = JSON.stringify({ 'ScheduleEmployee': createJSONPet(true) });
+        var index = $('input[class="ScheduleEmployees"]').length;
+        $('#Tableemployee').empty();
+        if (index > 0) {
+            var url = '/admin/Scheduler/RemoveScheduleEmployee?index=' + index;
+            $.ajax({
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                data: PetCollection,
+                success: function (data) {
+
+                    $('#Tableemployee').empty();
+                    alert("test")
+                    $('#Tableemployee').append('<tr ><td>' + data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        }
+    }
+    function RemoveObjectPet(index) {
+
+        alert(index);
+        $('#' + index + '').remove();
+        ReorderListPet();
+    }
+    function createJSONPet(del) {
+        jsonObj = [];
+        $("input[class=ScheduleEmployees]").each(function () {
+
+
+
+            myObj = {}
+            myObj["EmployeeId"] = $(this).attr('id').split('_')[1];
+            myObj["EmployeeName"] = $(this).val();
+            //myObj["PetName"] = $("#ScheduleEmployeesName_" + $(this).attr('id').split('_')[1]).val();
+
+
+            jsonObj.push(myObj);
+        });
+        if (del == false) {
+
+            myObj = {}
+            myObj["EmployeeId"] = $('#EmployeeId').val();
+            myObj["EmployeeName"] = $('#EmployeeId :selected').text();
+            jsonObj.push(myObj);
+        }
+
+        return jsonObj;
+    }
+
+
+    $('#AddEmployee').click(function () {
+
+        if ($('#EmployeeId option:selected').text() == "Select Employee") {
+            return;
+        }
+        else {
+            for (var i = 0; i < $('input[class="ScheduleEmployees"]').length; i++) {
+
+                if ($('#EmployeeId option:selected').text() == $('input[class="ScheduleEmployees"]')[i].value) {
+                    return;
+                }
+            }
+        }
+
+        var index = $('input[class="ScheduleEmployees"]').length;
+        ScheduleEmployee = JSON.stringify({ 'ScheduleEmployee': createJSONPet(false) });
+        var url = '/admin/Scheduler/AddScheduleEmployee?index=' + index;
+
+        $.ajax({
+            url: url,
+            contentType: 'application/json; charset=utf-8',
+
+            type: 'POST',
+            data: ScheduleEmployee,
+            success: function (data) {
+                $('#Tableemployee').empty();
+                $('#Tableemployee').append('<tr ><td>' + data);
+            },
+            error: function (a, b, c) {
+                alert(a + " " + b + " " + c);
+            }
+        });
+
+
+
+    });
+</script>
+
 
 

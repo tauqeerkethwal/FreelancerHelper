@@ -1369,6 +1369,7 @@
     <Content Include="Areas\Admin\Views\Scheduler\_ScheduleDates.cshtml" />
     <Content Include="Areas\Admin\Views\Scheduler\_NormalDays.cshtml" />
     <Content Include="Areas\Admin\Views\Scheduler\_WishDays.cshtml" />
+    <Content Include="Areas\Admin\Views\Scheduler\_weekSelection.cshtml" />
     <None Include="Properties\PublishProfiles\Nordisk.pubxml">
       <SubType>Designer</SubType>
     </None>

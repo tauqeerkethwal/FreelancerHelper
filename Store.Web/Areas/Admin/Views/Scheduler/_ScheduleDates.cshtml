@@ -29,3 +29,94 @@
         ind++;
     }
 }
+<script>
+    function ReorderListDates() {
+        var PetCollection = JSON.stringify({ 'ScheduleDates': createJSONDates(true) });
+        var index = $('input[class="ScheduleDates"]').length;
+        $('#TableDates').empty();
+        if (index > 0) {
+            var url = '/admin/Scheduler/RemoveScheduleDates?index=' + index;
+            $.ajax({
+                url: url,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                data: PetCollection,
+                success: function (data) {
+
+                    $('#TableDates').empty();
+                    alert("test")
+                    $('#TableDates').append('<tr ><td>' + data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        }
+    }
+    function RemoveObjectDates(index) {
+        alert(index);
+        $('#' + index + '').remove();
+        ReorderListDates();
+    }
+    function createJSONDates(del) {
+        jsonObj = [];
+        $("input[class=ScheduleDates]").each(function () {
+
+
+
+            myObj = {}
+
+            myObj["ScheduleDates"] = $(this).val();
+            //myObj["PetName"] = $("#ScheduleEmployeesName_" + $(this).attr('id').split('_')[1]).val();
+
+
+            jsonObj.push(myObj);
+        });
+        if (del == false) {
+
+            myObj = {}
+            myObj["ScheduleDates"] = $('#txtScheduleDate').val();
+            jsonObj.push(myObj);
+        }
+
+        return jsonObj;
+    }
+
+
+    $('#AddDate').click(function () {
+        debugger
+        if ($('#txtScheduleDate').val() == "") {
+            return;
+        }
+        else {
+            for (var i = 0; i < $('input[class="ScheduleDates"]').length; i++) {
+
+                if ($('#txtScheduleDate').val() == $('input[class="ScheduleDates"]')[i].value) {
+                    return;
+                }
+            }
+        }
+
+        var index = $('input[class="ScheduleDates"]').length;
+        scheduleWithDates = JSON.stringify({ 'ScheduleDates': createJSONDates(false) });
+        var url = '/admin/Scheduler/AddScheduleDates?index=' + index;
+
+        $.ajax({
+            url: url,
+            contentType: 'application/json; charset=utf-8',
+
+            type: 'POST',
+            data: scheduleWithDates,
+            success: function (data) {
+                $('#TableDates').empty();
+                $('#TableDates').append('<tr ><td>' + data);
+            },
+            error: function (a, b, c) {
+                alert(a + " " + b + " " + c);
+            }
+        });
+
+
+
+    });
+</script>
