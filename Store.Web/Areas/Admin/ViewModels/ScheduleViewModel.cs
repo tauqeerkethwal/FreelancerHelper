@@ -9,6 +9,10 @@ namespace Freelancer.Web.Areas.Admin.ViewModels
     {
 
 
+        public bool EveryOddWeekOfYear { get; set; }
+        public double? EveryOddWeekOfYearHours { get; set; }
+        public bool EveryEvenWeekOfYear { get; set; }
+        public double? EveryEvenWeekOfYearHours { get; set; }
 
         public bool EveryWeekofYear { get; set; }
 

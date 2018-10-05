@@ -20,6 +20,8 @@
     public enum WeekTypes
     {
         EveryWeekofYear,
+        EveryOddWeekOfYear,
+        EveryEvenWeekOfYear,
         Every2ndWeekofYear,
         Every3rdWeekofYear,
         Every4thWeekofYear,

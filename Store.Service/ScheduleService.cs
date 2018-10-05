@@ -69,6 +69,7 @@ namespace Freelancer.Service
                     DateUpdated = e.DateUpdated,
                     del = e.del,
                     ScheduleDates=e.ScheduleDates,
+                    hours=e.hours,
                     ScheduleId=e.ScheduleId,
                     Schedules=e.Schedules,
                     ScheduleWithDatesId=e.ScheduleWithDatesId,

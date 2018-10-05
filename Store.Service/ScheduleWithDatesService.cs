@@ -5,18 +5,33 @@ using Freelancer.Data.Infrastructure;
 using Freelancer.Data.Repositories;
 using Freelancer.Model.Models.Schedule;
 using System.Collections.Generic;
+using System;
+using System.Linq;
+
 namespace Freelancer.Service
 {
     public interface IScheduleWithDatesService
     {
         void CreateAndUpdateSchedulewithDated(Schedule oldSchedule, List<ScheduleWithDates> NewSchedule);
         List<ScheduleWithDates> CompareExistingDatesFromScheduleDates(Schedule oldSchedule, List<ScheduleWithDates> NewScheduleDates);
+        void SoftdeleteScheduleDates(Guid scheduleID, string UpdateUserID);
         void SaveScheduleWithDates();
     }
     public class ScheduleWithDatesService : IScheduleWithDatesService
     {
         private readonly IScheduleDatesRepository _scheduleDatesRepository;
         private readonly IUnitOfWork _unitOfWork;
+
+        public void SoftdeleteScheduleDates(Guid scheduleID, string UpdateUserID)
+        {
+            foreach (var li in _scheduleDatesRepository.GetMany(x => x.ScheduleId == scheduleID).ToList())
+            {
+                li.UpdatedById = UpdateUserID;
+                li.del = true;
+            };
+        }
+           
+
         public List<ScheduleWithDates> IfoldScheduledateNotExistInNewList(Schedule oldSchedule, List<ScheduleWithDates> NewScheduleDates)
         {
             List<ScheduleWithDates> SelectedScheduleDates = new List<ScheduleWithDates>();

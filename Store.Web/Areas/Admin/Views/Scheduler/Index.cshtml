@@ -135,6 +135,9 @@
                                                             <input type="date" id="txtScheduleDate" name="txtScheduleDate" class="date-picker" />
                                                         </td>
                                                         <td>
+                                                         <input type="text" id="txtScheduleDatehours" style="width:50px;margin-left:20px" onkeypress="return isfloatKey(event)" name="txtScheduleDatehours" /> 
+                                                        </td>
+                                                        <td>
                                                             <button id="AddDate" type="button" class="btn btn-block btn-success btn-sm" style="margin-left:10px">Add Dates</button>
                                                         </td>
                                                     </tr>
@@ -212,6 +215,9 @@
 </div>
 @*pet list operations script*@
 <script type="text/javascript">
+    $('#StartingDate').change(function () {
+        alert(this.value.split("-").reverse().join("-"));
+    });
     $('.clockpicker').clockpicker({
         placement: 'top',
         align: 'left',

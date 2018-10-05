@@ -198,8 +198,34 @@ namespace Freelancer.Web.Areas.Admin.Controllers
         public List<WeekSchedule> ConvertWeekModelToWeekSchedule(WeekModel weekSchedule, Guid scheduleId)
         {
             List<WeekSchedule> finalList = new List<WeekSchedule>();
+            if (weekSchedule.EveryEvenWeekOfYear)
+            {
+                finalList.Add(new WeekSchedule
+                {
+                    WeekType = (int)WeekTypes.EveryEvenWeekOfYear,
+                    hours = weekSchedule.EveryEvenWeekOfYearHours,
+                    ScheduleId = scheduleId,
+                    CreatedById = adminid,
+                    DateCreated = DateTime.Now,
+                    del = false,
+                    ScheduleWeekId = Guid.NewGuid()
+                });
 
+            }
+            if (weekSchedule.EveryOddWeekOfYear)
+            {
+                finalList.Add(new WeekSchedule
+                {
+                    WeekType = (int)WeekTypes.EveryOddWeekOfYear,
+                    hours = weekSchedule.EveryOddWeekOfYearHours,
+                    ScheduleId = scheduleId,
+                    CreatedById = adminid,
+                    DateCreated = DateTime.Now,
+                    del = false,
+                    ScheduleWeekId = Guid.NewGuid()
+                });
 
+            }
 
             if (weekSchedule.EveryWeekofYear)
             {
@@ -601,9 +627,20 @@ namespace Freelancer.Web.Areas.Admin.Controllers
                     schedule.UpdatedById = adminid;
                     schedule.StartingDate = scheduleFormViewModel.StartingDate;
                     scheduleFormViewModel.ScheduleEmployees.ForEach(x => x.UpdatedById = adminid);
-                    scheduleFormViewModel.ScheduleWithDatess.ForEach(x => x.UpdatedById = adminid);
+                    if(scheduleFormViewModel.ScheduleWithDatess != null)
+                    {
+                        scheduleFormViewModel.ScheduleWithDatess.ForEach(x => x.UpdatedById = adminid);
+
+                    }
+                    if(scheduleFormViewModel.ScheduleWithDatess==null)
+                    {
+                        _scheduleWithDatesService.SoftdeleteScheduleDates(schedule.ScheduleId, adminid);
+                        _scheduleWithDatesService.SaveScheduleWithDates();
+                    }
                     _scheduleEmployeeService.CreateAndUpdateScheduleEmployee(schedule, scheduleFormViewModel.ScheduleEmployees);
+                    if (scheduleFormViewModel.ScheduleWithDatess != null) { 
                     _scheduleWithDatesService.CreateAndUpdateSchedulewithDated(schedule, scheduleFormViewModel.ScheduleWithDatess);
+                    }
                     _dayScheduleService.DeletePreviousDaySchedule(schedule.ScheduleId, adminid);
                     _weekScheduleService.DeletePreviousWeekSchedule(schedule.ScheduleId, adminid);
 

@@ -14,27 +14,31 @@
                 <div id="ScheduleWithDates@(ind)">
                     <input id="ScheduleWithDates_@(emp.ScheduleDates)" class="ScheduleDates"
                            name="ScheduleWithDatess[@(ind)].ScheduleDates" type="hidden" value="@emp.ScheduleDates" />@emp.ScheduleDates
-                        @*<input id="ScheduleWithDates_@(emp.ScheduleWithDatesId)" class="ScheduleDates"
-                               name="ScheduleWithDates[@(ind)].ScheduleWithDatesId" type="hidden" value="@emp.ScheduleWithDatesId" />*@
-
                     </div>
                 </td>
                 <td>
-                    <button id="RemoveObjectDates@(ind+"+p")" onclick="RemoveObjectDates('ScheduleWithDates@(ind)')" type="button" style="margin-top: 5px;margin-left:10px" type="button" class="btn btn-block btn-danger btn-xs">Remove date</button>
-                </td>
 
-            </tr>
+                    <input id="ScheduleDatehours_@(ind)"
+                           name="ScheduleWithDatess[@(ind)].hours" type="hidden" value="@emp.hours" />@emp.hours
+
+                    </td>
+                    <td>
+                        <button id="RemoveObjectDates@(ind+"+p")" onclick="RemoveObjectDates('ScheduleWithDates@(ind)',@(ind))" type="button" style="margin-top: 5px;margin-left:10px" type="button" class="btn btn-block btn-danger btn-xs">Remove date</button>
+                    </td>
+                    <
+                </tr>
 
 
         ind++;
     }
 }
 <script>
-    function ReorderListDates() {
-        var PetCollection = JSON.stringify({ 'ScheduleDates': createJSONDates(true) });
+    function ReorderListDates(removedIndex) {
+        debugger
+        var PetCollection = JSON.stringify({ 'ScheduleDates': createJSONDates(true, removedIndex) });
         var index = $('input[class="ScheduleDates"]').length;
         $('#TableDates').empty();
-        if (index > 0) {
+        if (index >= 0) {
             var url = '/admin/Scheduler/RemoveScheduleDates?index=' + index;
             $.ajax({
                 url: url,
@@ -53,13 +57,14 @@
             });
         }
     }
-    function RemoveObjectDates(index) {
+    function RemoveObjectDates(index, removedIndex) {
         alert(index);
         $('#' + index + '').remove();
-        ReorderListDates();
+        ReorderListDates(removedIndex);
     }
-    function createJSONDates(del) {
+    function createJSONDates(del, removedIndex) {
         jsonObj = [];
+        var ind = 0;
         $("input[class=ScheduleDates]").each(function () {
 
 
@@ -67,15 +72,21 @@
             myObj = {}
 
             myObj["ScheduleDates"] = $(this).val();
+            if (removedIndex == ind)
+            { ind++; }
+
+            myObj["hours"] = $('#ScheduleDatehours_' + ind).val();
             //myObj["PetName"] = $("#ScheduleEmployeesName_" + $(this).attr('id').split('_')[1]).val();
 
 
             jsonObj.push(myObj);
+            ind++;
         });
         if (del == false) {
 
             myObj = {}
             myObj["ScheduleDates"] = $('#txtScheduleDate').val();
+            myObj["hours"] = $('#txtScheduleDatehours').val();
             jsonObj.push(myObj);
         }
 
@@ -85,7 +96,7 @@
 
     $('#AddDate').click(function () {
         debugger
-        if ($('#txtScheduleDate').val() == "") {
+        if ($('#txtScheduleDate').val() == "" || $('#txtScheduleDatehours').val() == "") {
             return;
         }
         else {
@@ -100,7 +111,7 @@
         var index = $('input[class="ScheduleDates"]').length;
         scheduleWithDates = JSON.stringify({ 'ScheduleDates': createJSONDates(false) });
         var url = '/admin/Scheduler/AddScheduleDates?index=' + index;
-
+        debugger;
         $.ajax({
             url: url,
             contentType: 'application/json; charset=utf-8',

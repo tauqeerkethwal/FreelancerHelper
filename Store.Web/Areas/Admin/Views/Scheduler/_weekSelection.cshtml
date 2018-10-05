@@ -13,6 +13,18 @@
     @Html.TextBoxFor(m => m.weekModel.EveryWeekofYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
 
 </div>
+<div class="form-group col-sm-8" name="@(WeekTypes.EveryOddWeekOfYear.ToString())">
+    <span>@(WeekTypes.EveryOddWeekOfYear.ToString())</span>
+    @Html.CheckBoxFor(m => m.weekModel.EveryOddWeekOfYear, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.EveryOddWeekOfYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
+<div class="form-group col-sm-8" name="@(WeekTypes.EveryEvenWeekOfYear.ToString())">
+    <span>@(WeekTypes.EveryEvenWeekOfYear.ToString())</span>
+    @Html.CheckBoxFor(m => m.weekModel.EveryEvenWeekOfYear, new { @class = "WeekCheckbox" })
+    @Html.TextBoxFor(m => m.weekModel.EveryEvenWeekOfYearHours, new { @placeholder = "tid", @onkeypress = "return isfloatKey(event)", @class = "form-control" })
+
+</div>
 <div class="form-group col-sm-8" name="@(WeekTypes.Every2ndWeekofYear.ToString())">
     <span>@(WeekTypes.Every2ndWeekofYear.ToString())</span>
     @* @Html.HiddenFor(m => m.weekModel.OddWeek, new { @class = "hiddencheckbox" })*@
