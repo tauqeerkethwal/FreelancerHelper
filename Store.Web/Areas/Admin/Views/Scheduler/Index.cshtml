@@ -135,6 +135,7 @@
                                                             <input type="date" id="txtScheduleDate" name="txtScheduleDate" class="date-picker" />
                                                         </td>
                                                         <td>
+                                                          
                                                          <input type="text" id="txtScheduleDatehours" style="width:50px;margin-left:20px" onkeypress="return isfloatKey(event)" name="txtScheduleDatehours" /> 
                                                         </td>
                                                         <td>
@@ -160,7 +161,8 @@
                             
                                 <div class="form formWH form-group-sm">Starting Date</div>
                                 <div class="form-group col-sm-8">
-                                    @Html.TextBoxFor(x => x.StartingDate, new { @type = "date", @class = "form-control" })
+                                    @Html.TextBoxFor(x => x.StartingDate, new { @type = "text", @class = "datepicker" })
+                                  
                                 </div>
                             </div>
                        

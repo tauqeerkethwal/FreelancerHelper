@@ -12,7 +12,7 @@
     @Html.CheckBoxFor(m => m.WishDays.Monday)
     <div class="input-group clockpicker">
 
-        @Html.TextBoxFor(m => m.WishDays.MondayStartTime, new { @type = "text", @class = "form-control" })
+        @Html.TextBoxFor(m => m.WishDays.MondayStartTime, new { @type = "text", @class = "form-control",@style="z-index:0" })
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>
@@ -20,7 +20,7 @@
     </div>
     <div class="input-group clockpicker">
 
-        @Html.TextBoxFor(m => m.WishDays.MondayEndTime, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.WishDays.MondayEndTime, new { @class = "form-control", @style = "z-index:0" })
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>
@@ -30,7 +30,7 @@
     @Html.CheckBoxFor(m => m.WishDays.Tuesday)
     <div class="input-group clockpicker">
 
-        @Html.TextBoxFor(m => m.WishDays.TuesdayStartTime, new { @type = "text", @class = "form-control" })
+        @Html.TextBoxFor(m => m.WishDays.TuesdayStartTime, new { @type = "text", @class = "form-control", @style = "z-index:0" })
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>
@@ -38,7 +38,7 @@
     </div>
     <div class="input-group clockpicker">
 
-        @Html.TextBoxFor(m => m.WishDays.TuesdayEndTime, new { @placeholder = "Endtime", @class = "form-control" })
+        @Html.TextBoxFor(m => m.WishDays.TuesdayEndTime, new { @placeholder = "Endtime", @class = "form-control", @style = "z-index:0" })
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>
@@ -48,7 +48,7 @@
     @Html.CheckBoxFor(m => m.WishDays.Wednesday)
     <div class="input-group clockpicker">
 
-        @Html.TextBoxFor(m => m.WishDays.WednesdayStartTime, new { @type = "text", @class = "form-control" })
+        @Html.TextBoxFor(m => m.WishDays.WednesdayStartTime, new { @type = "text", @class = "form-control", @style = "z-index:0" })
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>

@@ -89,7 +89,7 @@
 		this.viewDate = UTCToday();
 		this.focusDate = null;
 		this.isInput = this.element.is('input');
-		this.component = this.element.is('.date') ? this.element.find('.add-on, .input-g
+		this.component = this.element.is('.date') ? this.element.find('.add-on, .input-g');
 
 		this._process_options(options);
 

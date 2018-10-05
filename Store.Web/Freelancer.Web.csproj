@@ -1173,6 +1173,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css.css" />
+    <Content Include="Content\datetimepicker\css\datepicker.css" />
+    <Content Include="Content\datetimepicker\js\bootstrap-datepicker.js" />
     <Content Include="Content\generalGrid.css" />
     <Content Include="Content\jquery-ui-new.css" />
     <Content Include="Content\jquery-ui.css" />
@@ -1366,6 +1368,7 @@
     <Content Include="Areas\Admin\Views\Scheduler\_NormalDays.cshtml" />
     <Content Include="Areas\Admin\Views\Scheduler\_WishDays.cshtml" />
     <Content Include="Areas\Admin\Views\Scheduler\_weekSelection.cshtml" />
+    <Content Include="Content\datetimepicker\less\datepicker.less" />
     <None Include="Properties\PublishProfiles\Nordisk.pubxml">
       <SubType>Designer</SubType>
     </None>
